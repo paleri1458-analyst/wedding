@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3 States | Ronaldo & Anoushka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    :root {
+      --sea-blue: #0284c7;
+      --deep-ocean: #034870;
+      --beach-sand: #fef7ee;
+      --warm-sand: #f5eedc;
+      --coral: #f472b6;
+      --terracotta: #ea580c;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--beach-sand);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-script {
+      font-family: 'Alex Brush', cursive;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(rgba(3, 72, 112, 0.45), rgba(2, 132, 199, 0.3)), url('venue-sunset.jpg') center/cover no-repeat;
+      color: var(--white);
+    }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 6px 20px;
+      border-radius: 50px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
+      max-width: 650px;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      color: #f1f5f9;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* COUNTDOWN */
+    .countdown-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
+      min-width: 72px;
+    }
+
+    .countdown-num {
+      font-size: 1.8rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    .countdown-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    /* SECTION BASICS */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--sea-blue);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      color: var(--deep-ocean);
+    }
+
+    /* STORY CARD */
+    .story-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 3rem;
+    }
+
+    .story-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      min-height: 400px;
+    }
+
+    .story-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quote {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--deep-ocean);
+      border-left: 3px solid var(--sea-blue);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    /* CHILDHOOD CARDS */
+    .childhood-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .baby-card {
+      background: var(--white);
+      padding: 1.2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .baby-img-wrapper {
+      width: 100%;
+      height: 440px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f8fafc;
+      margin-bottom: 1.2rem;
+    }
+
+    .baby-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.4s ease;
+    }
+
+    .baby-card:hover img {
+      transform: scale(1.02);
+    }
+
+    /* TIMELINE */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .timeline-item {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border-left: 6px solid var(--sea-blue);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .timeline-time {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--sea-blue);
+    }
+
+    .timeline-name {
+      font-size: 1.35rem;
+      margin: 0.2rem 0;
+      color: var(--deep-ocean);
+    }
+
+    .timeline-date-badge {
+      background: var(--warm-sand);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--deep-ocean);
+    }
+
+    /* VENUE SHOWCASE */
+    .venue-showcase {
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .venue-gallery {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      min-height: 480px;
+    }
+
+    .venue-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .venue-info-box {
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #fafaf9;
+    }
+
+    .qr-container {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      margin: 1.5rem 0;
+      display: inline-block;
+    }
+
+    .qr-container img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-maps {
+      background: var(--sea-blue);
+      color: var(--white);
+    }
+
+    .btn-maps:hover {
+      background: var(--deep-ocean);
+    }
+
+    /* MEMORIES & LAUGHS SLIDESHOW */
+    .slideshow-wrapper {
+      position: relative;
+      max-width: 650px;
+      height: 520px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      background: #000;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1.5rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: var(--white);
+      text-align: center;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+    .slideshow-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--sea-blue);
+      width: 24px;
+      border-radius: 12px;
+    }
+
+    /* RSVP */
+    .rsvp-container {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 650px;
+      margin: 0 auto;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.07);
+      text-align: center;
+      border: 1px solid rgba(2, 132, 199, 0.15);
+    }
+
+    .rsvp-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .rsvp-btn {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      padding: 1.1rem 1.4rem;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .rsvp-btn:hover {
+      border-color: #25D366;
+      background: #f0fdf4;
+      color: #166534;
+      transform: translateY(-2px);
+    }
+
+    .rsvp-btn.cant-attend:hover {
+      border-color: #ef4444;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      background: var(--deep-ocean);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.5rem; }
+      .story-card, .venue-showcase { grid-template-columns: 1fr; }
+      .childhood-grid { grid-template-columns: 1fr; }
+      .baby-img-wrapper { height: 380px; }
+      .slideshow-wrapper { height: 420px; }
+      .venue-gallery { min-height: 280px; }
+      .timeline-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="hero-badge">Wedding Invitation</span>
+    <h1 class="hero-title">Ronaldo & Anoushka</h1>
+    <p class="font-script" style="font-size: 2.3rem; margin-bottom: 0.8rem;">3 States</p>
+    <p class="hero-tagline">
+      A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!
+    </p>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-container">
+      <div class="countdown-box">
+        <span class="countdown-num" id="days">00</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="hours">00</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="minutes">00</span>
+        <span class="countdown-label">Mins</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="seconds">00</span>
+        <span class="countdown-label">Secs</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- OUR STORY & CHILDHOOD -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">Our Journey</span>
+      <h2 class="section-title">From 3 Cultures to 1 Story</h2>
+    </div>
+
+    <div class="story-card">
+      <img src="couple-traditional.jpg" alt="Ronaldo and Anoushka" class="story-img" />
+      <div class="story-content">
+        <h3 style="font-size: 1.8rem; color: var(--deep-ocean);">Two Souls, Infinite Banter</h3>
+        <p class="quote">
+          "When cultures collide, love throws the ultimate beach party."
+        </p>
+        <p style="color: var(--text-muted);">
+          She brings the fiery charm of Rajasthan and the soulful warmth of God's Own Country. He brings the classic wit and heart of Tamil Nadu. Together, we’re tying the knot right where the waves crash against the shore.
+        </p>
+      </div>
+    </div>
+
+    <!-- CHILDHOOD -->
+    <div class="childhood-grid">
+      <div class="baby-card">
+        <div class="baby-img-wrapper">
+          <img src="childhood-groom.jpg" alt="Young Ronaldo" />
+        </div>
+        <h4 style="font-size: 1.25rem; color: var(--deep-ocean);">The Groom</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Ronaldo (Always smiling, always ready)</p>
+      </div>
+      <div class="baby-card">
+        <div class="baby-img-wrapper">
+          <img src="childhood-bride.jpg" alt="Young Anoushka" />
+        </div>
+        <h4 style="font-size: 1.25rem; color: var(--deep-ocean);">The Bride</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Anoushka (Full of drama & sparkle from day one)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section style="background: rgba(2, 132, 199, 0.03); border-radius: 30px;">
+    <div class="section-header">
+      <span class="section-subtitle">Events</span>
+      <h2 class="section-title">The Wedding Schedule</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div>
+          <span class="timeline-time"><i class="fa-regular fa-clock"></i> 3:00 PM</span>
+          <h3 class="timeline-name">Haldi Ceremony</h3>
+          <p style="color: var(--text-muted);">Get ready to splash colors, turmeric, and smiles.</p>
+        </div>
+        <span class="timeline-date-badge">20th November 2026</span>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <span class="timeline-time"><i class="fa-regular fa-moon"></i> Evening</span>
+          <h3 class="timeline-name">Sangeet & Sundowner</h3>
+          <p style="color: var(--text-muted);">Music, coastal breeze, and dancing all night long.</p>
+        </div>
+        <span class="timeline-date-badge">20th November 2026</span>
+      </div>
+
+      <div class="timeline-item" style="border-left-color: var(--terracotta);">
+        <div>
+          <span class="timeline-time" style="color: var(--terracotta);"><i class="fa-solid fa-church"></i> 12:00 PM</span>
+          <h3 class="timeline-name">Church Wedding</h3>
+          <p style="color: var(--text-muted);">The sacred vows as two souls become one family.</p>
+        </div>
+        <span class="timeline-date-badge">21st November 2026</span>
+      </div>
+
+      <div class="timeline-item" style="border-left-color: var(--terracotta);">
+        <div>
+          <span class="timeline-time" style="color: var(--terracotta);"><i class="fa-solid fa-champagne-glasses"></i> 5:00 PM</span>
+          <h3 class="timeline-name">Beachside Reception</h3>
+          <p style="color: var(--text-muted);">Sunset toasts, seaside dinner, and celebrations.</p>
+        </div>
+        <span class="timeline-date-badge">21st November 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE (ALL JPG) -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">Where It Happens</span>
+      <h2 class="section-title">Deja Blu, Thrissur</h2>
+    </div>
+
+    <div class="venue-showcase">
+      <div class="venue-gallery">
+        <img src="venue-sunset.jpg" alt="Deja Blu Beachfront Aerial" />
+        <img src="venue-villa.jpg" alt="Deja Blu Villa" />
+      </div>
+      <div class="venue-info-box">
+        <h3 style="color: var(--deep-ocean); font-size: 1.6rem; margin-bottom: 0.3rem;">Deja Blu Beach Resort</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Thrissur Coastal Road, Kerala</p>
+        
+        <div class="qr-container">
+          <img src="qr-code.jpg" alt="Scan for Location" />
+        </div>
+        
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.2rem;">Scan the code or click below to navigate</p>
+        <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn btn-maps">
+          <i class="fa-solid fa-location-dot"></i> Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORIES & LAUGHS (FADING SLIDESHOW) -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">Moments</span>
+      <h2 class="section-title">Memories & Laughs</h2>
+    </div>
+
+    <div class="slideshow-wrapper" id="slideshow">
+      <div class="slide active">
+        <img src="couple-pink.jpg" alt="Traditional Elegance" />
+        <div class="slide-caption">Stepping into forever together ❤️</div>
+      </div>
+      <div class="slide">
+        <img src="couple-valentine.jpg" alt="Airport Valentine" />
+        <div class="slide-caption">Will you be my Valentine? Always! ✨</div>
+      </div>
+      <div class="slide">
+        <img src="couple-garden.jpg" alt="Candlelight Date" />
+        <div class="slide-caption">Warm lights, quiet talks, and loud laughs 🥂</div>
+      </div>
+      <div class="slide">
+        <img src="couple-dance.jpg" alt="Corporate Suit Dance" />
+        <div class="slide-caption">Business on paper, Bollywood in spirit 🕺💃</div>
+      </div>
+      <div class="slide">
+        <img src="couple-quirky.jpg" alt="Mustache Selfie" />
+        <div class="slide-caption">Never taking life too seriously 🥸</div>
+      </div>
+    </div>
+
+    <div class="slideshow-dots" id="dotsContainer">
+      <div class="dot active" onclick="jumpToSlide(0)"></div>
+      <div class="dot" onclick="jumpToSlide(1)"></div>
+      <div class="dot" onclick="jumpToSlide(2)"></div>
+      <div class="dot" onclick="jumpToSlide(3)"></div>
+      <div class="dot" onclick="jumpToSlide(4)"></div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="rsvp-container">
+      <span class="section-subtitle">Will You Be There?</span>
+      <h2 class="section-title" style="margin-bottom: 0.5rem;">RSVP</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Click below to let us know on WhatsApp directly so we can plan your stay & seat!
+      </p>
+
+      <div class="rsvp-options">
+        <a href="https://wa.me/917303342963?text=Hey%20Ronaldo%20%26%20Anoushka!%20%F0%9F%8E%89%20I'm%20thrilled%20to%20confirm%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
+           target="_blank" 
+           class="rsvp-btn">
+          <span><i class="fa-brands fa-whatsapp" style="color:#25D366; margin-right: 8px;"></i> Attending Both Days (20th & 21st)</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="https://wa.me/917303342963?text=Hey%20Ronaldo%20%26%20Anoushka!%20%E2%9C%A8%20I%20will%20be%20attending%20the%20wedding%20on%20the%2021st%20Nov!" 
+           target="_blank" 
+           class="rsvp-btn">
+          <span><i class="fa-brands fa-whatsapp" style="color:#25D366; margin-right: 8px;"></i> Attending 21st Only (Wedding & Reception)</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="https://wa.me/917303342963?text=Hey%20Ronaldo%20%26%20Anoushka!%20So%20sorry%2C%20I%20won't%20be%20able%20to%20make%20it%2C%20but%20wishing%20you%20both%20the%20best!" 
+           target="_blank" 
+           class="rsvp-btn cant-attend">
+          <span><i class="fa-regular fa-face-frown" style="margin-right: 8px;"></i> Can't Attend (Sending Love!)</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="font-script" style="font-size: 2.4rem; margin-bottom: 0.3rem;">Ronaldo & Anoushka</p>
+    <p style="opacity: 0.85;">Thrissur, Kerala • 20th & 21st November 2026</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Countdown
+    const weddingDate = new Date("Nov 20, 2026 15:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+      } else {
+        document.querySelector(".countdown-container").innerHTML = "<h3 style='color:white;'>We Are Married! 🎉</h3>";
+      }
+    }, 1000);
+
+    // Cross-fade Slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      currentSlide = (index + totalSlides) % totalSlides;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    function jumpToSlide(index) {
+      showSlide(index);
+      resetSlideInterval();
+    }
+
+    let slideInterval = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 3200);
+
+    function resetSlideInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
