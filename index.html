@@ -276,7 +276,7 @@
       margin-bottom: 0.4rem;
     }
 
-    /* SCRATCH CARD */
+    /* SCRATCH CARD CONTAINER */
     .scratch-section {
       text-align: center;
       padding: 3.5rem 1.25rem 1.5rem;
@@ -287,13 +287,13 @@
     .scratch-card-wrapper {
       position: relative;
       width: 100%;
-      max-width: 380px;
-      height: 200px;
+      max-width: 360px;
+      height: 210px;
       margin: 1.2rem auto 0;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 14px 35px rgba(2, 132, 199, 0.15);
-      border: 2px solid #e0f2fe;
+      box-shadow: 0 14px 35px rgba(2, 132, 199, 0.18);
+      border: 2px solid #bae6fd;
       background: #ffffff;
     }
 
@@ -305,7 +305,8 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
-      padding: 1rem;
+      padding: 1.2rem;
+      z-index: 1;
     }
 
     .scratch-canvas {
@@ -314,10 +315,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 5;
-      cursor: grab;
+      z-index: 10;
+      cursor: pointer;
       touch-action: none;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.6s ease;
     }
 
     /* COUNTDOWN */
@@ -325,7 +326,7 @@
       display: flex;
       gap: 0.5rem;
       justify-content: center;
-      margin-top: 0.6rem;
+      margin-top: 0.8rem;
     }
 
     .countdown-box {
@@ -335,6 +336,7 @@
       padding: 0.4rem 0.65rem;
       min-width: 55px;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
     .countdown-num {
@@ -420,51 +422,51 @@
       color: var(--deep-teal);
     }
 
-    /* REEL-STYLE EVENT CARDS */
+    /* REEL-STYLE FULL-BLEED INDIAN EVENT POSTER CARDS */
     .events-grid {
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
-      max-width: 580px;
+      gap: 2rem;
+      max-width: 540px;
       margin: 0 auto;
     }
 
     .event-card-reel {
-      background: #ffffff;
-      border-radius: 28px;
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border-radius: 26px;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(8, 51, 68, 0.12);
-      border: 1.5px solid rgba(2, 132, 199, 0.2);
+      box-shadow: 0 16px 40px rgba(8, 51, 68, 0.18);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem 1.4rem;
+      color: #ffffff;
       transition: transform 0.3s ease;
     }
 
     .event-card-reel:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
     }
 
-    .event-image-arch {
-      width: 100%;
-      height: 320px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .event-image-arch img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .event-card-reel:hover .event-image-arch img {
-      transform: scale(1.04);
-    }
-
-    .event-badge-overlay {
+    /* Smooth darkening gradient overlay so text blends directly over image */
+    .event-card-reel::before {
+      content: '';
       position: absolute;
-      top: 16px;
-      right: 16px;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 51, 68, 0.15) 0%, rgba(8, 51, 68, 0.4) 40%, rgba(8, 51, 68, 0.92) 100%);
+      z-index: 1;
+    }
+
+    .event-badge-top {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 2;
       background: rgba(8, 51, 68, 0.85);
       color: #fef08a;
       backdrop-filter: blur(8px);
@@ -473,38 +475,42 @@
       font-size: 0.8rem;
       font-weight: 700;
       border: 1px solid rgba(254, 240, 138, 0.35);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .event-content-box {
-      padding: 1.8rem 1.6rem 2rem;
+    .event-info-overlay {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     }
 
-    .event-title-main {
+    .event-title-overlay {
       font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      color: var(--deep-teal);
-      margin-bottom: 0.4rem;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
-    .event-meta-pill {
+    .event-time-overlay {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--sea-blue);
+      color: #fef08a;
       font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
-    .event-desc-text {
-      color: #475569;
+    .event-desc-overlay {
+      color: #f1f5f9;
       font-size: 0.92rem;
       line-height: 1.45;
       max-width: 440px;
       margin: 0 auto;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
     /* VENUE */
@@ -739,8 +745,9 @@
     <h2 class="section-title-cursive">Save the Date</h2>
     <p style="color: #64748b; font-size: 0.9rem; margin-top: -0.2rem;">Scratch with your finger to reveal! ✨</p>
 
-    <div class="scratch-card-wrapper">
-      <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+    <div class="scratch-card-wrapper" id="scratchWrapper">
+      <canvas id="scratchCanvas" class="scratch-canvas" width="360" height="210"></canvas>
+      
       <div class="scratch-hidden-content">
         <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Save The Date</span>
         <h4 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--deep-teal); margin: 0.2rem 0;">
@@ -792,7 +799,9 @@
     </div>
   </section>
 
-  <!-- EVENTS SECTION (CURSIVE HEADER) -->
+  <!-- =========================================================================
+       EVENTS: FULL-BLEED INDIAN AESTHETIC CARDS (NO WHITE LOWER PORTION)
+       ========================================================================= -->
   <section>
     <div class="section-header">
       <span class="section-subtitle-pill">Celebrations</span>
@@ -801,70 +810,58 @@
 
     <div class="events-grid">
       
-      <!-- 1. HALDI CEREMONY -->
-      <div class="event-card-reel">
-        <div class="event-image-arch">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=80" alt="Haldi by the Beach" />
-          <span class="event-badge-overlay">20th Nov 2026</span>
-        </div>
-        <div class="event-content-box">
-          <h3 class="event-title-main">Haldi Ceremony</h3>
-          <div class="event-meta-pill">
+      <!-- 1. HALDI CEREMONY (Indian Marigolds & Turmeric Beach Vibe) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=900&q=80');">
+        <span class="event-badge-top">20th Nov 2026</span>
+        <div class="event-info-overlay">
+          <h3 class="event-title-overlay">Haldi Ceremony</h3>
+          <div class="event-time-overlay">
             <i class="fa-regular fa-clock"></i> 3:00 PM onwards
           </div>
-          <p class="event-desc-text">
+          <p class="event-desc-overlay">
             Bright yellow hues, laughter, coastal breezes, and playful splashes of turmeric to kick off our wedding celebrations!
           </p>
         </div>
       </div>
 
-      <!-- 2. SANGEET -->
-      <div class="event-card-reel">
-        <div class="event-image-arch">
-          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=900&q=80" alt="Beachside Sangeet" />
-          <span class="event-badge-overlay">20th Nov 2026</span>
-        </div>
-        <div class="event-content-box">
-          <h3 class="event-title-main">Sangeet</h3>
-          <div class="event-meta-pill">
+      <!-- 2. SANGEET (Indian Fairy Light Beach Decor & Dance) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80');">
+        <span class="event-badge-top">20th Nov 2026</span>
+        <div class="event-info-overlay">
+          <h3 class="event-title-overlay">Sangeet</h3>
+          <div class="event-time-overlay">
             <i class="fa-regular fa-moon"></i> Evening
           </div>
-          <p class="event-desc-text">
+          <p class="event-desc-overlay">
             Under twilight lights and ocean sounds — an evening of non-stop dance performances, celebrations, and music.
           </p>
         </div>
       </div>
 
-      <!-- 3. CHURCH WEDDING -->
-      <div class="event-card-reel">
-        <div class="event-image-arch">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Church Wedding" />
-          <span class="event-badge-overlay" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
-        </div>
-        <div class="event-content-box">
-          <h3 class="event-title-main">Church Wedding</h3>
-          <div class="event-meta-pill" style="color: #ea580c;">
+      <!-- 3. CHURCH WEDDING (Coastal Church Altar & Floral Arch) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80');">
+        <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
+        <div class="event-info-overlay">
+          <h3 class="event-title-overlay">Church Wedding</h3>
+          <div class="event-time-overlay">
             <i class="fa-solid fa-church"></i> 12:00 PM
           </div>
-          <p class="event-desc-text">
-            Exchanging our holy vows and rings in an auspicious ceremony as two cultures unite to become one.
+          <p class="event-desc-overlay">
+            Exchanging holy vows and rings as our families and cultures unite to become one.
           </p>
         </div>
       </div>
 
-      <!-- 4. BEACHSIDE RECEPTION -->
-      <div class="event-card-reel">
-        <div class="event-image-arch">
-          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80" alt="Beachside Reception" />
-          <span class="event-badge-overlay" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
-        </div>
-        <div class="event-content-box">
-          <h3 class="event-title-main">Beachside Reception</h3>
-          <div class="event-meta-pill" style="color: #ea580c;">
+      <!-- 4. BEACHSIDE RECEPTION (Kerala Coastline Sunset Reception Dining) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80');">
+        <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
+        <div class="event-info-overlay">
+          <h3 class="event-title-overlay">Beachside Reception</h3>
+          <div class="event-time-overlay">
             <i class="fa-solid fa-champagne-glasses"></i> 5:00 PM onwards
           </div>
-          <p class="event-desc-text">
-            Sunset toasts right beside the waves of Deja Blu, delicious coastal feasting, and celebration into the night!
+          <p class="event-desc-overlay">
+            Sunset toasts right beside the waves of Deja Blu, coastal feasting, and celebration into the night!
           </p>
         </div>
       </div>
@@ -991,6 +988,8 @@
       gate.style.opacity = '0';
       setTimeout(() => gate.style.display = 'none', 900);
 
+      setTimeout(initScratch, 300);
+
       audio.play().then(() => {
         isMusicPlaying = true;
         musicBtn.classList.add('rotating');
@@ -1025,30 +1024,47 @@
       }
     }, 1000);
 
-    // FIXED SCRATCH CARD (PERSISTENT REVEAL)
+    // BULLETPROOF SCRATCH CARD
     const canvas = document.getElementById('scratchCanvas');
+    const wrapper = document.getElementById('scratchWrapper');
     const ctx = canvas.getContext('2d');
     let isDrawing = false;
     let scratchedAmount = 0;
     let isFullyRevealed = false;
 
+    function drawFoil(w, h) {
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#fef08a');
+      grad.addColorStop(0.3, '#ca8a04');
+      grad.addColorStop(0.6, '#fef08a');
+      grad.addColorStop(1, '#a16207');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = '#fef08a';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(4, 4, w - 8, h - 8);
+
+      ctx.fillStyle = "#082f49";
+      ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("✨ Scratch Here with Finger ✨", w / 2, h / 2 - 8);
+      ctx.font = "600 12px 'Plus Jakarta Sans', sans-serif";
+      ctx.fillText("to reveal the countdown!", w / 2, h / 2 + 16);
+    }
+
     function initScratch() {
       if (isFullyRevealed) return;
 
-      canvas.width = canvas.parentElement.offsetWidth;
-      canvas.height = canvas.parentElement.offsetHeight;
+      const rect = wrapper.getBoundingClientRect();
+      const w = rect.width > 0 ? rect.width : 360;
+      const h = rect.height > 0 ? rect.height : 210;
 
-      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, '#cbd5e1');
-      grad.addColorStop(0.5, '#f1f5f9');
-      grad.addColorStop(1, '#94a3b8');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      canvas.width = w;
+      canvas.height = h;
 
-      ctx.fillStyle = "#0f172a";
-      ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText("✨ Scratch with finger to reveal ✨", canvas.width / 2, canvas.height / 2);
+      drawFoil(w, h);
     }
 
     function checkScratchPercentage() {
@@ -1056,19 +1072,19 @@
       try {
         const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const pixels = imgData.data;
-        let transparentPixels = 0;
+        let transparentCount = 0;
         for (let i = 3; i < pixels.length; i += 4) {
-          if (pixels[i] === 0) transparentPixels++;
+          if (pixels[i] === 0) transparentCount++;
         }
-        const pct = (transparentPixels / (pixels.length / 4)) * 100;
-        if (pct > 38) {
+        const pct = (transparentCount / (pixels.length / 4)) * 100;
+        if (pct > 32) {
           isFullyRevealed = true;
           canvas.style.opacity = '0';
           setTimeout(() => {
             canvas.style.display = 'none';
-          }, 500);
+          }, 600);
         }
-      } catch (err) {}
+      } catch (e) {}
     }
 
     function scratch(e) {
@@ -1081,11 +1097,11 @@
 
       ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
-      ctx.arc(x, y, 26, 0, Math.PI * 2);
+      ctx.arc(x, y, 24, 0, Math.PI * 2);
       ctx.fill();
 
       scratchedAmount++;
-      if (scratchedAmount % 12 === 0) {
+      if (scratchedAmount % 10 === 0) {
         checkScratchPercentage();
       }
     }
@@ -1097,6 +1113,7 @@
     window.addEventListener('touchend', () => { isDrawing = false; checkScratchPercentage(); });
     canvas.addEventListener('touchmove', scratch, { passive: true });
 
+    initScratch();
     window.addEventListener('load', initScratch);
 
     // Memories Slideshow
