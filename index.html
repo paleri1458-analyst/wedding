@@ -422,11 +422,11 @@
       color: var(--deep-teal);
     }
 
-    /* REEL-STYLE FULL-BLEED INDIAN EVENT POSTER CARDS */
+    /* FULL-BLEED INDIAN EVENT POSTER CARDS */
     .events-grid {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.2rem;
       max-width: 540px;
       margin: 0 auto;
     }
@@ -434,17 +434,17 @@
     .event-card-reel {
       position: relative;
       width: 100%;
-      height: 480px;
+      height: 520px;
       border-radius: 26px;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(8, 51, 68, 0.18);
+      box-shadow: 0 18px 45px rgba(8, 51, 68, 0.2);
       border: 2px solid rgba(255, 255, 255, 0.6);
       background-size: cover;
-      background-position: center;
+      background-position: center top;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 1.8rem 1.4rem;
+      padding: 2rem 1.5rem;
       color: #ffffff;
       transition: transform 0.3s ease;
     }
@@ -453,12 +453,12 @@
       transform: translateY(-3px);
     }
 
-    /* Smooth darkening gradient overlay so text blends directly over image */
+    /* Gradient overlay that keeps top illustration visible while smoothly blending text over bottom */
     .event-card-reel::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(8, 51, 68, 0.15) 0%, rgba(8, 51, 68, 0.4) 40%, rgba(8, 51, 68, 0.92) 100%);
+      background: linear-gradient(180deg, rgba(8, 51, 68, 0.05) 0%, rgba(8, 51, 68, 0.3) 40%, rgba(8, 51, 68, 0.95) 90%);
       z-index: 1;
     }
 
@@ -467,14 +467,14 @@
       top: 18px;
       right: 18px;
       z-index: 2;
-      background: rgba(8, 51, 68, 0.85);
+      background: rgba(8, 51, 68, 0.88);
       color: #fef08a;
       backdrop-filter: blur(8px);
       padding: 6px 14px;
       border-radius: 50px;
       font-size: 0.8rem;
       font-weight: 700;
-      border: 1px solid rgba(254, 240, 138, 0.35);
+      border: 1px solid rgba(254, 240, 138, 0.4);
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
@@ -486,11 +486,11 @@
 
     .event-title-overlay {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 2.1rem;
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 0.3rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
     }
 
     .event-time-overlay {
@@ -499,18 +499,18 @@
       gap: 0.5rem;
       color: #fef08a;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.05rem;
       margin-bottom: 0.6rem;
       text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
     .event-desc-overlay {
       color: #f1f5f9;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       line-height: 1.45;
       max-width: 440px;
       margin: 0 auto;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     }
 
     /* VENUE */
@@ -775,7 +775,7 @@
     </div>
   </div>
 
-  <!-- CLEAN STORY PHOTO -->
+  <!-- STORY PHOTO -->
   <section>
     <div class="single-photo-card">
       <img src="couple-traditional.JPG" onerror="this.onerror=null; this.src='couple-traditional.jpg';" alt="Anoushka and Ronaldo" />
@@ -800,7 +800,7 @@
   </section>
 
   <!-- =========================================================================
-       EVENTS: FULL-BLEED INDIAN AESTHETIC CARDS (NO WHITE LOWER PORTION)
+       EVENTS: INDIAN THEMED CARDS (SMOOTH BOTTOM GRADIENTS, NO WHITE BOX)
        ========================================================================= -->
   <section>
     <div class="section-header">
@@ -810,8 +810,8 @@
 
     <div class="events-grid">
       
-      <!-- 1. HALDI CEREMONY (Indian Marigolds & Turmeric Beach Vibe) -->
-      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=900&q=80');">
+      <!-- 1. HALDI CEREMONY (Indian Marigold Yellow Theme, Turmeric & Swing) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1605807908990-2e457f516a2a?auto=format&fit=crop&w=1000&q=80');">
         <span class="event-badge-top">20th Nov 2026</span>
         <div class="event-info-overlay">
           <h3 class="event-title-overlay">Haldi Ceremony</h3>
@@ -819,13 +819,13 @@
             <i class="fa-regular fa-clock"></i> 3:00 PM onwards
           </div>
           <p class="event-desc-overlay">
-            Bright yellow hues, laughter, coastal breezes, and playful splashes of turmeric to kick off our wedding celebrations!
+            Bright yellow marigolds, sunny smiles, coastal breezes, and playful splashes of turmeric to kick off the festivities!
           </p>
         </div>
       </div>
 
-      <!-- 2. SANGEET (Indian Fairy Light Beach Decor & Dance) -->
-      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=900&q=80');">
+      <!-- 2. SANGEET (Indian Night Sangeet & Fairy Lit Canopy) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=1000&q=80');">
         <span class="event-badge-top">20th Nov 2026</span>
         <div class="event-info-overlay">
           <h3 class="event-title-overlay">Sangeet</h3>
@@ -833,13 +833,13 @@
             <i class="fa-regular fa-moon"></i> Evening
           </div>
           <p class="event-desc-overlay">
-            Under twilight lights and ocean sounds — an evening of non-stop dance performances, celebrations, and music.
+            Under twilight fairy lights and ocean sounds — an evening of non-stop Bollywood beats, dancing, and celebrations.
           </p>
         </div>
       </div>
 
-      <!-- 3. CHURCH WEDDING (Coastal Church Altar & Floral Arch) -->
-      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80');">
+      <!-- 3. CHURCH WEDDING (Floral Wedding Altar & Church Aisle) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80');">
         <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
         <div class="event-info-overlay">
           <h3 class="event-title-overlay">Church Wedding</h3>
@@ -847,13 +847,13 @@
             <i class="fa-solid fa-church"></i> 12:00 PM
           </div>
           <p class="event-desc-overlay">
-            Exchanging holy vows and rings as our families and cultures unite to become one.
+            Exchanging sacred vows and rings as our two families and three states unite as one.
           </p>
         </div>
       </div>
 
-      <!-- 4. BEACHSIDE RECEPTION (Kerala Coastline Sunset Reception Dining) -->
-      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80');">
+      <!-- 4. BEACHSIDE RECEPTION (Kerala Coastal Sunset Seaside Dinner) -->
+      <div class="event-card-reel" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80');">
         <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
         <div class="event-info-overlay">
           <h3 class="event-title-overlay">Beachside Reception</h3>
@@ -861,7 +861,7 @@
             <i class="fa-solid fa-champagne-glasses"></i> 5:00 PM onwards
           </div>
           <p class="event-desc-overlay">
-            Sunset toasts right beside the waves of Deja Blu, coastal feasting, and celebration into the night!
+            Sunset toasts right beside the waves of Deja Blu, coastal feasts, and celebration into the starry night!
           </p>
         </div>
       </div>
@@ -981,7 +981,6 @@
     const musicBtn = document.getElementById('musicBtn');
     let isMusicPlaying = false;
 
-    // Open Invitation Screen & Start Music
     function openInvitation() {
       const gate = document.getElementById('gateScreen');
       gate.style.transform = 'translateY(-100%)';
@@ -996,7 +995,6 @@
       }).catch(() => {});
     }
 
-    // Toggle Music Floating Disc
     musicBtn.addEventListener('click', () => {
       if (isMusicPlaying) {
         audio.pause();
@@ -1011,7 +1009,6 @@
       isMusicPlaying = !isMusicPlaying;
     });
 
-    // Countdown Timer
     const targetDate = new Date("Nov 20, 2026 15:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
@@ -1024,7 +1021,7 @@
       }
     }, 1000);
 
-    // BULLETPROOF SCRATCH CARD
+    // PERSISTENT GOLD FOIL SCRATCH CARD
     const canvas = document.getElementById('scratchCanvas');
     const wrapper = document.getElementById('scratchWrapper');
     const ctx = canvas.getContext('2d');
