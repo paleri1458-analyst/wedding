@@ -437,7 +437,7 @@
       height: 520px;
       border-radius: 26px;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(8, 51, 68, 0.2);
+      box-shadow: 0 18px 45px rgba(8, 51, 68, 0.22);
       border: 2px solid rgba(255, 255, 255, 0.6);
       background-color: #083344;
       display: flex;
@@ -458,7 +458,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center center;
       z-index: 1;
       transition: transform 0.6s ease;
     }
@@ -467,7 +467,6 @@
       transform: scale(1.03);
     }
 
-    /* Gradient overlay that keeps illustration visible while smoothly blending text */
     .event-card-reel::after {
       content: '';
       position: absolute;
@@ -792,21 +791,27 @@
   <!-- STORY PHOTO -->
   <section>
     <div class="single-photo-card">
-      <img src="couple-traditional.JPG" onerror="this.onerror=null; this.src='couple-traditional.jpg';" alt="Anoushka and Ronaldo" />
+      <img src="couple-traditional.jpg" 
+           onerror="this.onerror=null; this.src='couple-traditional.JPG'; if (!this.src) this.src='couple-traditional.jpeg';" 
+           alt="Anoushka and Ronaldo" />
     </div>
 
     <!-- CHILDHOOD CARDS (BRIDE FIRST) -->
     <div class="childhood-grid">
       <div class="baby-card">
         <div class="baby-img-box">
-          <img src="childhood-bride.jpg" alt="Young Anoushka" />
+          <img src="childhood-bride.jpg" 
+               onerror="this.onerror=null; this.src='childhood-bride.jpeg'; if (!this.src) this.src='childhood-bride.JPG';" 
+               alt="Young Anoushka" />
         </div>
         <h4 class="baby-title">Anoushka</h4>
       </div>
 
       <div class="baby-card">
         <div class="baby-img-box">
-          <img src="childhood-groom.jpg" alt="Young Ronaldo" />
+          <img src="childhood-groom.jpg" 
+               onerror="this.onerror=null; this.src='childhood-groom.jpeg'; if (!this.src) this.src='childhood-groom.JPG';" 
+               alt="Young Ronaldo" />
         </div>
         <h4 class="baby-title">Ronaldo</h4>
       </div>
@@ -814,7 +819,7 @@
   </section>
 
   <!-- =========================================================================
-       EVENTS: FULL-BLEED INDIAN THEMED CARDS
+       EVENTS: POSTER CARDS USING JPEG IMAGES
        ========================================================================= -->
   <section>
     <div class="section-header">
@@ -824,11 +829,11 @@
 
     <div class="events-grid">
       
-      <!-- 1. HALDI CEREMONY (Using uploaded event-haldi.png) -->
+      <!-- 1. HALDI CEREMONY (Sunflower Garden & Stools) -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
-             src="event-haldi.png" 
-             onerror="this.onerror=null; this.src='event-haldi.jpg';" 
+             src="event-haldi.jpg" 
+             onerror="this.onerror=null; this.src='event-haldi.jpeg'; if (!this.src) this.src='event-haldi.JPG';" 
              alt="Haldi Ceremony" />
         <span class="event-badge-top">20th Nov 2026</span>
         <div class="event-info-overlay">
@@ -837,15 +842,16 @@
             <i class="fa-regular fa-clock"></i> 3:00 PM onwards
           </div>
           <p class="event-desc-overlay">
-            Bright yellow marigolds, sunny smiles, coastal breezes, and playful splashes of turmeric to kick off the festivities!
+            Sunflowers, sunny smiles, coastal breezes, and playful splashes of turmeric to kick off the festivities!
           </p>
         </div>
       </div>
 
-      <!-- 2. SANGEET -->
+      <!-- 2. SANGEET (Starry Night Fairy Lights Dance Floor) -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
-             src="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=1000&q=80" 
+             src="event-sangeet.jpg" 
+             onerror="this.onerror=null; this.src='event-sangeet.jpeg'; if (!this.src) this.src='event-sangeet.JPG';" 
              alt="Sangeet Night" />
         <span class="event-badge-top">20th Nov 2026</span>
         <div class="event-info-overlay">
@@ -854,15 +860,16 @@
             <i class="fa-regular fa-moon"></i> Evening
           </div>
           <p class="event-desc-overlay">
-            Under twilight fairy lights and ocean sounds — an evening of non-stop Bollywood beats, dancing, and celebrations.
+            Under a canopy of stars and fairy lights — an evening of non-stop Bollywood music, dance, and celebrations.
           </p>
         </div>
       </div>
 
-      <!-- 3. CHURCH WEDDING -->
+      <!-- 3. CHURCH WEDDING (Church Floral Aisle & Cross) -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
-             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80" 
+             src="event-church.jpg" 
+             onerror="this.onerror=null; this.src='event-church.jpeg'; if (!this.src) this.src='event-church.JPG';" 
              alt="Church Wedding" />
         <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
         <div class="event-info-overlay">
@@ -876,10 +883,11 @@
         </div>
       </div>
 
-      <!-- 4. BEACHSIDE RECEPTION -->
+      <!-- 4. BEACHSIDE RECEPTION (Candlelit Beach Pathway) -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
-             src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80" 
+             src="event-reception.jpg" 
+             onerror="this.onerror=null; this.src='event-reception.jpeg'; if (!this.src) this.src='event-reception.JPG';" 
              alt="Beachside Reception" />
         <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
         <div class="event-info-overlay">
@@ -888,7 +896,7 @@
             <i class="fa-solid fa-champagne-glasses"></i> 5:00 PM onwards
           </div>
           <p class="event-desc-overlay">
-            Sunset toasts right beside the waves of Deja Blu, coastal feasts, and celebration into the starry night!
+            Sunset toasts and lantern lights along the beach shore of Deja Blu, followed by feasting and celebration!
           </p>
         </div>
       </div>
@@ -904,7 +912,9 @@
     </div>
 
     <div class="venue-showcase">
-      <img src="venue-sunset.jpg" alt="Deja Blu Beach" class="venue-img-banner" />
+      <img src="venue-sunset.jpg" 
+           onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if (!this.src) this.src='venue-sunset.JPG';" 
+           alt="Deja Blu Beach" class="venue-img-banner" />
       <div class="venue-body">
         <h3 style="font-family: 'Playfair Display', serif; color: var(--deep-teal); font-size: 1.5rem; margin-bottom: 0.2rem;">
           Deja Blu Beach Resort
@@ -912,7 +922,9 @@
         <p style="color: #64748b; font-size: 0.9rem;">Thrissur Coastal Road, Kerala</p>
 
         <div class="qr-wrapper">
-          <img src="qr-code.jpg" onerror="this.onerror=null; this.src='qr-code.png';" alt="Location QR Code" />
+          <img src="qr-code.jpg" 
+               onerror="this.onerror=null; this.src='qr-code.jpeg'; if (!this.src) this.src='qr-code.JPG';" 
+               alt="Location QR Code" />
         </div>
         <br>
         <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps">
@@ -931,23 +943,33 @@
 
     <div class="slideshow-outer">
       <div class="slide active">
-        <img src="couple-pink.jpg" alt="Ethnic outfits" />
+        <img src="couple-pink.jpg" 
+             onerror="this.onerror=null; this.src='couple-pink.jpeg'; if (!this.src) this.src='couple-pink.JPG';" 
+             alt="Ethnic outfits" />
         <div class="slide-caption">Stepping into forever together ❤️</div>
       </div>
       <div class="slide">
-        <img src="couple-valentine.jpg" alt="Valentine" />
+        <img src="couple-valentine.jpg" 
+             onerror="this.onerror=null; this.src='couple-valentine.jpeg'; if (!this.src) this.src='couple-valentine.JPG';" 
+             alt="Valentine" />
         <div class="slide-caption">Will you be my Valentine? Always! ✨</div>
       </div>
       <div class="slide">
-        <img src="couple-garden.jpg" alt="Dinner" />
+        <img src="couple-garden.jpg" 
+             onerror="this.onerror=null; this.src='couple-garden.jpeg'; if (!this.src) this.src='couple-garden.JPG';" 
+             alt="Dinner" />
         <div class="slide-caption">Quiet talks and loud laughs 🥂</div>
       </div>
       <div class="slide">
-        <img src="couple-dance.jpg" alt="Dance" />
+        <img src="couple-dance.jpg" 
+             onerror="this.onerror=null; this.src='couple-dance.jpeg'; if (!this.src) this.src='couple-dance.JPG';" 
+             alt="Dance" />
         <div class="slide-caption">Business on paper, Bollywood in spirit 💃🕺</div>
       </div>
       <div class="slide">
-        <img src="couple-quirky.jpg" alt="Selfie" />
+        <img src="couple-quirky.jpg" 
+             onerror="this.onerror=null; this.src='couple-quirky.jpeg'; if (!this.src) this.src='couple-quirky.JPG';" 
+             alt="Selfie" />
         <div class="slide-caption">Never taking life too seriously 🥸</div>
       </div>
     </div>
