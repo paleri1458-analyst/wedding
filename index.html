@@ -12,11 +12,13 @@
 
   <style>
     :root {
-      --deep-teal: #06283d;
+      --deep-teal: #083344;
       --sea-blue: #0284c7;
-      --ocean-btn: #0077b6;
+      --ocean-btn: #0284c7;
       --gold-accent: #facc15;
       --sand-gold: #fef08a;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --border-tint: rgba(2, 132, 199, 0.22);
       --reel-card-w: 430px;
     }
 
@@ -37,9 +39,11 @@
       touch-action: none;
     }
 
+    /* REVERTED TO SUNNY COASTAL BEACH GRADIENT */
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #061826;
+      background: linear-gradient(180deg, #fef9ee 0%, #e0f2fe 35%, #ecfeff 65%, #fef3c7 100%);
+      background-attachment: fixed;
       color: #0f172a;
       overflow-x: hidden;
     }
@@ -71,7 +75,7 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: clamp(1.4rem, 4vh, 2.4rem) 1.25rem;
-      background-color: #06283d;
+      background-color: #083344;
     }
 
     .reel-bg-art {
@@ -92,7 +96,7 @@
     .reel-gradient-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(6, 40, 61, 0.15) 0%, rgba(6, 40, 61, 0.35) 45%, rgba(6, 40, 61, 0.95) 86%);
+      background: linear-gradient(180deg, rgba(8, 51, 68, 0.15) 0%, rgba(8, 51, 68, 0.38) 45%, rgba(8, 51, 68, 0.95) 86%);
       z-index: 2;
       pointer-events: none;
     }
@@ -110,7 +114,7 @@
       top: 20px;
       right: 20px;
       z-index: 4;
-      background: rgba(6, 40, 61, 0.88);
+      background: rgba(8, 51, 68, 0.88);
       color: var(--sand-gold);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -261,7 +265,7 @@
       100% { transform: translateY(105vh) rotate(540deg) translateX(30px); opacity: 0; }
     }
 
-    /* FLOATING MUSIC DISC */
+    /* MUSIC DISC */
     .music-player-btn {
       position: fixed;
       top: 18px;
@@ -319,7 +323,7 @@
       letter-spacing: 6px;
       text-transform: uppercase;
       color: #ffffff;
-      text-shadow: 0 2px 14px rgba(6, 40, 61, 0.9);
+      text-shadow: 0 2px 14px rgba(8, 51, 68, 0.9);
     }
 
     .crest-line {
@@ -346,8 +350,8 @@
       color: #ffffff;
       text-shadow: 
         0 0 24px rgba(254, 240, 138, 0.45),
-        0 4px 18px rgba(6, 40, 61, 0.95),
-        0 8px 35px rgba(6, 40, 61, 0.85);
+        0 4px 18px rgba(8, 51, 68, 0.95),
+        0 8px 35px rgba(8, 51, 68, 0.85);
       position: relative;
     }
 
@@ -362,23 +366,14 @@
       text-shadow: 
         0 0 20px rgba(250, 204, 21, 0.85),
         0 0 40px rgba(254, 240, 138, 0.5),
-        0 4px 14px rgba(6, 40, 61, 0.95);
+        0 4px 14px rgba(8, 51, 68, 0.95);
       animation: sparkleGlow 3.5s infinite alternate ease-in-out;
     }
 
     @keyframes sparkleGlow {
-      0% {
-        filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.6));
-        transform: scale(1);
-      }
-      50% {
-        filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95));
-        transform: scale(1.03);
-      }
-      100% {
-        filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
-        transform: scale(1);
-      }
+      0% { filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.6)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95)); transform: scale(1.03); }
+      100% { filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7)); transform: scale(1); }
     }
 
     .hero-editorial-footer {
@@ -396,7 +391,7 @@
       gap: 0.6rem;
       padding: 0.4rem 1.4rem;
       border-radius: 40px;
-      background: rgba(6, 40, 61, 0.65);
+      background: rgba(8, 51, 68, 0.72);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(254, 240, 138, 0.5);
@@ -421,7 +416,7 @@
       font-style: italic;
       line-height: 1.5;
       color: #ffffff;
-      text-shadow: 0 2px 14px rgba(6, 40, 61, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 14px rgba(8, 51, 68, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
       margin-bottom: 0.6rem;
     }
 
@@ -429,7 +424,7 @@
        CARD: SCRATCH & COUNTDOWN
        ========================================================= */
     .scratch-reel-content {
-      background: radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.15) 0%, rgba(6, 40, 61, 0.96) 80%);
+      background: radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.18) 0%, rgba(8, 51, 68, 0.96) 80%);
       justify-content: center !important;
       align-items: center;
       padding: 2rem 1.4rem !important;
@@ -507,7 +502,7 @@
        CARD: COUPLE & CHILDHOOD
        ========================================================= */
     .childhood-reel-section {
-      background: #061e30;
+      background: #083344;
       justify-content: center !important;
       align-items: center;
       padding: 1.5rem 1.1rem !important;
@@ -553,7 +548,7 @@
     }
 
     .baby-card {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(10px);
       padding: 0.65rem;
       border-radius: 16px;
@@ -592,7 +587,7 @@
       color: #ffffff;
       margin-bottom: 0.25rem;
       line-height: 1.1;
-      text-shadow: 0 2px 16px rgba(6, 40, 61, 0.95);
+      text-shadow: 0 2px 16px rgba(8, 51, 68, 0.95);
     }
 
     .event-time-overlay {
@@ -619,7 +614,7 @@
        CARD: VENUE
        ========================================================= */
     .venue-card-reel {
-      background: #061e30;
+      background: #083344;
       justify-content: center !important;
       align-items: center;
       padding: 1.6rem 1.2rem !important;
@@ -630,7 +625,7 @@
       max-width: 350px;
       border-radius: 20px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(12px);
       text-align: center;
@@ -728,10 +723,10 @@
     }
 
     /* =========================================================
-       CARD: TOUCH-SWIPE GALLERY
+       CARD: TOUCH-SWIPE GALLERY (EXPANDED TO ALL IMAGES)
        ========================================================= */
     .gallery-card-reel {
-      background: #061826;
+      background: #083344;
       justify-content: center !important;
       align-items: center;
       padding: 1.4rem 1.1rem !important;
@@ -778,7 +773,7 @@
       left: 0;
       right: 0;
       padding: 2.2rem 1rem 0.9rem;
-      background: linear-gradient(transparent, rgba(6, 40, 61, 0.92));
+      background: linear-gradient(transparent, rgba(8, 51, 68, 0.92));
       color: #fff;
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -843,7 +838,7 @@
        CARD: RSVP
        ========================================================= */
     .rsvp-card-reel {
-      background: #061826;
+      background: #083344;
       justify-content: center !important;
       align-items: center;
       padding: 1.8rem 1.2rem !important;
@@ -852,7 +847,7 @@
     .rsvp-box-inner {
       width: 100%;
       max-width: 350px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 2rem 1.2rem;
       border: 1px solid rgba(255, 255, 255, 0.25);
@@ -1232,7 +1227,7 @@
       </div>
     </section>
 
-    <!-- REEL SCREEN 9: FULL SWIPE GALLERY (ALL EXISTING + ALL NEW IMAGES) -->
+    <!-- REEL SCREEN 9: FULL TOUCH-SWIPE GALLERY (MAIN-IMAGE AT TOP + ALL 14 PHOTOS) -->
     <section class="reel-card-section gallery-card-reel">
       <div class="reel-content-layer">
         <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Moments</span>
@@ -1322,7 +1317,7 @@
             <div class="slide-caption">Never taking life too seriously 🥸</div>
           </div>
 
-          <!-- 11. COUPLE-PINK (EXISTING) -->
+          <!-- 11. COUPLE-PINK (EXISTING PHOTO) -->
           <div class="slide">
             <img src="couple-pink.jpg" 
                  onerror="this.onerror=null; this.src='couple-pink.JPG'; if(!this.src) this.src='couple-pink.jpeg'; if(!this.src) this.src='couple-pink.png';" 
@@ -1330,7 +1325,7 @@
             <div class="slide-caption">Every step leading us closer to forever 💖</div>
           </div>
 
-          <!-- 12. COUPLE-VALENTINE (EXISTING) -->
+          <!-- 12. COUPLE-VALENTINE (EXISTING PHOTO) -->
           <div class="slide">
             <img src="couple-valentine.jpg" 
                  onerror="this.onerror=null; this.src='couple-valentine.JPG'; if(!this.src) this.src='couple-valentine.jpeg'; if(!this.src) this.src='couple-valentine.png';" 
@@ -1338,7 +1333,7 @@
             <div class="slide-caption">Will you be my Valentine? Always! 🌹</div>
           </div>
 
-          <!-- 13. COUPLE-GARDEN (EXISTING) -->
+          <!-- 13. COUPLE-GARDEN (EXISTING PHOTO) -->
           <div class="slide">
             <img src="couple-garden.jpg" 
                  onerror="this.onerror=null; this.src='couple-garden.JPG'; if(!this.src) this.src='couple-garden.jpeg'; if(!this.src) this.src='couple-garden.png';" 
@@ -1346,7 +1341,7 @@
             <div class="slide-caption">Magic in ordinary moments 🌿✨</div>
           </div>
 
-          <!-- 14. COUPLE-DANCE (EXISTING) -->
+          <!-- 14. COUPLE-DANCE (EXISTING PHOTO) -->
           <div class="slide">
             <img src="couple-dance.jpg" 
                  onerror="this.onerror=null; this.src='couple-dance.JPG'; if(!this.src) this.src='couple-dance.jpeg'; if(!this.src) this.src='couple-dance.png';" 
@@ -1354,7 +1349,7 @@
             <div class="slide-caption">Dancing to our own rhythm 💃🕺</div>
           </div>
 
-          <!-- 15. COUPLE-QUIRKY (EXISTING) -->
+          <!-- 15. COUPLE-QUIRKY (EXISTING PHOTO) -->
           <div class="slide">
             <img src="couple-quirky.jpg" 
                  onerror="this.onerror=null; this.src='couple-quirky.JPG'; if(!this.src) this.src='couple-quirky.jpeg'; if(!this.src) this.src='couple-quirky.png';" 
