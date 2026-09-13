@@ -434,15 +434,21 @@
       object-fit: cover;
     }
 
-    /* CHILDHOOD CARDS */
+    /* CHILDHOOD TITLE (SINGLE LINE FIX) */
     .childhood-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+      font-size: clamp(0.95rem, 4.4vw, 1.6rem);
       font-style: italic;
       color: var(--deep-teal);
       text-align: center;
       margin-bottom: 1.2rem;
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+      display: block;
+      width: 100%;
     }
 
     .childhood-grid {
@@ -706,7 +712,7 @@
       border-radius: 10px;
     }
 
-    /* RSVP BOX & GRACEFUL HEADLINE */
+    /* RSVP BOX */
     .rsvp-box {
       background: var(--card-bg);
       border-radius: 22px;
@@ -789,7 +795,7 @@
 
       <p class="gate-names-text">ANOUSHKA & RONALDO</p>
 
-      <button class="tap-invite-btn" onclick="openInvitation()">
+      <button class="tap-invite-btn" id="openInviteBtn" onclick="openInvitation()">
         Open Invite <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; margin-left: 4px;"></i>
       </button>
     </div>
@@ -804,13 +810,12 @@
     <div class="petal"></div>
   </div>
 
-  <!-- Audio: Tumse Hi Tumse (with fallback) -->
-  <audio id="beachAudio" loop preload="auto">
+  <!-- AUDIO ELEMENT -->
+  <audio id="beachAudio" loop preload="auto" playsinline>
     <source src="music.mp3" type="audio/mpeg">
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=beach-chill-112190.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Music Floating Disc -->
+  <!-- Floating Music Toggle Disc -->
   <button class="music-player-btn" id="musicBtn" aria-label="Toggle Music">
     <i class="fa-solid fa-compact-disc"></i>
   </button>
@@ -876,7 +881,7 @@
            alt="Anoushka and Ronaldo" />
     </div>
 
-    <!-- Title for Childhood section -->
+    <!-- SINGLE-LINE CHILDHOOD TITLE -->
     <h3 class="childhood-title">"These kids decided to get married"</h3>
 
     <!-- CHILDHOOD CARDS (BRIDE FIRST) -->
@@ -901,9 +906,7 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       EVENTS: POSTER CARDS USING JPEG IMAGES
-       ========================================================================= -->
+  <!-- EVENTS SECTION -->
   <section style="padding-top: 0.8rem;">
     <div class="section-header">
       <span class="section-subtitle-pill">Celebrations</span>
@@ -912,7 +915,7 @@
 
     <div class="events-grid">
       
-      <!-- 1. HALDI CEREMONY (Sunflower Garden & Stools) -->
+      <!-- 1. HALDI CEREMONY -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
              src="event-haldi.jpg" 
@@ -930,7 +933,7 @@
         </div>
       </div>
 
-      <!-- 2. SANGEET (Starry Night Fairy Lights Dance Floor) -->
+      <!-- 2. SANGEET -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
              src="event-sangeet.jpg" 
@@ -948,7 +951,7 @@
         </div>
       </div>
 
-      <!-- 3. CHURCH WEDDING (Church Floral Aisle & Cross) -->
+      <!-- 3. CHURCH WEDDING -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
              src="event-church.jpg" 
@@ -966,7 +969,7 @@
         </div>
       </div>
 
-      <!-- 4. BEACHSIDE RECEPTION (Candlelit Beach Pathway) -->
+      <!-- 4. BEACHSIDE RECEPTION -->
       <div class="event-card-reel">
         <img class="event-bg-image" 
              src="event-reception.jpg" 
@@ -1066,7 +1069,7 @@
     </div>
   </section>
 
-  <!-- RSVP (REFINED, ELEGANT & READABLE) -->
+  <!-- RSVP -->
   <section id="rsvp">
     <div class="rsvp-box">
       <span class="section-subtitle-pill">Attendance</span>
@@ -1111,32 +1114,61 @@
     const musicBtn = document.getElementById('musicBtn');
     let isMusicPlaying = false;
 
+    // Fallback stream URL if local music.mp3 is not present
+    const fallbackAudioURL = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=beach-chill-112190.mp3";
+
+    function startMusicSafely() {
+      // Check if local source failed
+      if (!audio.src || audio.error) {
+        audio.src = fallbackAudioURL;
+        audio.load();
+      }
+
+      const promise = audio.play();
+      if (promise !== undefined) {
+        promise.then(() => {
+          isMusicPlaying = true;
+          musicBtn.classList.add('rotating');
+          musicBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
+        }).catch(err => {
+          // Fallback to online stream on failure
+          if (audio.src !== fallbackAudioURL) {
+            audio.src = fallbackAudioURL;
+            audio.load();
+            audio.play().then(() => {
+              isMusicPlaying = true;
+              musicBtn.classList.add('rotating');
+              musicBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
+            }).catch(() => {});
+          }
+        });
+      }
+    }
+
     function openInvitation() {
+      // 1. Immediately invoke audio playback within user gesture context
+      startMusicSafely();
+
+      // 2. Animate and remove gate screen
       const gate = document.getElementById('gateScreen');
       gate.style.transform = 'translateY(-100%)';
       gate.style.opacity = '0';
       setTimeout(() => gate.style.display = 'none', 900);
 
+      // 3. Render scratch canvas after layout unlock
       setTimeout(initScratch, 300);
-
-      audio.play().then(() => {
-        isMusicPlaying = true;
-        musicBtn.classList.add('rotating');
-      }).catch(() => {});
     }
 
+    // Toggle Music Floating Disc
     musicBtn.addEventListener('click', () => {
       if (isMusicPlaying) {
         audio.pause();
         musicBtn.classList.remove('rotating');
         musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        isMusicPlaying = false;
       } else {
-        audio.play().then(() => {
-          musicBtn.classList.add('rotating');
-          musicBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
-        });
+        startMusicSafely();
       }
-      isMusicPlaying = !isMusicPlaying;
     });
 
     const targetDate = new Date("Nov 20, 2026 15:00:00").getTime();
