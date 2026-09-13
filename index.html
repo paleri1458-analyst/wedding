@@ -50,7 +50,7 @@
     }
 
     /* =========================================================
-       LANDING GATE (UN-CROPPED REEL OVERLAY)
+       LANDING GATE (HIGH-CONTRAST LOGO HIGHLIGHT)
        ========================================================= */
     #gateScreen {
       position: fixed;
@@ -74,12 +74,13 @@
       width: calc(100% + 60px);
       height: calc(100% + 60px);
       object-fit: cover;
-      filter: blur(35px) brightness(0.4);
-      opacity: 0.8;
+      filter: blur(35px) brightness(0.3);
+      opacity: 0.85;
       z-index: 1;
       pointer-events: none;
     }
 
+    /* Darkened slightly to let white AR and lettering pop out sharply */
     .gate-photo-full {
       position: absolute;
       inset: 0;
@@ -87,7 +88,18 @@
       height: 100%;
       object-fit: contain;
       object-position: center center;
+      filter: brightness(0.72) contrast(1.18);
       z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Subtle dark vignette veil right behind AR logo to eliminate background wash */
+    .gate-logo-scrim {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 38%, rgba(5, 11, 20, 0.45) 0%, rgba(5, 11, 20, 0.15) 45%, transparent 70%),
+                  linear-gradient(180deg, transparent 60%, rgba(5, 11, 20, 0.75) 100%);
+      z-index: 3;
       pointer-events: none;
     }
 
@@ -99,43 +111,43 @@
       width: 190px;
       height: 190px;
       border-radius: 50%;
-      border: 1.5px solid rgba(254, 240, 138, 0.45);
-      box-shadow: 0 0 45px rgba(254, 240, 138, 0.25);
-      z-index: 3;
+      border: 1.5px solid rgba(254, 240, 138, 0.55);
+      box-shadow: 0 0 50px rgba(254, 240, 138, 0.35);
+      z-index: 4;
       animation: pulseHalo 2.6s infinite ease-in-out;
       pointer-events: none;
     }
 
     @keyframes pulseHalo {
-      0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.35; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.85; box-shadow: 0 0 65px rgba(254, 240, 138, 0.45); }
+      0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.95; box-shadow: 0 0 70px rgba(254, 240, 138, 0.55); }
     }
 
     .tap-prompt-organic {
       position: relative;
-      z-index: 4;
+      z-index: 5;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.35rem;
       color: #ffffff;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.8);
       pointer-events: none;
       animation: gentleFloat 2.4s ease-in-out infinite alternate;
     }
 
     .tap-prompt-text {
       font-family: 'Cinzel', serif;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       letter-spacing: 4.5px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.95);
+      color: #ffffff;
     }
 
     .tap-prompt-icon {
       font-size: 1.15rem;
       color: var(--sand-gold);
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     @keyframes gentleFloat {
@@ -174,9 +186,7 @@
       100% { transform: translateY(105vh) rotate(540deg) translateX(30px); opacity: 0; }
     }
 
-    /* =========================================================
-       ANIMATED INTERACTIVE MUSIC TOGGLE
-       ========================================================= */
+    /* MUSIC TOGGLE */
     .music-player-btn {
       position: fixed;
       top: 18px;
@@ -676,7 +686,6 @@
       display: block;
     }
 
-    /* HIGH-CONTRAST ANIMATED BUTTONS (CLEARLY CLICKABLE) */
     .btn-maps-animated {
       position: relative;
       display: inline-flex;
@@ -702,7 +711,6 @@
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
     }
 
-    /* Subtle light sweep across button */
     .btn-maps-animated::after {
       content: '';
       position: absolute;
@@ -893,7 +901,6 @@
       margin-top: 1.5rem;
     }
 
-    /* HIGH-CONTRAST ANIMATED RSVP BUTTONS */
     .rsvp-btn-animated {
       position: relative;
       background: #ffffff;
@@ -918,7 +925,6 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    /* Light streak across RSVP button */
     .rsvp-btn-animated::after {
       content: '';
       position: absolute;
@@ -932,7 +938,6 @@
       pointer-events: none;
     }
 
-    /* Subtle arrow motion to convey clickable forward-action */
     .rsvp-btn-animated .arrow-indicator {
       font-size: 0.85rem;
       color: #0284c7;
@@ -983,7 +988,7 @@
 <body class="gate-active">
 
   <!-- =========================================================
-       LANDING GATE: TAP LOGO TO REVEAL & PLAY
+       LANDING GATE: HIGH-CONTRAST MONOGRAM & PLAY
        ========================================================= -->
   <div id="gateScreen" onclick="handleGateTap()">
     <img class="gate-photo-ambient" 
@@ -995,6 +1000,9 @@
          src="hero-hands.jpg" 
          onerror="this.onerror=null; this.src='hero-hands.png'; if(!this.src) this.src='hero-hands.jpeg';" 
          alt="Anoushka & Ronaldo Holding Hands" />
+    
+    <!-- Dark Vignette Veil behind Logo -->
+    <div class="gate-logo-scrim"></div>
     
     <div class="gate-tap-halo"></div>
 
@@ -1423,7 +1431,7 @@
       <div class="rsvp-options">
         <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
            target="_blank" class="rsvp-btn-animated" rel="noopener">
-          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Attending Both Days (20th & 21st)</span>
+          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Both Days (20th & 21st)</span>
           <i class="fa-solid fa-arrow-right arrow-indicator"></i>
         </a>
 
@@ -1612,7 +1620,7 @@
     initScratch();
     window.addEventListener('load', initScratch);
 
-    // TOUCH-SWIPE GALLERY LOGIC (ALL 15 SLIDES)
+    // TOUCH-SWIPE GALLERY LOGIC (HANDLES ALL 15 SLIDES)
     let curIdx = 0;
     const allSlides = document.querySelectorAll('.slide');
     const allDots = document.querySelectorAll('.dot');
