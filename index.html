@@ -36,9 +36,7 @@
       line-height: 1.5;
     }
 
-    /* =========================================================
-       EDITORIAL LANDING GATE (MINIMALIST B&W HANDS AESTHETIC)
-       ========================================================= */
+    /* EDITORIAL LANDING GATE */
     #gateScreen {
       position: fixed;
       inset: 0;
@@ -54,7 +52,6 @@
       overflow: hidden;
     }
 
-    /* Background Hands Photo with cinematic monochrome treatment */
     .gate-bg-image {
       position: absolute;
       inset: 0;
@@ -72,7 +69,6 @@
       transform: scale(1.1);
     }
 
-    /* Soft vignette overlay for depth and contrast */
     .gate-vignette {
       position: absolute;
       inset: 0;
@@ -89,7 +85,6 @@
       color: #ffffff;
     }
 
-    /* Intertwined Luxury AR Monogram */
     .ar-monogram-lockup {
       position: relative;
       width: 140px;
@@ -440,6 +435,16 @@
     }
 
     /* CHILDHOOD CARDS */
+    .childhood-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+      font-style: italic;
+      color: var(--deep-teal);
+      text-align: center;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+
     .childhood-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -701,15 +706,25 @@
       border-radius: 10px;
     }
 
-    /* RSVP */
+    /* RSVP BOX & GRACEFUL HEADLINE */
     .rsvp-box {
       background: var(--card-bg);
       border-radius: 22px;
-      padding: 2rem 1.4rem;
+      padding: 2.2rem 1.4rem;
       max-width: 550px;
       margin: 0 auto;
       border: 1px solid var(--border-tint);
       text-align: center;
+    }
+
+    .rsvp-main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--deep-teal);
+      letter-spacing: 4px;
+      margin-top: 0.2rem;
+      margin-bottom: 0.4rem;
     }
 
     .rsvp-options {
@@ -757,7 +772,7 @@
 <body>
 
   <!-- =========================================================
-       EDITORIAL LANDING GATE (B&W HANDS AESTHETIC FROM PHOTO)
+       EDITORIAL LANDING GATE (B&W HANDS AESTHETIC)
        ========================================================= -->
   <div id="gateScreen">
     <img class="gate-bg-image" 
@@ -767,16 +782,13 @@
     <div class="gate-vignette"></div>
 
     <div class="gate-content-wrap">
-      <!-- Luxury Monogram -->
       <div class="ar-monogram-lockup">
         <span class="monogram-a">A</span>
         <span class="monogram-r">R</span>
       </div>
 
-      <!-- Spaced Title Line (Bride First) -->
       <p class="gate-names-text">ANOUSHKA & RONALDO</p>
 
-      <!-- Glass Open Button -->
       <button class="tap-invite-btn" onclick="openInvitation()">
         Open Invite <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; margin-left: 4px;"></i>
       </button>
@@ -792,8 +804,9 @@
     <div class="petal"></div>
   </div>
 
-  <!-- Ambient Audio -->
+  <!-- Audio: Tumse Hi Tumse (with fallback) -->
   <audio id="beachAudio" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=beach-chill-112190.mp3" type="audio/mpeg">
   </audio>
 
@@ -823,8 +836,7 @@
   <!-- SCRATCH TO REVEAL DATE & COUNTDOWN -->
   <div class="scratch-section">
     <span class="section-subtitle-pill">Countdown</span>
-    <h2 class="section-title-cursive">Save the Date</h2>
-    <p style="color: #64748b; font-size: 0.9rem; margin-top: -0.2rem;">Scratch with your finger to reveal! ✨</p>
+    <h2 class="section-title-cursive" style="margin-bottom: 0.5rem;">Save the Date</h2>
 
     <div class="scratch-card-wrapper" id="scratchWrapper">
       <canvas id="scratchCanvas" class="scratch-canvas" width="360" height="210"></canvas>
@@ -856,13 +868,16 @@
     </div>
   </div>
 
-  <!-- STORY PHOTO & CHILDHOOD -->
+  <!-- STORY PHOTO & CHILDHOOD SECTION -->
   <section style="padding-bottom: 0.8rem;">
     <div class="single-photo-card">
       <img src="couple-traditional.jpg" 
            onerror="this.onerror=null; this.src='couple-traditional.JPG'; if (!this.src) this.src='couple-traditional.jpeg';" 
            alt="Anoushka and Ronaldo" />
     </div>
+
+    <!-- Title for Childhood section -->
+    <h3 class="childhood-title">"These kids decided to get married"</h3>
 
     <!-- CHILDHOOD CARDS (BRIDE FIRST) -->
     <div class="childhood-grid">
@@ -887,7 +902,7 @@
   </section>
 
   <!-- =========================================================================
-       EVENTS: POSTER CARDS USING JPEG IMAGES (GAP REDUCED)
+       EVENTS: POSTER CARDS USING JPEG IMAGES
        ========================================================================= -->
   <section style="padding-top: 0.8rem;">
     <div class="section-header">
@@ -1051,13 +1066,11 @@
     </div>
   </section>
 
-  <!-- RSVP -->
+  <!-- RSVP (REFINED, ELEGANT & READABLE) -->
   <section id="rsvp">
     <div class="rsvp-box">
-      <div class="section-header" style="margin-bottom: 1rem;">
-        <span class="section-subtitle-pill">Attendance</span>
-        <h2 class="section-title-cursive" style="font-size: 3.2rem;">RSVP</h2>
-      </div>
+      <span class="section-subtitle-pill">Attendance</span>
+      <h2 class="rsvp-main-title">RSVP</h2>
       <p style="color: #64748b; font-size: 0.9rem;">
         Tap below to confirm on WhatsApp directly!
       </p>
@@ -1163,9 +1176,7 @@
       ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("✨ Scratch Here with Finger ✨", w / 2, h / 2 - 8);
-      ctx.font = "600 12px 'Plus Jakarta Sans', sans-serif";
-      ctx.fillText("to reveal the countdown!", w / 2, h / 2 + 16);
+      ctx.fillText("✨ Scratch this to reveal the Dates ✨", w / 2, h / 2);
     }
 
     function initScratch() {
