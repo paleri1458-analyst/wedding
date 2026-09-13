@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -36,128 +36,72 @@
       line-height: 1.5;
     }
 
-    /* EDITORIAL LANDING GATE */
+    /* =========================================================
+       REEL-STYLE LANDING GATE: FULL PHOTO AS-IS + TAP TO OPEN
+       ========================================================= */
     #gateScreen {
       position: fixed;
       inset: 0;
       z-index: 99999;
+      background-color: #000000;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
-      background-color: #121212;
+      padding-bottom: 3.5rem;
+      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
     }
 
-    .gate-bg-image {
+    /* Pure photo as-is without any extra blur or color filters */
+    .gate-photo-full {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 38%;
-      filter: grayscale(100%) brightness(0.78) contrast(1.15);
-      transform: scale(1.05);
-      transition: transform 7s ease-out;
+      object-position: center 30%;
       z-index: 1;
     }
 
-    #gateScreen:hover .gate-bg-image {
-      transform: scale(1.1);
-    }
-
-    .gate-vignette {
+    /* Invisible click target covering the monogram area */
+    .monogram-tap-target {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.65) 100%);
-      z-index: 2;
+      top: 32%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 220px;
+      z-index: 3;
+      border-radius: 50%;
     }
 
-    .gate-content-wrap {
+    /* Subtle prompt at bottom like reel */
+    .tap-prompt-badge {
       position: relative;
       z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
-    }
-
-    .ar-monogram-lockup {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .monogram-a {
-      position: absolute;
-      left: 12px;
-      top: -6px;
-      font-family: 'Cinzel', serif;
-      font-size: 5.8rem;
-      font-weight: 300;
-      color: #ffffff;
-      line-height: 1;
-      letter-spacing: -2px;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
-    }
-
-    .monogram-r {
-      position: absolute;
-      right: 10px;
-      bottom: -6px;
-      font-family: 'Cinzel', serif;
-      font-size: 5.8rem;
-      font-weight: 300;
-      color: #ffffff;
-      line-height: 1;
-      letter-spacing: -2px;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
-    }
-
-    .gate-names-text {
-      font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 2.2rem;
-      opacity: 0.95;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-    }
-
-    .tap-invite-btn {
-      background: rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      padding: 0.8rem 2.2rem;
-      font-size: 0.85rem;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 600;
+      padding: 0.65rem 1.6rem;
       border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+      animation: gentlePulse 2s infinite ease-in-out;
     }
 
-    .tap-invite-btn:hover {
-      background: #ffffff;
-      color: #000000;
-      transform: translateY(-2px);
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25); }
     }
 
     /* FALLING BEACH PETALS */
@@ -434,7 +378,7 @@
       object-fit: cover;
     }
 
-    /* CHILDHOOD TITLE (SINGLE LINE FIX) */
+    /* CHILDHOOD TITLE (CLEAN SINGLE LINE) */
     .childhood-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(0.95rem, 4.4vw, 1.6rem);
@@ -778,26 +722,20 @@
 <body>
 
   <!-- =========================================================
-       EDITORIAL LANDING GATE (B&W HANDS AESTHETIC)
+       REEL-STYLE LANDING GATE: TAP LOGO TO REVEAL & PLAY MUSIC
        ========================================================= -->
-  <div id="gateScreen">
-    <img class="gate-bg-image" 
+  <div id="gateScreen" onclick="openInvitation()">
+    <img class="gate-photo-full" 
          src="hero-hands.jpg" 
          onerror="this.onerror=null; this.src='hero-hands.png'; if(!this.src) this.src='hero-hands.jpeg';" 
-         alt="Hands intertwined" />
-    <div class="gate-vignette"></div>
+         alt="Anoushka & Ronaldo Holding Hands" />
+    
+    <!-- Tap target around the logo -->
+    <div class="monogram-tap-target" title="Tap to Open"></div>
 
-    <div class="gate-content-wrap">
-      <div class="ar-monogram-lockup">
-        <span class="monogram-a">A</span>
-        <span class="monogram-r">R</span>
-      </div>
-
-      <p class="gate-names-text">ANOUSHKA & RONALDO</p>
-
-      <button class="tap-invite-btn" id="openInviteBtn" onclick="openInvitation()">
-        Open Invite <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; margin-left: 4px;"></i>
-      </button>
+    <!-- Pulsing prompt that disappears on tap -->
+    <div class="tap-prompt-badge">
+      <i class="fa-regular fa-hand-pointer"></i> Tap the logo to open
     </div>
   </div>
 
@@ -810,7 +748,7 @@
     <div class="petal"></div>
   </div>
 
-  <!-- AUDIO ELEMENT -->
+  <!-- AUDIO ELEMENT (Tumse Hi Tumse with auto-fallback) -->
   <audio id="beachAudio" loop preload="auto" playsinline>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
@@ -1113,12 +1051,9 @@
     const audio = document.getElementById('beachAudio');
     const musicBtn = document.getElementById('musicBtn');
     let isMusicPlaying = false;
-
-    // Fallback stream URL if local music.mp3 is not present
     const fallbackAudioURL = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=beach-chill-112190.mp3";
 
     function startMusicSafely() {
-      // Check if local source failed
       if (!audio.src || audio.error) {
         audio.src = fallbackAudioURL;
         audio.load();
@@ -1131,7 +1066,6 @@
           musicBtn.classList.add('rotating');
           musicBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
         }).catch(err => {
-          // Fallback to online stream on failure
           if (audio.src !== fallbackAudioURL) {
             audio.src = fallbackAudioURL;
             audio.load();
@@ -1146,20 +1080,19 @@
     }
 
     function openInvitation() {
-      // 1. Immediately invoke audio playback within user gesture context
+      // 1. Play music immediately on user gesture
       startMusicSafely();
 
-      // 2. Animate and remove gate screen
+      // 2. Smoothly fade out and reveal invitation
       const gate = document.getElementById('gateScreen');
-      gate.style.transform = 'translateY(-100%)';
       gate.style.opacity = '0';
-      setTimeout(() => gate.style.display = 'none', 900);
+      gate.style.transform = 'scale(1.04)';
+      setTimeout(() => gate.style.display = 'none', 1100);
 
-      // 3. Render scratch canvas after layout unlock
+      // 3. Render scratch card
       setTimeout(initScratch, 300);
     }
 
-    // Toggle Music Floating Disc
     musicBtn.addEventListener('click', () => {
       if (isMusicPlaying) {
         audio.pause();
@@ -1266,9 +1199,9 @@
     canvas.addEventListener('mousedown', () => isDrawing = true);
     window.addEventListener('mouseup', () => { isDrawing = false; checkScratchPercentage(); });
     canvas.addEventListener('mousemove', scratch);
-    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: true });
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
     window.addEventListener('touchend', () => { isDrawing = false; checkScratchPercentage(); });
-    canvas.addEventListener('touchmove', scratch, { passive: true });
+    canvas.addEventListener('touchmove', scratch);
 
     initScratch();
     window.addEventListener('load', initScratch);
