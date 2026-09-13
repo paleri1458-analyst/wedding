@@ -6,14 +6,15 @@
   <title>3 States | Anoushka & Ronaldo</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
       --deep-teal: #06283d;
       --sea-blue: #0284c7;
+      --ocean-btn: #0077b6;
       --gold-accent: #facc15;
       --sand-gold: #fef08a;
       --reel-card-w: 430px;
@@ -38,13 +39,13 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #061826; /* Deep ocean background fills widescreen devices gracefully */
+      background: #061826;
       color: #0f172a;
       overflow-x: hidden;
     }
 
     /* =========================================================
-       REEL VIEWPORT DECK (KINETIC FULL-FRAME STORY SNAP)
+       REEL VIEWPORT DECK (KINETIC FULL-FRAME SNAP SCROLL)
        ========================================================= */
     .reel-deck-container {
       width: 100%;
@@ -56,7 +57,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Each Reel Screen is exactly 1 full mobile viewport */
     .reel-card-section {
       width: 100%;
       max-width: var(--reel-card-w);
@@ -74,7 +74,6 @@
       background-color: #06283d;
     }
 
-    /* Card Background Images with cinematic framing */
     .reel-bg-art {
       position: absolute;
       inset: 0;
@@ -90,11 +89,10 @@
       transform: scale(1.02);
     }
 
-    /* Bottom-fade gradient that blends typography directly onto the photo */
     .reel-gradient-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(6, 40, 61, 0.08) 0%, rgba(6, 40, 61, 0.28) 45%, rgba(6, 40, 61, 0.94) 86%);
+      background: linear-gradient(180deg, rgba(6, 40, 61, 0.15) 0%, rgba(6, 40, 61, 0.35) 45%, rgba(6, 40, 61, 0.95) 86%);
       z-index: 2;
       pointer-events: none;
     }
@@ -107,7 +105,6 @@
       width: 100%;
     }
 
-    /* Top Corner Badge */
     .reel-top-pill {
       position: absolute;
       top: 20px;
@@ -126,7 +123,6 @@
       letter-spacing: 1px;
     }
 
-    /* Subtle slide indicator ray at bottom of each card */
     .slide-down-hint {
       display: flex;
       justify-content: center;
@@ -282,8 +278,13 @@
       justify-content: center;
       font-size: 1.15rem;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .music-player-btn:active {
+      transform: scale(0.9);
     }
 
     .music-player-btn.rotating {
@@ -314,16 +315,16 @@
     .hero-pretitle-chic {
       font-family: 'Cinzel', serif;
       font-size: clamp(0.72rem, 2.2vw, 0.82rem);
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      text-shadow: 0 2px 14px rgba(6, 40, 61, 0.9);
     }
 
     .crest-line {
-      width: 40px;
-      height: 1px;
+      width: 44px;
+      height: 1.5px;
       background: linear-gradient(90deg, transparent, var(--sand-gold), transparent);
     }
 
@@ -331,28 +332,53 @@
       position: relative;
       z-index: 3;
       margin: 1.2rem auto;
+      padding: 0.5rem 0;
     }
 
     .name-bride-chic, .name-groom-chic {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 11vw, 5.2rem);
-      font-weight: 300;
-      letter-spacing: 2px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 11.5vw, 5.2rem);
+      font-weight: 700;
+      letter-spacing: 1px;
       text-transform: capitalize;
       line-height: 1.15;
-      color: #ffffff;
-      text-shadow: 0 4px 28px rgba(0, 0, 0, 0.5);
       display: block;
+      color: #ffffff;
+      text-shadow: 
+        0 0 24px rgba(254, 240, 138, 0.45),
+        0 4px 18px rgba(6, 40, 61, 0.95),
+        0 8px 35px rgba(6, 40, 61, 0.85);
+      position: relative;
     }
 
     .ampersand-luxury {
       font-family: 'Alex Brush', cursive;
-      font-size: clamp(2.8rem, 9vw, 4rem);
-      color: var(--sand-gold);
+      font-size: clamp(3rem, 10vw, 4.4rem);
+      color: #fef08a;
       display: block;
-      margin: 0.8rem 0 0.7rem;
+      margin: 0.85rem 0 0.75rem;
       line-height: 1;
-      filter: drop-shadow(0 2px 14px rgba(250, 204, 21, 0.45));
+      font-weight: 600;
+      text-shadow: 
+        0 0 20px rgba(250, 204, 21, 0.85),
+        0 0 40px rgba(254, 240, 138, 0.5),
+        0 4px 14px rgba(6, 40, 61, 0.95);
+      animation: sparkleGlow 3.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes sparkleGlow {
+      0% {
+        filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.6));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95));
+        transform: scale(1.03);
+      }
+      100% {
+        filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+        transform: scale(1);
+      }
     }
 
     .hero-editorial-footer {
@@ -368,33 +394,34 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.35rem 1.25rem;
+      padding: 0.4rem 1.4rem;
       border-radius: 40px;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(6, 40, 61, 0.65);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(254, 240, 138, 0.35);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(254, 240, 138, 0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
       margin-bottom: 0.7rem;
     }
 
     .states-capsule-text {
       font-family: 'Cinzel', serif;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--sand-gold);
+      text-shadow: 0 0 10px rgba(254, 240, 138, 0.4);
     }
 
     .tagline-editorial-prose {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 3.8vw, 1.35rem);
-      font-weight: 400;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.05rem, 3.8vw, 1.28rem);
+      font-weight: 600;
       font-style: italic;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.95);
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+      line-height: 1.5;
+      color: #ffffff;
+      text-shadow: 0 2px 14px rgba(6, 40, 61, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
       margin-bottom: 0.6rem;
     }
 
@@ -505,8 +532,8 @@
     }
 
     .childhood-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.2rem, 4.4vw, 1.55rem);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 4vw, 1.45rem);
       font-style: italic;
       color: var(--sand-gold);
       text-align: center;
@@ -514,6 +541,7 @@
       font-weight: 600;
       white-space: nowrap;
       letter-spacing: -0.2px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .childhood-grid {
@@ -555,16 +583,16 @@
     }
 
     /* =========================================================
-       EVENT CARDS (HALDI, SANGEET, CHURCH, RECEPTION)
+       EVENT CARDS
        ========================================================= */
     .event-title-overlay {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-size: clamp(2.3rem, 7.5vw, 3rem);
-      font-weight: 600;
+      font-weight: 700;
       color: #ffffff;
       margin-bottom: 0.25rem;
       line-height: 1.1;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 16px rgba(6, 40, 61, 0.95);
     }
 
     .event-time-overlay {
@@ -575,7 +603,7 @@
       font-weight: 700;
       font-size: 1rem;
       margin-bottom: 0.5rem;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
     }
 
     .event-desc-overlay {
@@ -584,7 +612,7 @@
       line-height: 1.45;
       max-width: 340px;
       margin: 0 auto;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
 
     /* =========================================================
@@ -606,7 +634,7 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(12px);
       text-align: center;
-      padding-bottom: 1.2rem;
+      padding-bottom: 1.4rem;
     }
 
     .venue-banner-mini {
@@ -626,6 +654,7 @@
       border-radius: 12px;
       display: inline-block;
       margin: 0.8rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .qr-wrapper img {
@@ -635,18 +664,67 @@
       display: block;
     }
 
-    .btn-maps {
+    .btn-maps-animated {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.65rem 1.4rem;
+      gap: 0.65rem;
+      padding: 0.85rem 1.8rem;
       border-radius: 50px;
       font-weight: 700;
       text-decoration: none;
-      font-size: 0.86rem;
-      background: var(--sea-blue);
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.3);
+      font-size: 0.92rem;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
+      overflow: hidden;
+      cursor: pointer;
+      animation: buttonPulseGlow 3s infinite ease-in-out;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+    }
+
+    .btn-maps-animated:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-maps-animated::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: rotate(25deg);
+      animation: sheenPass 3.5s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .btn-maps-animated .map-pin-icon {
+      font-size: 1.05rem;
+      color: var(--sand-gold);
+      animation: floatPin 1.8s infinite ease-in-out alternate;
+    }
+
+    @keyframes floatPin {
+      from { transform: translateY(0); }
+      to { transform: translateY(-3px); }
+    }
+
+    @keyframes buttonPulseGlow {
+      0%, 100% {
+        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4), 0 0 0 0 rgba(2, 132, 199, 0.5);
+      }
+      50% {
+        box-shadow: 0 10px 28px rgba(2, 132, 199, 0.65), 0 0 0 7px rgba(2, 132, 199, 0);
+      }
+    }
+
+    @keyframes sheenPass {
+      0% { left: -70%; }
+      35%, 100% { left: 140%; }
     }
 
     /* =========================================================
@@ -712,19 +790,26 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.35);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 1rem;
       cursor: pointer;
       z-index: 10;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .gallery-nav-btn:active {
+      transform: translateY(-50%) scale(0.88);
+      background: rgba(255, 255, 255, 0.6);
     }
 
     .btn-prev { left: 10px; }
@@ -733,13 +818,15 @@
     .dots-box {
       display: flex;
       justify-content: center;
-      gap: 7px;
+      flex-wrap: wrap;
+      gap: 5px;
       margin-top: 0.7rem;
+      max-width: 320px;
     }
 
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #cbd5e1;
       cursor: pointer;
@@ -748,7 +835,7 @@
 
     .dot.active {
       background: var(--sea-blue);
-      width: 22px;
+      width: 18px;
       border-radius: 10px;
     }
 
@@ -786,15 +873,16 @@
     .rsvp-options {
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
-      margin-top: 1.3rem;
+      gap: 0.85rem;
+      margin-top: 1.4rem;
     }
 
-    .rsvp-btn {
+    .rsvp-btn-animated {
+      position: relative;
       background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      padding: 0.85rem 1rem;
-      border-radius: 14px;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      padding: 0.9rem 1.1rem;
+      border-radius: 15px;
       font-size: 0.85rem;
       font-weight: 700;
       display: flex;
@@ -802,15 +890,53 @@
       align-items: center;
       text-decoration: none;
       color: #0f172a;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
-    .rsvp-btn:hover {
+    .rsvp-btn-animated:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .rsvp-btn-animated::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -70%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      transform: rotate(25deg);
+      animation: sheenPass 4s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .rsvp-btn-animated .arrow-indicator {
+      font-size: 0.82rem;
+      color: #0284c7;
+      transition: transform 0.25s ease;
+      animation: nudgeArrow 1.8s infinite ease-in-out;
+    }
+
+    @keyframes nudgeArrow {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(3.5px); }
+    }
+
+    .rsvp-btn-animated:hover, .rsvp-btn-animated:focus {
       border-color: #22c55e;
       background: #f0fdf4;
       color: #15803d;
     }
 
-    .rsvp-btn.cant-attend:hover {
+    .rsvp-btn-animated.cant-attend .arrow-indicator {
+      color: #ef4444;
+    }
+
+    .rsvp-btn-animated.cant-attend:hover, .rsvp-btn-animated.cant-attend:focus {
       border-color: #ef4444;
       background: #fef2f2;
       color: #b91c1c;
@@ -865,7 +991,7 @@
        ========================================================= -->
   <div class="reel-deck-container" id="reelDeck">
 
-    <!-- REEL SCREEN 1: HERO COVER -->
+    <!-- REEL SCREEN 1: BOLD SPARKLE HERO COVER -->
     <section class="reel-card-section hero-card-reel">
       <img src="venue-sunset.jpg" 
            onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if(!this.src) this.src='venue-sunset.JPG';" 
@@ -902,7 +1028,7 @@
     <!-- REEL SCREEN 2: SCRATCH TO REVEAL DATE -->
     <section class="reel-card-section scratch-reel-content">
       <div class="reel-content-layer">
-        <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">Save The Date</span>
+        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Countdown</span>
         <h2 style="font-family: 'Alex Brush', cursive; font-size: 3rem; color: #ffffff; margin-bottom: 0.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6);">
           Save the Date
         </h2>
@@ -1067,10 +1193,10 @@
       </div>
     </section>
 
-    <!-- REEL SCREEN 8: VENUE -->
+    <!-- REEL SCREEN 8: VENUE & ANIMATED MAPS BUTTON -->
     <section class="reel-card-section venue-card-reel">
       <div class="reel-content-layer">
-        <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">The Destination</span>
+        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">The Destination</span>
         <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: #ffffff; margin-bottom: 0.8rem;">
           Deja Blu, Thrissur
         </h2>
@@ -1091,8 +1217,11 @@
                    alt="Location QR Code" />
             </div>
             <br>
-            <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps">
-              <i class="fa-solid fa-location-dot"></i> Open in Google Maps
+            
+            <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps-animated" rel="noopener">
+              <i class="fa-solid fa-location-dot map-pin-icon"></i>
+              <span>Open in Google Maps</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem; opacity: 0.8;"></i>
             </a>
           </div>
         </div>
@@ -1103,44 +1232,134 @@
       </div>
     </section>
 
-    <!-- REEL SCREEN 9: SWIPE GALLERY -->
+    <!-- REEL SCREEN 9: FULL SWIPE GALLERY (ALL EXISTING + ALL NEW IMAGES) -->
     <section class="reel-card-section gallery-card-reel">
       <div class="reel-content-layer">
-        <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">Moments</span>
+        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Moments</span>
         <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: #ffffff; margin-bottom: 0.6rem;">
           Memories & Laughs
         </h2>
 
         <div class="gallery-touch-container" id="touchGallery" style="margin: 0 auto;">
+          
+          <!-- 1. MAIN-IMAGE (LEAD SLIDE AT TOP) -->
           <div class="slide active">
-            <img src="couple-pink.jpg" 
-                 onerror="this.onerror=null; this.src='couple-pink.jpeg'; if (!this.src) this.src='couple-pink.JPG';" 
-                 alt="Ethnic outfits" />
+            <img src="main-image.jpg" 
+                 onerror="this.onerror=null; this.src='main-image.JPG'; if(!this.src) this.src='main-image.jpeg'; if(!this.src) this.src='main-image.png';" 
+                 alt="Main Couple Portrait" />
             <div class="slide-caption">Stepping into forever together ❤️</div>
           </div>
+
+          <!-- 2. IMAGE-3 (PROPOSAL) -->
           <div class="slide">
-            <img src="couple-valentine.jpg" 
-                 onerror="this.onerror=null; this.src='couple-valentine.jpeg'; if (!this.src) this.src='couple-valentine.JPG';" 
-                 alt="Valentine" />
-            <div class="slide-caption">Will you be my Valentine? Always! ✨</div>
+            <img src="image-3.jpg" 
+                 onerror="this.onerror=null; this.src='image-3.JPG'; if(!this.src) this.src='image-3.jpeg'; if(!this.src) this.src='image-3.png';" 
+                 alt="Rose Proposal" />
+            <div class="slide-caption">She said YES! 🌹💍</div>
           </div>
+
+          <!-- 3. IMAGE-4 (HEART ARCH BEACH) -->
           <div class="slide">
-            <img src="couple-garden.jpg" 
-                 onerror="this.onerror=null; this.src='couple-garden.jpeg'; if (!this.src) this.src='couple-garden.JPG';" 
-                 alt="Dinner" />
+            <img src="image-4.jpg" 
+                 onerror="this.onerror=null; this.src='image-4.JPG'; if(!this.src) this.src='image-4.jpeg'; if(!this.src) this.src='image-4.png';" 
+                 alt="Rose Heart Beach Arch" />
+            <div class="slide-caption">Where our next chapter begins by the sea 🌊</div>
+          </div>
+
+          <!-- 4. IMAGE-5 (SUNSET STROLL) -->
+          <div class="slide">
+            <img src="image-5.jpg" 
+                 onerror="this.onerror=null; this.src='image-5.JPG'; if(!this.src) this.src='image-5.jpeg'; if(!this.src) this.src='image-5.png';" 
+                 alt="Sunset Walk on the Beach" />
+            <div class="slide-caption">Golden hours and ocean breezes 🌅</div>
+          </div>
+
+          <!-- 5. IMAGE-6 (SILK ATTIRE EMBRACE) -->
+          <div class="slide">
+            <img src="image-6.jpg" 
+                 onerror="this.onerror=null; this.src='image-6.JPG'; if(!this.src) this.src='image-6.jpeg'; if(!this.src) this.src='image-6.png';" 
+                 alt="Traditional Silk Elegance" />
+            <div class="slide-caption">Roots, tradition & forever love 🤍</div>
+          </div>
+
+          <!-- 6. IMAGE-7 (MEHENDI) -->
+          <div class="slide">
+            <img src="image-7.jpg" 
+                 onerror="this.onerror=null; this.src='image-7.JPG'; if(!this.src) this.src='image-7.jpeg'; if(!this.src) this.src='image-7.png';" 
+                 alt="Mehendi Moments" />
+            <div class="slide-caption">A little love inked onto our hands ✨</div>
+          </div>
+
+          <!-- 7. IMAGE-8 (FESTIVE LIGHTS) -->
+          <div class="slide">
+            <img src="image-8.jpg" 
+                 onerror="this.onerror=null; this.src='image-8.JPG'; if(!this.src) this.src='image-8.jpeg'; if(!this.src) this.src='image-8.png';" 
+                 alt="Festive Night" />
+            <div class="slide-caption">Under a corridor of festive lights 🏮</div>
+          </div>
+
+          <!-- 8. IMAGE-9 (CANDLELIGHT DINNER) -->
+          <div class="slide">
+            <img src="image-9.jpg" 
+                 onerror="this.onerror=null; this.src='image-9.JPG'; if(!this.src) this.src='image-9.jpeg'; if(!this.src) this.src='image-9.png';" 
+                 alt="Candlelight Dinner" />
             <div class="slide-caption">Quiet talks and loud laughs 🥂</div>
           </div>
+
+          <!-- 9. IMAGE-10 (MAROON & WHITE) -->
+          <div class="slide">
+            <img src="image-10.jpg" 
+                 onerror="this.onerror=null; this.src='image-10.JPG'; if(!this.src) this.src='image-10.jpeg'; if(!this.src) this.src='image-10.png';" 
+                 alt="Classic Couple Portrait" />
+            <div class="slide-caption">Always each other's favorite smile 🌸</div>
+          </div>
+
+          <!-- 10. IMAGE-11 (CANDID LAUGHS) -->
+          <div class="slide">
+            <img src="image-11.jpg" 
+                 onerror="this.onerror=null; this.src='image-11.JPG'; if(!this.src) this.src='image-11.jpeg'; if(!this.src) this.src='image-11.png';" 
+                 alt="Casual Candid" />
+            <div class="slide-caption">Never taking life too seriously 🥸</div>
+          </div>
+
+          <!-- 11. COUPLE-PINK (EXISTING) -->
+          <div class="slide">
+            <img src="couple-pink.jpg" 
+                 onerror="this.onerror=null; this.src='couple-pink.JPG'; if(!this.src) this.src='couple-pink.jpeg'; if(!this.src) this.src='couple-pink.png';" 
+                 alt="Ethnic Outfits" />
+            <div class="slide-caption">Every step leading us closer to forever 💖</div>
+          </div>
+
+          <!-- 12. COUPLE-VALENTINE (EXISTING) -->
+          <div class="slide">
+            <img src="couple-valentine.jpg" 
+                 onerror="this.onerror=null; this.src='couple-valentine.JPG'; if(!this.src) this.src='couple-valentine.jpeg'; if(!this.src) this.src='couple-valentine.png';" 
+                 alt="Valentine's Day" />
+            <div class="slide-caption">Will you be my Valentine? Always! 🌹</div>
+          </div>
+
+          <!-- 13. COUPLE-GARDEN (EXISTING) -->
+          <div class="slide">
+            <img src="couple-garden.jpg" 
+                 onerror="this.onerror=null; this.src='couple-garden.JPG'; if(!this.src) this.src='couple-garden.jpeg'; if(!this.src) this.src='couple-garden.png';" 
+                 alt="Garden Evening" />
+            <div class="slide-caption">Magic in ordinary moments 🌿✨</div>
+          </div>
+
+          <!-- 14. COUPLE-DANCE (EXISTING) -->
           <div class="slide">
             <img src="couple-dance.jpg" 
-                 onerror="this.onerror=null; this.src='couple-dance.jpeg'; if (!this.src) this.src='couple-dance.JPG';" 
-                 alt="Dance" />
-            <div class="slide-caption">Business on paper, Bollywood in spirit 💃🕺</div>
+                 onerror="this.onerror=null; this.src='couple-dance.JPG'; if(!this.src) this.src='couple-dance.jpeg'; if(!this.src) this.src='couple-dance.png';" 
+                 alt="Dancing Together" />
+            <div class="slide-caption">Dancing to our own rhythm 💃🕺</div>
           </div>
+
+          <!-- 15. COUPLE-QUIRKY (EXISTING) -->
           <div class="slide">
             <img src="couple-quirky.jpg" 
-                 onerror="this.onerror=null; this.src='couple-quirky.jpeg'; if (!this.src) this.src='couple-quirky.JPG';" 
-                 alt="Selfie" />
-            <div class="slide-caption">Never taking life too seriously 🥸</div>
+                 onerror="this.onerror=null; this.src='couple-quirky.JPG'; if(!this.src) this.src='couple-quirky.jpeg'; if(!this.src) this.src='couple-quirky.png';" 
+                 alt="Quirky Selfie" />
+            <div class="slide-caption">Our daily dose of craziness 🤪</div>
           </div>
 
           <button class="gallery-nav-btn btn-prev" onclick="prevSlide(event)" aria-label="Previous Photo">
@@ -1151,12 +1370,23 @@
           </button>
         </div>
 
+        <!-- 15 Dynamic Progress Dots -->
         <div class="dots-box">
           <div class="dot active" onclick="jumpSlide(0)"></div>
           <div class="dot" onclick="jumpSlide(1)"></div>
           <div class="dot" onclick="jumpSlide(2)"></div>
           <div class="dot" onclick="jumpSlide(3)"></div>
           <div class="dot" onclick="jumpSlide(4)"></div>
+          <div class="dot" onclick="jumpSlide(5)"></div>
+          <div class="dot" onclick="jumpSlide(6)"></div>
+          <div class="dot" onclick="jumpSlide(7)"></div>
+          <div class="dot" onclick="jumpSlide(8)"></div>
+          <div class="dot" onclick="jumpSlide(9)"></div>
+          <div class="dot" onclick="jumpSlide(10)"></div>
+          <div class="dot" onclick="jumpSlide(11)"></div>
+          <div class="dot" onclick="jumpSlide(12)"></div>
+          <div class="dot" onclick="jumpSlide(13)"></div>
+          <div class="dot" onclick="jumpSlide(14)"></div>
         </div>
 
         <div class="slide-down-hint" style="margin-top: 1rem;">
@@ -1165,11 +1395,11 @@
       </div>
     </section>
 
-    <!-- REEL SCREEN 10: RSVP -->
+    <!-- REEL SCREEN 10: RSVP & ANIMATED BUTTONS -->
     <section class="reel-card-section rsvp-card-reel">
       <div class="reel-content-layer">
         <div class="rsvp-box-inner" style="margin: 0 auto;">
-          <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">Attendance</span>
+          <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Attendance</span>
           <h2 class="rsvp-main-title">RSVP</h2>
           <p style="color: #cbd5e1; font-size: 0.88rem;">
             Tap below to confirm on WhatsApp directly!
@@ -1177,21 +1407,21 @@
 
           <div class="rsvp-options">
             <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
-               target="_blank" class="rsvp-btn">
-              <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 6px;"></i> Attending Both Days (20th & 21st)</span>
-              <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.8rem;"></i>
+               target="_blank" class="rsvp-btn-animated" rel="noopener">
+              <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Both Days (20th & 21st)</span>
+              <i class="fa-solid fa-arrow-right arrow-indicator"></i>
             </a>
 
             <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%E2%9C%A8%20I%20will%20be%20attending%20the%20wedding%20on%20the%2021st%20Nov!" 
-               target="_blank" class="rsvp-btn">
-              <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 6px;"></i> Attending 21st Only</span>
-              <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.8rem;"></i>
+               target="_blank" class="rsvp-btn-animated" rel="noopener">
+              <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Attending 21st Only</span>
+              <i class="fa-solid fa-arrow-right arrow-indicator"></i>
             </a>
 
             <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20So%20sorry%2C%20I%20won't%20be%20able%20to%20make%20it%2C%20but%20sending%20all%20my%20love!" 
-               target="_blank" class="rsvp-btn cant-attend">
-              <span><i class="fa-regular fa-face-frown" style="color: #ef4444; margin-right: 6px;"></i> Can't Attend (Sending Love!)</span>
-              <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.8rem;"></i>
+               target="_blank" class="rsvp-btn-animated cant-attend" rel="noopener">
+              <span><i class="fa-regular fa-face-frown" style="color: #ef4444; margin-right: 8px; font-size: 1.05rem;"></i> Can't Attend (Sending Love!)</span>
+              <i class="fa-solid fa-arrow-right arrow-indicator"></i>
             </a>
           </div>
         </div>
