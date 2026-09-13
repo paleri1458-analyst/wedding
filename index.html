@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -199,7 +199,7 @@
     }
 
     /* =========================================================
-       EDITORIAL BESPOKE HERO (HIGH-FASHION LUXURY VOGUE AESTHETIC)
+       EDITORIAL HERO WITH 1-LINE SPACING BETWEEN NAMES & AMPERSAND
        ========================================================= */
     .hero {
       position: relative;
@@ -217,7 +217,6 @@
       color: #fff;
     }
 
-    /* Top Arch Crest */
     .hero-crest-top {
       display: flex;
       flex-direction: column;
@@ -241,7 +240,6 @@
       background: linear-gradient(90deg, transparent, var(--sand-gold), transparent);
     }
 
-    /* Couple Names Centerpiece */
     .hero-names-centerpiece {
       position: relative;
       margin: 1.5rem auto;
@@ -254,7 +252,7 @@
       font-weight: 300;
       letter-spacing: 2px;
       text-transform: capitalize;
-      line-height: 0.96;
+      line-height: 1.15;
       color: #ffffff;
       text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
       display: block;
@@ -262,15 +260,14 @@
 
     .ampersand-luxury {
       font-family: 'Alex Brush', cursive;
-      font-size: clamp(3rem, 10vw, 4.4rem);
+      font-size: clamp(2.8rem, 9vw, 4rem);
       color: var(--sand-gold);
       display: block;
-      margin: -0.3rem 0;
+      margin: 0.85rem 0 0.75rem;
       line-height: 1;
       filter: drop-shadow(0 2px 14px rgba(250, 204, 21, 0.45));
     }
 
-    /* Haute Editorial Story Capsule (Flawless, Pure Glass, Floating) */
     .hero-editorial-footer {
       max-width: 520px;
       width: 100%;
@@ -316,7 +313,6 @@
       margin-bottom: 1.2rem;
     }
 
-    /* Minimal Floating Scroll Ray */
     .scroll-ray {
       width: 1px;
       height: 38px;
@@ -331,7 +327,7 @@
       100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
     }
 
-    /* CURSIVE SECTION HEADERS */
+    /* CURSIVE HEADERS */
     .section-header {
       text-align: center;
       margin-bottom: 1.8rem;
@@ -850,7 +846,7 @@
       color: #fff;
     }
 
-    /* SCROLL REVEAL */
+    /* SCROLL REVEAL GLIDE */
     .reveal-item {
       opacity: 0;
       transform: translateY(28px);
@@ -910,20 +906,17 @@
        EDITORIAL BESPOKE HERO COVER
        ========================================================= -->
   <header class="hero">
-    <!-- Top Monogram/Crest Accents -->
     <div class="hero-crest-top">
       <span class="hero-pretitle-chic">The Wedding Celebration</span>
       <div class="crest-line"></div>
     </div>
 
-    <!-- Haute Couture Typography -->
     <div class="hero-names-centerpiece">
       <span class="name-bride-chic">Anoushka</span>
       <span class="ampersand-luxury">&</span>
       <span class="name-groom-chic">Ronaldo</span>
     </div>
 
-    <!-- Pure Floating Glass Story Caption -->
     <div class="hero-editorial-footer">
       <div class="states-capsule-badge">
         <i class="fa-solid fa-compass" style="color: var(--sand-gold); font-size: 0.75rem;"></i>
@@ -1321,14 +1314,11 @@
 
     function initScratch() {
       if (isFullyRevealed) return;
-
       const rect = wrapper.getBoundingClientRect();
       const w = rect.width > 0 ? rect.width : 360;
       const h = rect.height > 0 ? rect.height : 210;
-
       canvas.width = w;
       canvas.height = h;
-
       drawFoil(w, h);
     }
 
