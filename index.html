@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -50,13 +50,13 @@
     }
 
     /* =========================================================
-       LANDING GATE (HIGH-CONTRAST LOGO HIGHLIGHT)
+       LANDING GATE (BRIGHTENED AR & HIGH-CONTRAST FOCUS)
        ========================================================= */
     #gateScreen {
       position: fixed;
       inset: 0;
       z-index: 2147483647;
-      background-color: #050b14;
+      background-color: #040810;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -74,13 +74,13 @@
       width: calc(100% + 60px);
       height: calc(100% + 60px);
       object-fit: cover;
-      filter: blur(35px) brightness(0.3);
-      opacity: 0.85;
+      filter: blur(38px) brightness(0.25);
+      opacity: 0.9;
       z-index: 1;
       pointer-events: none;
     }
 
-    /* Darkened slightly to let white AR and lettering pop out sharply */
+    /* High contrast punch so white letters and monogram shine through */
     .gate-photo-full {
       position: absolute;
       inset: 0;
@@ -88,41 +88,53 @@
       height: 100%;
       object-fit: contain;
       object-position: center center;
-      filter: brightness(0.72) contrast(1.18);
+      filter: contrast(1.35) brightness(0.88);
       z-index: 2;
       pointer-events: none;
     }
 
-    /* Subtle dark vignette veil right behind AR logo to eliminate background wash */
-    .gate-logo-scrim {
+    /* Target spotlight placed directly behind the AR Monogram to make it glow */
+    .gate-logo-spotlight {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 38%, rgba(5, 11, 20, 0.45) 0%, rgba(5, 11, 20, 0.15) 45%, transparent 70%),
-                  linear-gradient(180deg, transparent 60%, rgba(5, 11, 20, 0.75) 100%);
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(254, 240, 138, 0.42) 0%, rgba(250, 204, 21, 0.18) 45%, transparent 75%);
+      mix-blend-mode: screen;
       z-index: 3;
       pointer-events: none;
+      animation: ambientAura 3s infinite ease-in-out alternate;
     }
 
+    @keyframes ambientAura {
+      0% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+    }
+
+    /* Luminous Gold Halo encircling the AR Monogram */
     .gate-tap-halo {
       position: absolute;
       top: 38%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 190px;
-      height: 190px;
+      width: 195px;
+      height: 195px;
       border-radius: 50%;
-      border: 1.5px solid rgba(254, 240, 138, 0.55);
-      box-shadow: 0 0 50px rgba(254, 240, 138, 0.35);
+      border: 2px solid rgba(254, 240, 138, 0.75);
+      box-shadow: 0 0 45px rgba(254, 240, 138, 0.55), inset 0 0 25px rgba(250, 204, 21, 0.3);
       z-index: 4;
-      animation: pulseHalo 2.6s infinite ease-in-out;
+      animation: pulseHalo 2.4s infinite ease-in-out;
       pointer-events: none;
     }
 
     @keyframes pulseHalo {
-      0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.4; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.95; box-shadow: 0 0 70px rgba(254, 240, 138, 0.55); }
+      0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; box-shadow: 0 0 65px rgba(254, 240, 138, 0.8), inset 0 0 35px rgba(250, 204, 21, 0.5); }
     }
 
+    /* Bottom prompt text */
     .tap-prompt-organic {
       position: relative;
       z-index: 5;
@@ -131,7 +143,7 @@
       align-items: center;
       gap: 0.35rem;
       color: #ffffff;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.85);
       pointer-events: none;
       animation: gentleFloat 2.4s ease-in-out infinite alternate;
     }
@@ -227,7 +239,7 @@
     }
 
     /* =========================================================
-       HERO COVER
+       HERO COVER (CORMORANT GARAMOND)
        ========================================================= */
     .hero {
       position: relative;
@@ -275,17 +287,17 @@
     }
 
     .name-bride-chic, .name-groom-chic {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.2rem, 11.5vw, 5.2rem);
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.4rem, 12vw, 5.6rem);
+      font-weight: 600;
+      letter-spacing: 1.5px;
       text-transform: capitalize;
       line-height: 1.15;
       display: block;
       color: #ffffff;
       text-shadow: 
-        0 0 24px rgba(254, 240, 138, 0.45),
-        0 4px 18px rgba(8, 51, 68, 0.95),
+        0 2px 10px rgba(0, 0, 0, 0.7),
+        0 4px 22px rgba(8, 51, 68, 0.95),
         0 8px 35px rgba(8, 51, 68, 0.85);
     }
 
@@ -333,9 +345,9 @@
     }
 
     .tagline-editorial-prose {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.05rem, 3.8vw, 1.28rem);
-      font-weight: 600;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 4.2vw, 1.55rem);
+      font-weight: 500;
       font-style: italic;
       line-height: 1.5;
       color: #ffffff;
@@ -482,8 +494,8 @@
     }
 
     .childhood-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.15rem, 4.4vw, 1.6rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 4.6vw, 1.7rem);
       font-style: italic;
       color: var(--deep-teal);
       text-align: center;
@@ -532,8 +544,8 @@
     }
 
     .baby-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--deep-teal);
     }
@@ -616,8 +628,8 @@
     }
 
     .event-title-overlay {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 0.3rem;
@@ -708,7 +720,7 @@
 
     .btn-maps-animated:active {
       transform: scale(0.95);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
     }
 
     .btn-maps-animated::after {
@@ -736,12 +748,8 @@
     }
 
     @keyframes buttonPulseGlow {
-      0%, 100% {
-        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4), 0 0 0 0 rgba(2, 132, 199, 0.5);
-      }
-      50% {
-        box-shadow: 0 10px 28px rgba(2, 132, 199, 0.65), 0 0 0 7px rgba(2, 132, 199, 0);
-      }
+      0%, 100% { box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4), 0 0 0 0 rgba(2, 132, 199, 0.5); }
+      50% { box-shadow: 0 10px 28px rgba(2, 132, 199, 0.65), 0 0 0 7px rgba(2, 132, 199, 0); }
     }
 
     @keyframes sheenPass {
@@ -796,8 +804,8 @@
       background: linear-gradient(transparent, rgba(6, 40, 61, 0.92));
       color: #fff;
       text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
       font-style: italic;
     }
 
@@ -885,11 +893,11 @@
     }
 
     .rsvp-main-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cinzel', serif;
       font-size: 2.4rem;
       font-weight: 700;
       color: var(--deep-teal);
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       margin-top: 0.2rem;
       margin-bottom: 0.4rem;
     }
@@ -988,7 +996,7 @@
 <body class="gate-active">
 
   <!-- =========================================================
-       LANDING GATE: HIGH-CONTRAST MONOGRAM & PLAY
+       LANDING GATE: HIGH-CONTRAST MONOGRAM & SPOTLIGHT
        ========================================================= -->
   <div id="gateScreen" onclick="handleGateTap()">
     <img class="gate-photo-ambient" 
@@ -1001,9 +1009,11 @@
          onerror="this.onerror=null; this.src='hero-hands.png'; if(!this.src) this.src='hero-hands.jpeg';" 
          alt="Anoushka & Ronaldo Holding Hands" />
     
-    <!-- Dark Vignette Veil behind Logo -->
+    <!-- Concentrated golden-white rim light behind AR -->
+    <div class="gate-logo-spotlight"></div>
     <div class="gate-logo-scrim"></div>
     
+    <!-- Brightened Golden Ring -->
     <div class="gate-tap-halo"></div>
 
     <div class="tap-prompt-organic">
@@ -1032,7 +1042,7 @@
   </button>
 
   <!-- =========================================================
-       EDITORIAL BESPOKE HERO COVER
+       EDITORIAL BESPOKE HERO COVER (CORMORANT GARAMOND)
        ========================================================= -->
   <header class="hero">
     <div class="hero-crest-top">
@@ -1055,8 +1065,6 @@
       <p class="tagline-editorial-prose">
         "A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!"
       </p>
-
-      <div class="scroll-ray"></div>
     </div>
   </header>
 
@@ -1074,7 +1082,7 @@
       
       <div class="scratch-hidden-content">
         <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Save The Date</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--deep-teal); margin: 0.2rem 0;">
+        <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 700; color: var(--deep-teal); margin: 0.2rem 0;">
           20th & 21st November 2026
         </h4>
         <div class="countdown-container">
@@ -1232,7 +1240,7 @@
            onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if (!this.src) this.src='venue-sunset.JPG';" 
            alt="Deja Blu Beach" class="venue-img-banner" />
       <div class="venue-body">
-        <h3 style="font-family: 'Playfair Display', serif; color: var(--deep-teal); font-size: 1.5rem; margin-bottom: 0.2rem;">
+        <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--deep-teal); font-size: 1.7rem; font-weight: 700; margin-bottom: 0.2rem;">
           Deja Blu Beach Resort
         </h3>
         <p style="color: #64748b; font-size: 0.9rem;">Thrissur Coastal Road, Kerala</p>
@@ -1244,7 +1252,6 @@
         </div>
         <br>
         
-        <!-- CLICKABLE ANIMATED GOOGLE MAPS BUTTON -->
         <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps-animated" rel="noopener">
           <i class="fa-solid fa-location-dot map-pin-icon"></i>
           <span>Open in Google Maps</span>
@@ -1431,7 +1438,7 @@
       <div class="rsvp-options">
         <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
            target="_blank" class="rsvp-btn-animated" rel="noopener">
-          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Both Days (20th & 21st)</span>
+          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Attending Both Days (20th & 21st)</span>
           <i class="fa-solid fa-arrow-right arrow-indicator"></i>
         </a>
 
@@ -1620,7 +1627,7 @@
     initScratch();
     window.addEventListener('load', initScratch);
 
-    // TOUCH-SWIPE GALLERY LOGIC (HANDLES ALL 15 SLIDES)
+    // TOUCH-SWIPE GALLERY LOGIC (ALL 15 SLIDES)
     let curIdx = 0;
     const allSlides = document.querySelectorAll('.slide');
     const allDots = document.querySelectorAll('.dot');
