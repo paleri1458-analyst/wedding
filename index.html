@@ -80,7 +80,6 @@
       pointer-events: none;
     }
 
-    /* Beautiful, fully brightened background photo */
     .gate-photo-full {
       position: absolute;
       inset: 0;
@@ -93,7 +92,6 @@
       pointer-events: none;
     }
 
-    /* Soft warm radial backlight centering on the hands/monogram */
     .gate-logo-spotlight {
       position: absolute;
       top: 38%;
@@ -107,7 +105,6 @@
       pointer-events: none;
     }
 
-    /* Golden Halo ring around monogram */
     .gate-tap-halo {
       position: absolute;
       top: 38%;
@@ -128,7 +125,6 @@
       50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; box-shadow: 0 0 70px rgba(254, 240, 138, 0.9), inset 0 0 35px rgba(250, 204, 21, 0.6); }
     }
 
-    /* Bottom prompt text with high readability shadow */
     .tap-prompt-organic {
       position: relative;
       z-index: 5;
@@ -234,7 +230,7 @@
     }
 
     /* =========================================================
-       HERO COVER (CORMORANT GARAMOND)
+       HERO COVER
        ========================================================= */
     .hero {
       position: relative;
@@ -390,7 +386,7 @@
     }
 
     /* =========================================================
-       SCRATCH CARD
+       SCRATCH CARD (DUPLICATE REMOVED)
        ========================================================= */
     .scratch-section-layout {
       text-align: center;
@@ -743,12 +739,8 @@
     }
 
     @keyframes buttonPulseGlow {
-      0%, 100% {
-        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4), 0 0 0 0 rgba(2, 132, 199, 0.5);
-      }
-      50% {
-        box-shadow: 0 10px 28px rgba(2, 132, 199, 0.65), 0 0 0 7px rgba(2, 132, 199, 0);
-      }
+      0%, 100% { box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4), 0 0 0 0 rgba(2, 132, 199, 0.5); }
+      50% { box-shadow: 0 10px 28px rgba(2, 132, 199, 0.65), 0 0 0 7px rgba(2, 132, 199, 0); }
     }
 
     @keyframes sheenPass {
@@ -757,7 +749,7 @@
     }
 
     /* =========================================================
-       TOUCH-SWIPE GALLERY
+       TOUCH-SWIPE GALLERY (CUSTOM REORDERED SEQUENCE)
        ========================================================= */
     .gallery-touch-container {
       position: relative;
@@ -1008,10 +1000,7 @@
          onerror="this.onerror=null; this.src='hero-hands.png'; if(!this.src) this.src='hero-hands.jpeg';" 
          alt="Anoushka & Ronaldo Holding Hands" />
     
-    <!-- Warm golden backlight spotlight directly behind monogram -->
     <div class="gate-logo-spotlight"></div>
-    
-    <!-- Luminous Golden Halo -->
     <div class="gate-tap-halo"></div>
 
     <div class="tap-prompt-organic">
@@ -1040,7 +1029,7 @@
   </button>
 
   <!-- =========================================================
-       EDITORIAL BESPOKE HERO COVER (CORMORANT GARAMOND)
+       EDITORIAL BESPOKE HERO COVER
        ========================================================= -->
   <header class="hero">
     <div class="hero-crest-top">
@@ -1067,14 +1056,9 @@
   </header>
 
   <!-- =========================================================
-       SCRATCH TO REVEAL DATE (WARM BEACH THEME)
+       SCRATCH TO REVEAL DATE (DUPLICATE HEADER REMOVED)
        ========================================================= -->
   <div class="scratch-section-layout">
-    <div class="section-header" style="margin-bottom: 0;">
-      <span class="section-subtitle-pill">Countdown</span>
-      <h2 class="section-title-cursive">Save the Date</h2>
-    </div>
-
     <div class="scratch-card-wrapper" id="scratchWrapper">
       <canvas id="scratchCanvas" class="scratch-canvas" width="360" height="210"></canvas>
       
@@ -1225,7 +1209,7 @@
   </section>
 
   <!-- =========================================================
-       VENUE SECTION WITH ANIMATED BUTTON
+       VENUE SECTION
        ========================================================= -->
   <section class="reveal-item">
     <div class="section-header">
@@ -1260,7 +1244,7 @@
   </section>
 
   <!-- =========================================================
-       MEMORIES: FULL TOUCH-SWIPE GALLERY (ALL 15 IMAGES)
+       MEMORIES: TOUCH-SWIPE GALLERY (CUSTOM REORDERED SEQUENCE)
        ========================================================= -->
   <section class="reveal-item">
     <div class="section-header">
@@ -1270,47 +1254,23 @@
 
     <div class="gallery-touch-container" id="touchGallery">
       
-      <!-- 1. MAIN-IMAGE (LEAD SLIDE AT TOP) -->
+      <!-- 1. IMAGE-6 -->
       <div class="slide active">
-        <img src="main-image.jpg" 
-             onerror="this.onerror=null; this.src='main-image.JPG'; if(!this.src) this.src='main-image.jpeg'; if(!this.src) this.src='main-image.png';" 
-             alt="Main Couple Portrait" />
-        <div class="slide-caption">Stepping into forever together ❤️</div>
-      </div>
-
-      <!-- 2. IMAGE-3 (PROPOSAL) -->
-      <div class="slide">
-        <img src="image-3.jpg" 
-             onerror="this.onerror=null; this.src='image-3.JPG'; if(!this.src) this.src='image-3.jpeg'; if(!this.src) this.src='image-3.png';" 
-             alt="Rose Proposal" />
-        <div class="slide-caption">She said YES! 🌹💍</div>
-      </div>
-
-      <!-- 3. IMAGE-4 (HEART ARCH BEACH) -->
-      <div class="slide">
-        <img src="image-4.jpg" 
-             onerror="this.onerror=null; this.src='image-4.JPG'; if(!this.src) this.src='image-4.jpeg'; if(!this.src) this.src='image-4.png';" 
-             alt="Rose Heart Beach Arch" />
-        <div class="slide-caption">Where our next chapter begins by the sea 🌊</div>
-      </div>
-
-      <!-- 4. IMAGE-5 (SUNSET STROLL) -->
-      <div class="slide">
-        <img src="image-5.jpg" 
-             onerror="this.onerror=null; this.src='image-5.JPG'; if(!this.src) this.src='image-5.jpeg'; if(!this.src) this.src='image-5.png';" 
-             alt="Sunset Walk on the Beach" />
-        <div class="slide-caption">Golden hours and ocean breezes 🌅</div>
-      </div>
-
-      <!-- 5. IMAGE-6 (SILK ATTIRE EMBRACE) -->
-      <div class="slide">
         <img src="image-6.jpg" 
              onerror="this.onerror=null; this.src='image-6.JPG'; if(!this.src) this.src='image-6.jpeg'; if(!this.src) this.src='image-6.png';" 
              alt="Traditional Silk Elegance" />
         <div class="slide-caption">Roots, tradition & forever love 🤍</div>
       </div>
 
-      <!-- 6. IMAGE-7 (MEHENDI) -->
+      <!-- 2. MAIN-IMAGE -->
+      <div class="slide">
+        <img src="main-image.jpg" 
+             onerror="this.onerror=null; this.src='main-image.JPG'; if(!this.src) this.src='main-image.jpeg'; if(!this.src) this.src='main-image.png';" 
+             alt="Main Couple Portrait" />
+        <div class="slide-caption">Stepping into forever together ❤️</div>
+      </div>
+
+      <!-- 3. IMAGE-7 -->
       <div class="slide">
         <img src="image-7.jpg" 
              onerror="this.onerror=null; this.src='image-7.JPG'; if(!this.src) this.src='image-7.jpeg'; if(!this.src) this.src='image-7.png';" 
@@ -1318,7 +1278,15 @@
         <div class="slide-caption">A little love inked onto our hands ✨</div>
       </div>
 
-      <!-- 7. IMAGE-8 (FESTIVE LIGHTS) -->
+      <!-- 4. IMAGE-4 -->
+      <div class="slide">
+        <img src="image-4.jpg" 
+             onerror="this.onerror=null; this.src='image-4.JPG'; if(!this.src) this.src='image-4.jpeg'; if(!this.src) this.src='image-4.png';" 
+             alt="Rose Heart Beach Arch" />
+        <div class="slide-caption">Where our next chapter begins by the sea 🌊</div>
+      </div>
+
+      <!-- 5. IMAGE-8 -->
       <div class="slide">
         <img src="image-8.jpg" 
              onerror="this.onerror=null; this.src='image-8.JPG'; if(!this.src) this.src='image-8.jpeg'; if(!this.src) this.src='image-8.png';" 
@@ -1326,7 +1294,23 @@
         <div class="slide-caption">Under a corridor of festive lights 🏮</div>
       </div>
 
-      <!-- 8. IMAGE-9 (CANDLELIGHT DINNER) -->
+      <!-- 6. IMAGE-3 -->
+      <div class="slide">
+        <img src="image-3.jpg" 
+             onerror="this.onerror=null; this.src='image-3.JPG'; if(!this.src) this.src='image-3.jpeg'; if(!this.src) this.src='image-3.png';" 
+             alt="Rose Proposal" />
+        <div class="slide-caption">She said YES! 🌹💍</div>
+      </div>
+
+      <!-- 7. IMAGE-5 -->
+      <div class="slide">
+        <img src="image-5.jpg" 
+             onerror="this.onerror=null; this.src='image-5.JPG'; if(!this.src) this.src='image-5.jpeg'; if(!this.src) this.src='image-5.png';" 
+             alt="Sunset Walk on the Beach" />
+        <div class="slide-caption">Golden hours and ocean breezes 🌅</div>
+      </div>
+
+      <!-- 8. IMAGE-9 -->
       <div class="slide">
         <img src="image-9.jpg" 
              onerror="this.onerror=null; this.src='image-9.JPG'; if(!this.src) this.src='image-9.jpeg'; if(!this.src) this.src='image-9.png';" 
@@ -1334,7 +1318,7 @@
         <div class="slide-caption">Quiet talks and loud laughs 🥂</div>
       </div>
 
-      <!-- 9. IMAGE-10 (MAROON & WHITE) -->
+      <!-- 9. IMAGE-10 -->
       <div class="slide">
         <img src="image-10.jpg" 
              onerror="this.onerror=null; this.src='image-10.JPG'; if(!this.src) this.src='image-10.jpeg'; if(!this.src) this.src='image-10.png';" 
@@ -1342,7 +1326,7 @@
         <div class="slide-caption">Always each other's favorite smile 🌸</div>
       </div>
 
-      <!-- 10. IMAGE-11 (CANDID LAUGHS) -->
+      <!-- 10. IMAGE-11 -->
       <div class="slide">
         <img src="image-11.jpg" 
              onerror="this.onerror=null; this.src='image-11.JPG'; if(!this.src) this.src='image-11.jpeg'; if(!this.src) this.src='image-11.png';" 
@@ -1350,7 +1334,7 @@
         <div class="slide-caption">Never taking life too seriously 🥸</div>
       </div>
 
-      <!-- 11. COUPLE-PINK (EXISTING) -->
+      <!-- 11. COUPLE-PINK -->
       <div class="slide">
         <img src="couple-pink.jpg" 
              onerror="this.onerror=null; this.src='couple-pink.JPG'; if(!this.src) this.src='couple-pink.jpeg'; if(!this.src) this.src='couple-pink.png';" 
@@ -1358,7 +1342,7 @@
         <div class="slide-caption">Every step leading us closer to forever 💖</div>
       </div>
 
-      <!-- 12. COUPLE-VALENTINE (EXISTING) -->
+      <!-- 12. COUPLE-VALENTINE -->
       <div class="slide">
         <img src="couple-valentine.jpg" 
              onerror="this.onerror=null; this.src='couple-valentine.JPG'; if(!this.src) this.src='couple-valentine.jpeg'; if(!this.src) this.src='couple-valentine.png';" 
@@ -1366,7 +1350,7 @@
         <div class="slide-caption">Will you be my Valentine? Always! 🌹</div>
       </div>
 
-      <!-- 13. COUPLE-GARDEN (EXISTING) -->
+      <!-- 13. COUPLE-GARDEN -->
       <div class="slide">
         <img src="couple-garden.jpg" 
              onerror="this.onerror=null; this.src='couple-garden.JPG'; if(!this.src) this.src='couple-garden.jpeg'; if(!this.src) this.src='couple-garden.png';" 
@@ -1374,7 +1358,7 @@
         <div class="slide-caption">Magic in ordinary moments 🌿✨</div>
       </div>
 
-      <!-- 14. COUPLE-DANCE (EXISTING) -->
+      <!-- 14. COUPLE-DANCE -->
       <div class="slide">
         <img src="couple-dance.jpg" 
              onerror="this.onerror=null; this.src='couple-dance.JPG'; if(!this.src) this.src='couple-dance.jpeg'; if(!this.src) this.src='couple-dance.png';" 
@@ -1382,7 +1366,7 @@
         <div class="slide-caption">Dancing to our own rhythm 💃🕺</div>
       </div>
 
-      <!-- 15. COUPLE-QUIRKY (EXISTING) -->
+      <!-- 15. COUPLE-QUIRKY -->
       <div class="slide">
         <img src="couple-quirky.jpg" 
              onerror="this.onerror=null; this.src='couple-quirky.JPG'; if(!this.src) this.src='couple-quirky.jpeg'; if(!this.src) this.src='couple-quirky.png';" 
