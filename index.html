@@ -12,14 +12,11 @@
 
   <style>
     :root {
-      --deep-teal: #083344;
+      --deep-teal: #06283d;
       --sea-blue: #0284c7;
-      --ocean-btn: #0284c7;
+      --ocean-btn: #0077b6;
       --gold-accent: #facc15;
       --sand-gold: #fef08a;
-      --coastal-sand: #fef9ee;
-      --card-bg: rgba(255, 255, 255, 0.94);
-      --border-tint: rgba(2, 132, 199, 0.22);
       --reel-card-w: 430px;
     }
 
@@ -40,11 +37,9 @@
       touch-action: none;
     }
 
-    /* REVERTED TO WARM SUNNY BEACH GRADIENT */
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: linear-gradient(180deg, #fef9ee 0%, #e0f2fe 35%, #ecfeff 65%, #fef3c7 100%);
-      background-attachment: fixed;
+      background: #061826;
       color: #0f172a;
       overflow-x: hidden;
     }
@@ -60,7 +55,6 @@
       overflow-x: hidden;
       scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
-      background: transparent;
     }
 
     .reel-card-section {
@@ -77,7 +71,7 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: clamp(1.4rem, 4vh, 2.4rem) 1.25rem;
-      background-color: transparent;
+      background-color: #06283d;
     }
 
     .reel-bg-art {
@@ -98,7 +92,7 @@
     .reel-gradient-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(8, 51, 68, 0.15) 0%, rgba(8, 51, 68, 0.38) 45%, rgba(8, 51, 68, 0.95) 86%);
+      background: linear-gradient(180deg, rgba(6, 40, 61, 0.15) 0%, rgba(6, 40, 61, 0.35) 45%, rgba(6, 40, 61, 0.95) 86%);
       z-index: 2;
       pointer-events: none;
     }
@@ -116,7 +110,7 @@
       top: 20px;
       right: 20px;
       z-index: 4;
-      background: rgba(8, 51, 68, 0.88);
+      background: rgba(6, 40, 61, 0.88);
       color: var(--sand-gold);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -267,7 +261,7 @@
       100% { transform: translateY(105vh) rotate(540deg) translateX(30px); opacity: 0; }
     }
 
-    /* MUSIC DISC */
+    /* FLOATING MUSIC DISC */
     .music-player-btn {
       position: fixed;
       top: 18px;
@@ -284,7 +278,7 @@
       justify-content: center;
       font-size: 1.15rem;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       backdrop-filter: blur(8px);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -325,7 +319,7 @@
       letter-spacing: 6px;
       text-transform: uppercase;
       color: #ffffff;
-      text-shadow: 0 2px 14px rgba(8, 51, 68, 0.9);
+      text-shadow: 0 2px 14px rgba(6, 40, 61, 0.9);
     }
 
     .crest-line {
@@ -352,8 +346,8 @@
       color: #ffffff;
       text-shadow: 
         0 0 24px rgba(254, 240, 138, 0.45),
-        0 4px 18px rgba(8, 51, 68, 0.95),
-        0 8px 35px rgba(8, 51, 68, 0.85);
+        0 4px 18px rgba(6, 40, 61, 0.95),
+        0 8px 35px rgba(6, 40, 61, 0.85);
       position: relative;
     }
 
@@ -368,14 +362,23 @@
       text-shadow: 
         0 0 20px rgba(250, 204, 21, 0.85),
         0 0 40px rgba(254, 240, 138, 0.5),
-        0 4px 14px rgba(8, 51, 68, 0.95);
+        0 4px 14px rgba(6, 40, 61, 0.95);
       animation: sparkleGlow 3.5s infinite alternate ease-in-out;
     }
 
     @keyframes sparkleGlow {
-      0% { filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.6)); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95)); transform: scale(1.03); }
-      100% { filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7)); transform: scale(1); }
+      0% {
+        filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.6));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(254, 240, 138, 0.95));
+        transform: scale(1.03);
+      }
+      100% {
+        filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+        transform: scale(1);
+      }
     }
 
     .hero-editorial-footer {
@@ -393,7 +396,7 @@
       gap: 0.6rem;
       padding: 0.4rem 1.4rem;
       border-radius: 40px;
-      background: rgba(8, 51, 68, 0.72);
+      background: rgba(6, 40, 61, 0.65);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(254, 240, 138, 0.5);
@@ -418,21 +421,20 @@
       font-style: italic;
       line-height: 1.5;
       color: #ffffff;
-      text-shadow: 0 2px 14px rgba(8, 51, 68, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 14px rgba(6, 40, 61, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
       margin-bottom: 0.6rem;
     }
 
     /* =========================================================
-       BEACH THEMED SECTION REELS (WARM & BRIGHT)
+       CARD: SCRATCH & COUNTDOWN
        ========================================================= */
-    .beach-reel-light {
-      background: linear-gradient(180deg, rgba(254, 249, 238, 0.85) 0%, rgba(224, 242, 254, 0.9) 100%);
+    .scratch-reel-content {
+      background: radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.15) 0%, rgba(6, 40, 61, 0.96) 80%);
       justify-content: center !important;
       align-items: center;
-      padding: 1.6rem 1.1rem !important;
+      padding: 2rem 1.4rem !important;
     }
 
-    /* Scratch Card */
     .scratch-card-wrapper {
       position: relative;
       width: 100%;
@@ -441,8 +443,8 @@
       margin: 1rem auto 0;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 14px 35px rgba(2, 132, 199, 0.18);
-      border: 2px solid #bae6fd;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35);
+      border: 1.5px solid rgba(254, 240, 138, 0.35);
       background: #ffffff;
     }
 
@@ -501,15 +503,24 @@
       color: #64748b;
     }
 
-    /* Couple & Childhood */
+    /* =========================================================
+       CARD: COUPLE & CHILDHOOD
+       ========================================================= */
+    .childhood-reel-section {
+      background: #061e30;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.5rem 1.1rem !important;
+    }
+
     .single-photo-card {
       width: 100%;
       max-width: 350px;
       height: 240px;
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      border: 2px solid rgba(255,255,255,0.9);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border: 1.5px solid rgba(255,255,255,0.7);
       margin-bottom: 1.1rem;
     }
 
@@ -524,12 +535,13 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.1rem, 4vw, 1.45rem);
       font-style: italic;
-      color: var(--deep-teal);
+      color: var(--sand-gold);
       text-align: center;
       margin-bottom: 0.9rem;
-      font-weight: 700;
+      font-weight: 600;
       white-space: nowrap;
       letter-spacing: -0.2px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .childhood-grid {
@@ -541,13 +553,12 @@
     }
 
     .baby-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       padding: 0.65rem;
       border-radius: 16px;
-      border: 1px solid var(--border-tint);
+      border: 1px solid rgba(255,255,255,0.25);
       text-align: center;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
     }
 
     .baby-img-box {
@@ -568,10 +579,12 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.05rem;
       font-weight: 700;
-      color: var(--deep-teal);
+      color: #ffffff;
     }
 
-    /* Event Cards */
+    /* =========================================================
+       EVENT CARDS
+       ========================================================= */
     .event-title-overlay {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.3rem, 7.5vw, 3rem);
@@ -579,7 +592,7 @@
       color: #ffffff;
       margin-bottom: 0.25rem;
       line-height: 1.1;
-      text-shadow: 0 2px 16px rgba(8, 51, 68, 0.95);
+      text-shadow: 0 2px 16px rgba(6, 40, 61, 0.95);
     }
 
     .event-time-overlay {
@@ -602,18 +615,26 @@
       text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
 
-    /* Venue */
+    /* =========================================================
+       CARD: VENUE
+       ========================================================= */
+    .venue-card-reel {
+      background: #061e30;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.6rem 1.2rem !important;
+    }
+
     .venue-showcase-box {
       width: 100%;
       max-width: 350px;
       border-radius: 20px;
       overflow: hidden;
-      background: var(--card-bg);
-      border: 1px solid var(--border-tint);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(12px);
       text-align: center;
       padding-bottom: 1.4rem;
-      box-shadow: 0 14px 35px rgba(2, 132, 199, 0.12);
     }
 
     .venue-banner-mini {
@@ -633,8 +654,7 @@
       border-radius: 12px;
       display: inline-block;
       margin: 0.8rem 0;
-      border: 1.5px dashed rgba(2, 132, 199, 0.35);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .qr-wrapper img {
@@ -654,9 +674,10 @@
       font-weight: 700;
       text-decoration: none;
       font-size: 0.92rem;
-      background: var(--sea-blue);
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: #ffffff;
-      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
       overflow: hidden;
       cursor: pointer;
       animation: buttonPulseGlow 3s infinite ease-in-out;
@@ -665,7 +686,7 @@
 
     .btn-maps-animated:active {
       transform: scale(0.95);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
     }
 
     .btn-maps-animated::after {
@@ -683,7 +704,7 @@
 
     .btn-maps-animated .map-pin-icon {
       font-size: 1.05rem;
-      color: #fff;
+      color: var(--sand-gold);
       animation: floatPin 1.8s infinite ease-in-out alternate;
     }
 
@@ -693,8 +714,12 @@
     }
 
     @keyframes buttonPulseGlow {
-      0%, 100% { box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35), 0 0 0 0 rgba(2, 132, 199, 0.4); }
-      50% { box-shadow: 0 10px 26px rgba(2, 132, 199, 0.55), 0 0 0 7px rgba(2, 132, 199, 0); }
+      0%, 100% {
+        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4), 0 0 0 0 rgba(2, 132, 199, 0.5);
+      }
+      50% {
+        box-shadow: 0 10px 28px rgba(2, 132, 199, 0.65), 0 0 0 7px rgba(2, 132, 199, 0);
+      }
     }
 
     @keyframes sheenPass {
@@ -702,7 +727,16 @@
       35%, 100% { left: 140%; }
     }
 
-    /* Touch-Swipe Gallery */
+    /* =========================================================
+       CARD: TOUCH-SWIPE GALLERY
+       ========================================================= */
+    .gallery-card-reel {
+      background: #061826;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.4rem 1.1rem !important;
+    }
+
     .gallery-touch-container {
       position: relative;
       width: 100%;
@@ -710,11 +744,10 @@
       height: 430px;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(2, 132, 199, 0.16);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
       background: #000;
       touch-action: pan-y;
       user-select: none;
-      border: 2px solid rgba(255, 255, 255, 0.9);
     }
 
     .slide {
@@ -745,7 +778,7 @@
       left: 0;
       right: 0;
       padding: 2.2rem 1rem 0.9rem;
-      background: linear-gradient(transparent, rgba(8, 51, 68, 0.92));
+      background: linear-gradient(transparent, rgba(6, 40, 61, 0.92));
       color: #fff;
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -760,23 +793,23 @@
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.35);
       backdrop-filter: blur(8px);
-      border: 1.5px solid rgba(255, 255, 255, 0.9);
-      color: var(--deep-teal);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
       cursor: pointer;
       z-index: 10;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .gallery-nav-btn:active {
       transform: translateY(-50%) scale(0.88);
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.6);
     }
 
     .btn-prev { left: 10px; }
@@ -795,7 +828,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #94a3b8;
+      background: #cbd5e1;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -806,24 +839,32 @@
       border-radius: 10px;
     }
 
-    /* RSVP */
+    /* =========================================================
+       CARD: RSVP
+       ========================================================= */
+    .rsvp-card-reel {
+      background: #061826;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.8rem 1.2rem !important;
+    }
+
     .rsvp-box-inner {
       width: 100%;
       max-width: 350px;
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 2rem 1.2rem;
-      border: 1px solid var(--border-tint);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(14px);
       text-align: center;
-      box-shadow: 0 14px 35px rgba(2, 132, 199, 0.12);
     }
 
     .rsvp-main-title {
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
       font-weight: 700;
-      color: var(--deep-teal);
+      color: #ffffff;
       letter-spacing: 4px;
       margin-top: 0.2rem;
       margin-bottom: 0.3rem;
@@ -839,7 +880,7 @@
     .rsvp-btn-animated {
       position: relative;
       background: #ffffff;
-      border: 1.5px solid #e2e8f0;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
       padding: 0.9rem 1.1rem;
       border-radius: 15px;
       font-size: 0.85rem;
@@ -849,7 +890,7 @@
       align-items: center;
       text-decoration: none;
       color: #0f172a;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
@@ -857,7 +898,7 @@
 
     .rsvp-btn-animated:active {
       transform: scale(0.96);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     }
 
     .rsvp-btn-animated::after {
@@ -984,11 +1025,11 @@
       </div>
     </section>
 
-    <!-- REEL SCREEN 2: SCRATCH TO REVEAL DATE (WARM BEACH THEME) -->
-    <section class="reel-card-section beach-reel-light">
-      <div class="reel-content-layer" style="color: var(--deep-teal);">
-        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sea-blue); background: rgba(2, 132, 199, 0.08); padding: 3px 14px; border-radius: 30px;">Countdown</span>
-        <h2 style="font-family: 'Alex Brush', cursive; font-size: 3rem; color: var(--deep-teal); margin-bottom: 0.2rem;">
+    <!-- REEL SCREEN 2: SCRATCH TO REVEAL DATE -->
+    <section class="reel-card-section scratch-reel-content">
+      <div class="reel-content-layer">
+        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Countdown</span>
+        <h2 style="font-family: 'Alex Brush', cursive; font-size: 3rem; color: #ffffff; margin-bottom: 0.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6);">
           Save the Date
         </h2>
 
@@ -1022,13 +1063,13 @@
         </div>
 
         <div class="slide-down-hint" style="margin-top: 1.6rem;">
-          <i class="fa-solid fa-chevron-down" style="color: var(--sea-blue); font-size: 0.85rem;"></i>
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
         </div>
       </div>
     </section>
 
-    <!-- REEL SCREEN 3: COUPLE & CHILDHOOD (WARM BEACH THEME) -->
-    <section class="reel-card-section beach-reel-light">
+    <!-- REEL SCREEN 3: COUPLE & CHILDHOOD -->
+    <section class="reel-card-section childhood-reel-section">
       <div class="reel-content-layer">
         <div class="single-photo-card" style="margin: 0 auto 1rem;">
           <img src="couple-traditional.jpg" 
@@ -1059,7 +1100,7 @@
         </div>
 
         <div class="slide-down-hint">
-          <i class="fa-solid fa-chevron-down" style="color: var(--sea-blue); font-size: 0.85rem;"></i>
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
         </div>
       </div>
     </section>
@@ -1152,11 +1193,11 @@
       </div>
     </section>
 
-    <!-- REEL SCREEN 8: VENUE (WARM BEACH THEME) -->
-    <section class="reel-card-section beach-reel-light">
+    <!-- REEL SCREEN 8: VENUE & ANIMATED MAPS BUTTON -->
+    <section class="reel-card-section venue-card-reel">
       <div class="reel-content-layer">
-        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sea-blue); background: rgba(2, 132, 199, 0.08); padding: 3px 14px; border-radius: 30px;">The Destination</span>
-        <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: var(--deep-teal); margin-bottom: 0.8rem;">
+        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">The Destination</span>
+        <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: #ffffff; margin-bottom: 0.8rem;">
           Deja Blu, Thrissur
         </h2>
 
@@ -1165,10 +1206,10 @@
                onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if (!this.src) this.src='venue-sunset.JPG';" 
                alt="Deja Blu Beach" class="venue-banner-mini" />
           <div class="venue-body-mini">
-            <h4 style="font-family: 'Playfair Display', serif; color: var(--deep-teal); font-size: 1.25rem;">
+            <h4 style="font-family: 'Playfair Display', serif; color: #ffffff; font-size: 1.25rem;">
               Deja Blu Beach Resort
             </h4>
-            <p style="color: #64748b; font-size: 0.82rem;">Thrissur Coastal Road, Kerala</p>
+            <p style="color: #cbd5e1; font-size: 0.82rem;">Thrissur Coastal Road, Kerala</p>
 
             <div class="qr-wrapper">
               <img src="qr-code.jpg" 
@@ -1186,16 +1227,16 @@
         </div>
 
         <div class="slide-down-hint">
-          <i class="fa-solid fa-chevron-down" style="color: var(--sea-blue); font-size: 0.85rem;"></i>
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
         </div>
       </div>
     </section>
 
-    <!-- REEL SCREEN 9: FULL TOUCH-SWIPE GALLERY (ALL 15 IMAGES) -->
-    <section class="reel-card-section beach-reel-light">
+    <!-- REEL SCREEN 9: FULL SWIPE GALLERY (ALL EXISTING + ALL NEW IMAGES) -->
+    <section class="reel-card-section gallery-card-reel">
       <div class="reel-content-layer">
-        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sea-blue); background: rgba(2, 132, 199, 0.08); padding: 3px 14px; border-radius: 30px;">Moments</span>
-        <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: var(--deep-teal); margin-bottom: 0.6rem;">
+        <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Moments</span>
+        <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: #ffffff; margin-bottom: 0.6rem;">
           Memories & Laughs
         </h2>
 
@@ -1329,6 +1370,7 @@
           </button>
         </div>
 
+        <!-- 15 Dynamic Progress Dots -->
         <div class="dots-box">
           <div class="dot active" onclick="jumpSlide(0)"></div>
           <div class="dot" onclick="jumpSlide(1)"></div>
@@ -1348,18 +1390,18 @@
         </div>
 
         <div class="slide-down-hint" style="margin-top: 1rem;">
-          <i class="fa-solid fa-chevron-down" style="color: var(--sea-blue); font-size: 0.85rem;"></i>
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
         </div>
       </div>
     </section>
 
-    <!-- REEL SCREEN 10: RSVP (WARM BEACH THEME) -->
-    <section class="reel-card-section beach-reel-light">
+    <!-- REEL SCREEN 10: RSVP & ANIMATED BUTTONS -->
+    <section class="reel-card-section rsvp-card-reel">
       <div class="reel-content-layer">
         <div class="rsvp-box-inner" style="margin: 0 auto;">
-          <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sea-blue); background: rgba(2, 132, 199, 0.08); padding: 3px 14px; border-radius: 30px;">Attendance</span>
+          <span style="font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--sand-gold); background: rgba(254, 240, 138, 0.15); padding: 3px 14px; border-radius: 30px;">Attendance</span>
           <h2 class="rsvp-main-title">RSVP</h2>
-          <p style="color: #64748b; font-size: 0.88rem;">
+          <p style="color: #cbd5e1; font-size: 0.88rem;">
             Tap below to confirm on WhatsApp directly!
           </p>
 
@@ -1385,10 +1427,10 @@
         </div>
 
         <div style="margin-top: 1.5rem;">
-          <p style="font-family: 'Alex Brush', cursive; font-size: 2.4rem; color: var(--deep-teal); line-height: 1;">
+          <p style="font-family: 'Alex Brush', cursive; font-size: 2.4rem; color: var(--sand-gold); line-height: 1;">
             Anoushka & Ronaldo
           </p>
-          <p style="opacity: 0.8; font-size: 0.78rem; color: #64748b; margin-top: 0.3rem;">Thrissur, Kerala • 20th & 21st November 2026</p>
+          <p style="opacity: 0.75; font-size: 0.78rem; color: #cbd5e1; margin-top: 0.3rem;">Thrissur, Kerala • 20th & 21st November 2026</p>
         </div>
       </div>
     </section>
