@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>3 States | Anoushka & Ronaldo</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -16,10 +16,7 @@
       --sea-blue: #0284c7;
       --gold-accent: #facc15;
       --sand-gold: #fef08a;
-      --champagne: #f7e7ce;
-      --card-bg: rgba(255, 255, 255, 0.94);
-      --border-tint: rgba(2, 132, 199, 0.18);
-      --text-main: #0f172a;
+      --reel-card-w: 430px;
     }
 
     * {
@@ -27,6 +24,10 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body.gate-active {
@@ -37,11 +38,106 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: linear-gradient(180deg, #fdfbf7 0%, #e0f2fe 30%, #f0fdfa 70%, #fef3c7 100%);
-      background-attachment: fixed;
-      color: var(--text-main);
+      background: #061826; /* Deep ocean background fills widescreen devices gracefully */
+      color: #0f172a;
       overflow-x: hidden;
-      line-height: 1.5;
+    }
+
+    /* =========================================================
+       REEL VIEWPORT DECK (KINETIC FULL-FRAME STORY SNAP)
+       ========================================================= */
+    .reel-deck-container {
+      width: 100%;
+      height: 100vh;
+      height: 100svh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Each Reel Screen is exactly 1 full mobile viewport */
+    .reel-card-section {
+      width: 100%;
+      max-width: var(--reel-card-w);
+      height: 100vh;
+      height: 100svh;
+      margin: 0 auto;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(1.4rem, 4vh, 2.4rem) 1.25rem;
+      background-color: #06283d;
+    }
+
+    /* Card Background Images with cinematic framing */
+    .reel-bg-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 1;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reel-card-section:hover .reel-bg-art {
+      transform: scale(1.02);
+    }
+
+    /* Bottom-fade gradient that blends typography directly onto the photo */
+    .reel-gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6, 40, 61, 0.08) 0%, rgba(6, 40, 61, 0.28) 45%, rgba(6, 40, 61, 0.94) 86%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .reel-content-layer {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: #ffffff;
+      width: 100%;
+    }
+
+    /* Top Corner Badge */
+    .reel-top-pill {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 4;
+      background: rgba(6, 40, 61, 0.88);
+      color: var(--sand-gold);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid rgba(254, 240, 138, 0.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+      letter-spacing: 1px;
+    }
+
+    /* Subtle slide indicator ray at bottom of each card */
+    .slide-down-hint {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.8rem;
+      opacity: 0.7;
+      animation: bounceDown 2s infinite ease-in-out;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
     }
 
     /* =========================================================
@@ -58,7 +154,7 @@
       justify-content: flex-end;
       align-items: center;
       padding-bottom: clamp(2.2rem, 6vh, 3.8rem);
-      transition: opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1), transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
       user-select: none;
     }
@@ -169,7 +265,7 @@
       100% { transform: translateY(105vh) rotate(540deg) translateX(30px); opacity: 0; }
     }
 
-    /* MUSIC TOGGLE */
+    /* FLOATING MUSIC DISC */
     .music-player-btn {
       position: fixed;
       top: 18px;
@@ -199,62 +295,53 @@
     }
 
     /* =========================================================
-       EDITORIAL HERO WITH 1-LINE SPACING BETWEEN NAMES & AMPERSAND
+       HERO CARD
        ========================================================= */
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      padding: clamp(3rem, 7vh, 5rem) 1.2rem clamp(2.5rem, 5vh, 4rem);
-      background: 
-        radial-gradient(ellipse at 50% 20%, rgba(250, 204, 21, 0.12) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(6, 40, 61, 0.65) 0%, rgba(2, 132, 199, 0.3) 50%, rgba(6, 40, 61, 0.92) 100%),
-        url('venue-sunset.jpg') center/cover no-repeat;
-      color: #fff;
+    .hero-card-reel {
+      justify-content: space-between !important;
+      padding-top: clamp(2.5rem, 6vh, 4rem) !important;
     }
 
     .hero-crest-top {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.45rem;
+      position: relative;
+      z-index: 3;
     }
 
     .hero-pretitle-chic {
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.72rem, 2.2vw, 0.85rem);
+      font-size: clamp(0.72rem, 2.2vw, 0.82rem);
       font-weight: 500;
-      letter-spacing: 7px;
+      letter-spacing: 6px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255, 255, 255, 0.9);
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     .crest-line {
-      width: 44px;
+      width: 40px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--sand-gold), transparent);
     }
 
     .hero-names-centerpiece {
       position: relative;
-      margin: 1.5rem auto;
-      max-width: 600px;
+      z-index: 3;
+      margin: 1.2rem auto;
     }
 
     .name-bride-chic, .name-groom-chic {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 11.5vw, 5.4rem);
+      font-size: clamp(3.2rem, 11vw, 5.2rem);
       font-weight: 300;
       letter-spacing: 2px;
       text-transform: capitalize;
       line-height: 1.15;
       color: #ffffff;
-      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 4px 28px rgba(0, 0, 0, 0.5);
       display: block;
     }
 
@@ -263,116 +350,74 @@
       font-size: clamp(2.8rem, 9vw, 4rem);
       color: var(--sand-gold);
       display: block;
-      margin: 0.85rem 0 0.75rem;
+      margin: 0.8rem 0 0.7rem;
       line-height: 1;
       filter: drop-shadow(0 2px 14px rgba(250, 204, 21, 0.45));
     }
 
     .hero-editorial-footer {
-      max-width: 520px;
-      width: 100%;
-      margin: 0 auto;
+      position: relative;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
+      width: 100%;
     }
 
     .states-capsule-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.8rem;
-      padding: 0.4rem 1.4rem;
+      gap: 0.6rem;
+      padding: 0.35rem 1.25rem;
       border-radius: 40px;
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(254, 240, 138, 0.35);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.7rem;
     }
 
     .states-capsule-text {
       font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--sand-gold);
     }
 
     .tagline-editorial-prose {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.15rem, 4vw, 1.45rem);
+      font-size: clamp(1.1rem, 3.8vw, 1.35rem);
       font-weight: 400;
       font-style: italic;
-      line-height: 1.5;
+      line-height: 1.45;
       color: rgba(255, 255, 255, 0.95);
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
-      max-width: 480px;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.6rem;
     }
 
-    .scroll-ray {
-      width: 1px;
-      height: 38px;
-      background: linear-gradient(180deg, var(--sand-gold), transparent);
-      animation: dropRay 2.2s infinite ease-in-out;
-      opacity: 0.85;
-    }
-
-    @keyframes dropRay {
-      0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
-      50% { transform: scaleY(1); transform-origin: top; opacity: 0.9; }
-      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
-    }
-
-    /* CURSIVE HEADERS */
-    .section-header {
-      text-align: center;
-      margin-bottom: 1.8rem;
-    }
-
-    .section-title-cursive {
-      font-family: 'Alex Brush', cursive;
-      font-size: clamp(2.8rem, 9.5vw, 4rem);
-      color: var(--deep-teal);
-      line-height: 1.1;
-      text-shadow: 0 2px 12px rgba(2, 132, 199, 0.15);
-      margin-bottom: 0.1rem;
-    }
-
-    .section-subtitle-pill {
-      display: inline-block;
-      color: var(--sea-blue);
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      background: rgba(2, 132, 199, 0.08);
-      padding: 3px 14px;
-      border-radius: 30px;
-      margin-bottom: 0.4rem;
-    }
-
-    /* SCRATCH CARD CONTAINER */
-    .scratch-section {
-      text-align: center;
-      padding: 2.8rem 1.25rem 1rem;
-      max-width: 520px;
-      margin: 0 auto;
+    /* =========================================================
+       CARD: SCRATCH & COUNTDOWN
+       ========================================================= */
+    .scratch-reel-content {
+      background: radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.15) 0%, rgba(6, 40, 61, 0.96) 80%);
+      justify-content: center !important;
+      align-items: center;
+      padding: 2rem 1.4rem !important;
     }
 
     .scratch-card-wrapper {
       position: relative;
       width: 100%;
-      max-width: 360px;
+      max-width: 350px;
       height: 210px;
-      margin: 1.2rem auto 0;
+      margin: 1rem auto 0;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 16px 38px rgba(2, 132, 199, 0.18);
-      border: 2px solid #bae6fd;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35);
+      border: 1.5px solid rgba(254, 240, 138, 0.35);
       background: #ffffff;
     }
 
@@ -400,7 +445,6 @@
       transition: opacity 0.6s ease;
     }
 
-    /* COUNTDOWN */
     .countdown-container {
       display: flex;
       gap: 0.5rem;
@@ -413,7 +457,7 @@
       border: 1px solid rgba(2, 132, 199, 0.25);
       border-radius: 10px;
       padding: 0.4rem 0.65rem;
-      min-width: 55px;
+      min-width: 54px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
@@ -432,230 +476,161 @@
       color: #64748b;
     }
 
-    /* SECTIONS */
-    section {
-      padding: 2.2rem 1.25rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    /* =========================================================
+       CARD: COUPLE & CHILDHOOD
+       ========================================================= */
+    .childhood-reel-section {
+      background: #061e30;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.5rem 1.1rem !important;
     }
 
-    /* PHOTO CARD */
     .single-photo-card {
-      max-width: 580px;
-      margin: 0 auto 2.2rem;
-      border-radius: 22px;
+      width: 100%;
+      max-width: 350px;
+      height: 240px;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 14px 35px rgba(0,0,0,0.08);
-      border: 2px solid rgba(255,255,255,0.8);
-      background: #ffffff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      margin-bottom: 1.1rem;
     }
 
     .single-photo-card img {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    /* CHILDHOOD TITLE */
     .childhood-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.15rem, 4.4vw, 1.65rem);
+      font-size: clamp(1.2rem, 4.4vw, 1.55rem);
       font-style: italic;
-      color: var(--deep-teal);
+      color: var(--sand-gold);
       text-align: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.9rem;
       font-weight: 600;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       letter-spacing: -0.2px;
-      display: block;
-      width: 100%;
     }
 
     .childhood-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      max-width: 650px;
-      margin: 0 auto;
+      gap: 0.8rem;
+      width: 100%;
+      max-width: 350px;
     }
 
     .baby-card {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      padding: 0.85rem;
-      border-radius: 18px;
-      border: 1px solid var(--border-tint);
+      padding: 0.65rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.25);
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
     }
 
     .baby-img-box {
       width: 100%;
       aspect-ratio: 4 / 5;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      background: #e2e8f0;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.4rem;
     }
 
     .baby-img-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
     }
 
     .baby-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      color: var(--deep-teal);
-    }
-
-    /* FULL-BLEED POSTER REEL EVENT CARDS */
-    .events-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-      max-width: 540px;
-      margin: 0 auto;
-    }
-
-    .event-card-reel {
-      position: relative;
-      width: 100%;
-      height: 520px;
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: 0 18px 45px rgba(8, 51, 68, 0.22);
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      background-color: #083344;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem 1.5rem;
       color: #ffffff;
-      transition: transform 0.3s ease;
     }
 
-    .event-card-reel:hover {
-      transform: translateY(-3px);
-    }
-
-    .event-bg-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      z-index: 1;
-      transition: transform 0.6s ease;
-    }
-
-    .event-card-reel:hover .event-bg-image {
-      transform: scale(1.03);
-    }
-
-    .event-card-reel::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(8, 51, 68, 0.05) 0%, rgba(8, 51, 68, 0.22) 42%, rgba(8, 51, 68, 0.94) 86%);
-      z-index: 2;
-    }
-
-    .event-badge-top {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      z-index: 3;
-      background: rgba(8, 51, 68, 0.88);
-      color: #fef08a;
-      backdrop-filter: blur(8px);
-      padding: 6px 14px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      border: 1px solid rgba(254, 240, 138, 0.4);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .event-info-overlay {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-    }
-
+    /* =========================================================
+       EVENT CARDS (HALDI, SANGEET, CHURCH, RECEPTION)
+       ========================================================= */
     .event-title-overlay {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.1rem;
-      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.3rem, 7.5vw, 3rem);
+      font-weight: 600;
       color: #ffffff;
-      margin-bottom: 0.3rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      margin-bottom: 0.25rem;
+      line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
     }
 
     .event-time-overlay {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: #fef08a;
+      color: var(--sand-gold);
       font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 0.6rem;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
     }
 
     .event-desc-overlay {
       color: #f1f5f9;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       line-height: 1.45;
-      max-width: 440px;
+      max-width: 340px;
       margin: 0 auto;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.85);
     }
 
-    /* VENUE */
-    .venue-showcase {
-      background: var(--card-bg);
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid var(--border-tint);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-      max-width: 650px;
-      margin: 0 auto;
-      text-align: center;
+    /* =========================================================
+       CARD: VENUE
+       ========================================================= */
+    .venue-card-reel {
+      background: #061e30;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.6rem 1.2rem !important;
     }
 
-    .venue-img-banner {
+    .venue-showcase-box {
       width: 100%;
-      height: 220px;
+      max-width: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      padding-bottom: 1.2rem;
+    }
+
+    .venue-banner-mini {
+      width: 100%;
+      height: 180px;
       object-fit: cover;
       display: block;
     }
 
-    .venue-body {
-      padding: 1.8rem 1.4rem;
+    .venue-body-mini {
+      padding: 1.1rem 1rem 0;
     }
 
     .qr-wrapper {
       background: #ffffff;
-      padding: 0.8rem;
-      border-radius: 16px;
-      border: 2px dashed rgba(2, 132, 199, 0.35);
+      padding: 0.5rem;
+      border-radius: 12px;
       display: inline-block;
-      margin: 1.1rem 0;
+      margin: 0.8rem 0;
     }
 
     .qr-wrapper img {
-      width: 170px;
-      height: 170px;
+      width: 130px;
+      height: 130px;
       object-fit: contain;
       display: block;
     }
@@ -664,25 +639,34 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.8rem 1.6rem;
+      padding: 0.65rem 1.4rem;
       border-radius: 50px;
       font-weight: 700;
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       background: var(--sea-blue);
       color: #fff;
       box-shadow: 0 6px 18px rgba(2, 132, 199, 0.3);
     }
 
-    /* TOUCH-SWIPE KINETIC GALLERY */
+    /* =========================================================
+       CARD: TOUCH-SWIPE GALLERY
+       ========================================================= */
+    .gallery-card-reel {
+      background: #061826;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.4rem 1.1rem !important;
+    }
+
     .gallery-touch-container {
       position: relative;
-      max-width: 520px;
-      aspect-ratio: 4 / 5;
-      margin: 0 auto;
-      border-radius: 24px;
+      width: 100%;
+      max-width: 340px;
+      height: 430px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(6, 40, 61, 0.25);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
       background: #000;
       touch-action: pan-y;
       user-select: none;
@@ -715,12 +699,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 2.8rem 1.2rem 1.1rem;
+      padding: 2.2rem 1rem 0.9rem;
       background: linear-gradient(transparent, rgba(6, 40, 61, 0.92));
       color: #fff;
       text-align: center;
       font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-style: italic;
     }
 
@@ -728,8 +712,8 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.35);
       backdrop-filter: blur(8px);
@@ -738,35 +722,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
       z-index: 10;
-      transition: background 0.25s ease;
     }
 
-    .gallery-nav-btn:hover {
-      background: rgba(255, 255, 255, 0.7);
-      color: #06283d;
-    }
-
-    .btn-prev { left: 14px; }
-    .btn-next { right: 14px; }
-
-    .gallery-hint-badge {
-      text-align: center;
-      font-size: 0.78rem;
-      color: #64748b;
-      margin-top: 0.6rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
+    .btn-prev { left: 10px; }
+    .btn-next { right: 10px; }
 
     .dots-box {
       display: flex;
       justify-content: center;
       gap: 7px;
-      margin-top: 0.8rem;
+      margin-top: 0.7rem;
     }
 
     .dot {
@@ -784,47 +752,56 @@
       border-radius: 10px;
     }
 
-    /* RSVP */
-    .rsvp-box {
-      background: var(--card-bg);
-      border-radius: 22px;
-      padding: 2.2rem 1.4rem;
-      max-width: 550px;
-      margin: 0 auto;
-      border: 1px solid var(--border-tint);
+    /* =========================================================
+       CARD: RSVP
+       ========================================================= */
+    .rsvp-card-reel {
+      background: #061826;
+      justify-content: center !important;
+      align-items: center;
+      padding: 1.8rem 1.2rem !important;
+    }
+
+    .rsvp-box-inner {
+      width: 100%;
+      max-width: 350px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(14px);
       text-align: center;
     }
 
     .rsvp-main-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      color: var(--deep-teal);
+      color: #ffffff;
       letter-spacing: 4px;
       margin-top: 0.2rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
 
     .rsvp-options {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 1.5rem;
+      gap: 0.7rem;
+      margin-top: 1.3rem;
     }
 
     .rsvp-btn {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
-      padding: 0.95rem 1.1rem;
+      padding: 0.85rem 1rem;
       border-radius: 14px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       display: flex;
       justify-content: space-between;
       align-items: center;
       text-decoration: none;
-      color: var(--text-main);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      color: #0f172a;
     }
 
     .rsvp-btn:hover {
@@ -837,25 +814,6 @@
       border-color: #ef4444;
       background: #fef2f2;
       color: #b91c1c;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 1.2rem;
-      background: var(--deep-teal);
-      color: #fff;
-    }
-
-    /* SCROLL REVEAL GLIDE */
-    .reveal-item {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal-item.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
@@ -903,312 +861,351 @@
   </button>
 
   <!-- =========================================================
-       EDITORIAL BESPOKE HERO COVER
+       REEL DECK VIEWPORT CONTAINER (KINETIC SNAP-SCROLL)
        ========================================================= -->
-  <header class="hero">
-    <div class="hero-crest-top">
-      <span class="hero-pretitle-chic">The Wedding Celebration</span>
-      <div class="crest-line"></div>
-    </div>
+  <div class="reel-deck-container" id="reelDeck">
 
-    <div class="hero-names-centerpiece">
-      <span class="name-bride-chic">Anoushka</span>
-      <span class="ampersand-luxury">&</span>
-      <span class="name-groom-chic">Ronaldo</span>
-    </div>
-
-    <div class="hero-editorial-footer">
-      <div class="states-capsule-badge">
-        <i class="fa-solid fa-compass" style="color: var(--sand-gold); font-size: 0.75rem;"></i>
-        <span class="states-capsule-text">3 States</span>
-      </div>
-
-      <p class="tagline-editorial-prose">
-        "A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!"
-      </p>
-
-      <div class="scroll-ray"></div>
-    </div>
-  </header>
-
-  <!-- SCRATCH TO REVEAL DATE & COUNTDOWN -->
-  <div class="scratch-section reveal-item">
-    <span class="section-subtitle-pill">Countdown</span>
-    <h2 class="section-title-cursive" style="margin-bottom: 0.5rem;">Save the Date</h2>
-
-    <div class="scratch-card-wrapper" id="scratchWrapper">
-      <canvas id="scratchCanvas" class="scratch-canvas" width="360" height="210"></canvas>
-      
-      <div class="scratch-hidden-content">
-        <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Save The Date</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--deep-teal); margin: 0.2rem 0;">
-          20th & 21st November 2026
-        </h4>
-        <div class="countdown-container">
-          <div class="countdown-box">
-            <span class="countdown-num" id="days">00</span>
-            <span class="countdown-label">Days</span>
-          </div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="hours">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="minutes">00</span>
-            <span class="countdown-label">Mins</span>
-          </div>
-          <div class="countdown-box">
-            <span class="countdown-num" id="seconds">00</span>
-            <span class="countdown-label">Secs</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STORY PHOTO & CHILDHOOD SECTION -->
-  <section style="padding-bottom: 0.8rem;" class="reveal-item">
-    <div class="single-photo-card">
-      <img src="couple-traditional.jpg" 
-           onerror="this.onerror=null; this.src='couple-traditional.JPG'; if (!this.src) this.src='couple-traditional.jpeg';" 
-           alt="Anoushka and Ronaldo" />
-    </div>
-
-    <h3 class="childhood-title">"These kids decided to get married"</h3>
-
-    <div class="childhood-grid">
-      <div class="baby-card">
-        <div class="baby-img-box">
-          <img src="childhood-bride.jpg" 
-               onerror="this.onerror=null; this.src='childhood-bride.jpeg'; if (!this.src) this.src='childhood-bride.JPG';" 
-               alt="Young Anoushka" />
-        </div>
-        <h4 class="baby-title">Anoushka</h4>
-      </div>
-
-      <div class="baby-card">
-        <div class="baby-img-box">
-          <img src="childhood-groom.jpg" 
-               onerror="this.onerror=null; this.src='childhood-groom.jpeg'; if (!this.src) this.src='childhood-groom.JPG';" 
-               alt="Young Ronaldo" />
-        </div>
-        <h4 class="baby-title">Ronaldo</h4>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENTS SECTION -->
-  <section style="padding-top: 0.8rem;">
-    <div class="section-header reveal-item">
-      <span class="section-subtitle-pill">Celebrations</span>
-      <h2 class="section-title-cursive">Events Schedule</h2>
-    </div>
-
-    <div class="events-grid">
-      
-      <!-- 1. HALDI CEREMONY -->
-      <div class="event-card-reel reveal-item">
-        <img class="event-bg-image" 
-             src="event-haldi.jpg" 
-             onerror="this.onerror=null; this.src='event-haldi.jpeg'; if (!this.src) this.src='event-haldi.JPG';" 
-             alt="Haldi Ceremony" />
-        <span class="event-badge-top">20th Nov 2026</span>
-        <div class="event-info-overlay">
-          <h3 class="event-title-overlay">Haldi Ceremony</h3>
-          <div class="event-time-overlay">
-            <i class="fa-regular fa-clock"></i> 3:00 PM onwards
-          </div>
-          <p class="event-desc-overlay">
-            Sunflowers, sunny smiles, coastal breezes, and playful splashes of turmeric to kick off the festivities!
-          </p>
-        </div>
-      </div>
-
-      <!-- 2. SANGEET -->
-      <div class="event-card-reel reveal-item">
-        <img class="event-bg-image" 
-             src="event-sangeet.jpg" 
-             onerror="this.onerror=null; this.src='event-sangeet.jpeg'; if (!this.src) this.src='event-sangeet.JPG';" 
-             alt="Sangeet Night" />
-        <span class="event-badge-top">20th Nov 2026</span>
-        <div class="event-info-overlay">
-          <h3 class="event-title-overlay">Sangeet</h3>
-          <div class="event-time-overlay">
-            <i class="fa-regular fa-moon"></i> Evening
-          </div>
-          <p class="event-desc-overlay">
-            Under a canopy of stars and fairy lights — an evening of non-stop Bollywood music, dance, and celebrations.
-          </p>
-        </div>
-      </div>
-
-      <!-- 3. CHURCH WEDDING -->
-      <div class="event-card-reel reveal-item">
-        <img class="event-bg-image" 
-             src="event-church.jpg" 
-             onerror="this.onerror=null; this.src='event-church.jpeg'; if (!this.src) this.src='event-church.JPG';" 
-             alt="Church Wedding" />
-        <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
-        <div class="event-info-overlay">
-          <h3 class="event-title-overlay">Church Wedding</h3>
-          <div class="event-time-overlay">
-            <i class="fa-solid fa-church"></i> 12:00 PM
-          </div>
-          <p class="event-desc-overlay">
-            Exchanging sacred vows and rings as our two families and three states unite as one.
-          </p>
-        </div>
-      </div>
-
-      <!-- 4. BEACHSIDE RECEPTION -->
-      <div class="event-card-reel reveal-item">
-        <img class="event-bg-image" 
-             src="event-reception.jpg" 
-             onerror="this.onerror=null; this.src='event-reception.jpeg'; if (!this.src) this.src='event-reception.JPG';" 
-             alt="Beachside Reception" />
-        <span class="event-badge-top" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
-        <div class="event-info-overlay">
-          <h3 class="event-title-overlay">Beachside Reception</h3>
-          <div class="event-time-overlay">
-            <i class="fa-solid fa-champagne-glasses"></i> 5:00 PM onwards
-          </div>
-          <p class="event-desc-overlay">
-            Sunset toasts and lantern lights along the beach shore of Deja Blu, followed by feasting and celebration!
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- VENUE -->
-  <section class="reveal-item">
-    <div class="section-header">
-      <span class="section-subtitle-pill">Venue</span>
-      <h2 class="section-title-cursive">The Destination</h2>
-    </div>
-
-    <div class="venue-showcase">
+    <!-- REEL SCREEN 1: HERO COVER -->
+    <section class="reel-card-section hero-card-reel">
       <img src="venue-sunset.jpg" 
-           onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if (!this.src) this.src='venue-sunset.JPG';" 
-           alt="Deja Blu Beach" class="venue-img-banner" />
-      <div class="venue-body">
-        <h3 style="font-family: 'Playfair Display', serif; color: var(--deep-teal); font-size: 1.5rem; margin-bottom: 0.2rem;">
-          Deja Blu Beach Resort
-        </h3>
-        <p style="color: #64748b; font-size: 0.9rem;">Thrissur Coastal Road, Kerala</p>
+           onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if(!this.src) this.src='venue-sunset.JPG';" 
+           class="reel-bg-art" alt="Deja Blu Beach" />
+      <div class="reel-gradient-overlay"></div>
 
-        <div class="qr-wrapper">
-          <img src="qr-code.jpg" 
-               onerror="this.onerror=null; this.src='qr-code.jpeg'; if (!this.src) this.src='qr-code.JPG';" 
-               alt="Location QR Code" />
+      <div class="hero-crest-top">
+        <span class="hero-pretitle-chic">The Wedding Celebration</span>
+        <div class="crest-line"></div>
+      </div>
+
+      <div class="hero-names-centerpiece">
+        <span class="name-bride-chic">Anoushka</span>
+        <span class="ampersand-luxury">&</span>
+        <span class="name-groom-chic">Ronaldo</span>
+      </div>
+
+      <div class="hero-editorial-footer">
+        <div class="states-capsule-badge">
+          <i class="fa-solid fa-compass" style="color: var(--sand-gold); font-size: 0.72rem;"></i>
+          <span class="states-capsule-text">3 States</span>
         </div>
-        <br>
-        <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps">
-          <i class="fa-solid fa-location-dot"></i> Open in Google Maps
-        </a>
+
+        <p class="tagline-editorial-prose">
+          "A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!"
+        </p>
+
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: var(--sand-gold); font-size: 0.9rem;"></i>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MEMORIES: MANUAL TOUCH-SWIPE GALLERY -->
-  <section class="reveal-item">
-    <div class="section-header">
-      <span class="section-subtitle-pill">Gallery</span>
-      <h2 class="section-title-cursive">Memories & Laughs</h2>
-    </div>
+    <!-- REEL SCREEN 2: SCRATCH TO REVEAL DATE -->
+    <section class="reel-card-section scratch-reel-content">
+      <div class="reel-content-layer">
+        <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">Save The Date</span>
+        <h2 style="font-family: 'Alex Brush', cursive; font-size: 3rem; color: #ffffff; margin-bottom: 0.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6);">
+          Save the Date
+        </h2>
 
-    <div class="gallery-touch-container" id="touchGallery">
-      <div class="slide active">
-        <img src="couple-pink.jpg" 
-             onerror="this.onerror=null; this.src='couple-pink.jpeg'; if (!this.src) this.src='couple-pink.JPG';" 
-             alt="Ethnic outfits" />
-        <div class="slide-caption">Stepping into forever together ❤️</div>
+        <div class="scratch-card-wrapper" id="scratchWrapper">
+          <canvas id="scratchCanvas" class="scratch-canvas" width="350" height="210"></canvas>
+          
+          <div class="scratch-hidden-content">
+            <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Save The Date</span>
+            <h4 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep-teal); margin: 0.2rem 0;">
+              20th & 21st November 2026
+            </h4>
+            <div class="countdown-container">
+              <div class="countdown-box">
+                <span class="countdown-num" id="days">00</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="minutes">00</span>
+                <span class="countdown-label">Mins</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="seconds">00</span>
+                <span class="countdown-label">Secs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-down-hint" style="margin-top: 1.6rem;">
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
+        </div>
       </div>
-      <div class="slide">
-        <img src="couple-valentine.jpg" 
-             onerror="this.onerror=null; this.src='couple-valentine.jpeg'; if (!this.src) this.src='couple-valentine.JPG';" 
-             alt="Valentine" />
-        <div class="slide-caption">Will you be my Valentine? Always! ✨</div>
+    </section>
+
+    <!-- REEL SCREEN 3: COUPLE & CHILDHOOD -->
+    <section class="reel-card-section childhood-reel-section">
+      <div class="reel-content-layer">
+        <div class="single-photo-card" style="margin: 0 auto 1rem;">
+          <img src="couple-traditional.jpg" 
+               onerror="this.onerror=null; this.src='couple-traditional.JPG'; if (!this.src) this.src='couple-traditional.jpeg';" 
+               alt="Anoushka and Ronaldo" />
+        </div>
+
+        <h3 class="childhood-title">"These kids decided to get married"</h3>
+
+        <div class="childhood-grid" style="margin: 0 auto;">
+          <div class="baby-card">
+            <div class="baby-img-box">
+              <img src="childhood-bride.jpg" 
+                   onerror="this.onerror=null; this.src='childhood-bride.jpeg'; if (!this.src) this.src='childhood-bride.JPG';" 
+                   alt="Young Anoushka" />
+            </div>
+            <h4 class="baby-title">Anoushka</h4>
+          </div>
+
+          <div class="baby-card">
+            <div class="baby-img-box">
+              <img src="childhood-groom.jpg" 
+                   onerror="this.onerror=null; this.src='childhood-groom.jpeg'; if (!this.src) this.src='childhood-groom.JPG';" 
+                   alt="Young Ronaldo" />
+            </div>
+            <h4 class="baby-title">Ronaldo</h4>
+          </div>
+        </div>
+
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
+        </div>
       </div>
-      <div class="slide">
-        <img src="couple-garden.jpg" 
-             onerror="this.onerror=null; this.src='couple-garden.jpeg'; if (!this.src) this.src='couple-garden.JPG';" 
-             alt="Dinner" />
-        <div class="slide-caption">Quiet talks and loud laughs 🥂</div>
+    </section>
+
+    <!-- REEL SCREEN 4: HALDI CEREMONY -->
+    <section class="reel-card-section">
+      <img src="event-haldi.jpg" 
+           onerror="this.onerror=null; this.src='event-haldi.jpeg'; if (!this.src) this.src='event-haldi.JPG';" 
+           class="reel-bg-art" alt="Haldi Ceremony" />
+      <div class="reel-gradient-overlay"></div>
+      <span class="reel-top-pill">20th Nov 2026</span>
+
+      <div class="reel-content-layer">
+        <h3 class="event-title-overlay">Haldi Ceremony</h3>
+        <div class="event-time-overlay">
+          <i class="fa-regular fa-clock"></i> 3:00 PM onwards
+        </div>
+        <p class="event-desc-overlay">
+          Sunflowers, sunny smiles, coastal breezes, and playful splashes of turmeric to kick off the festivities!
+        </p>
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: var(--sand-gold); font-size: 0.85rem;"></i>
+        </div>
       </div>
-      <div class="slide">
-        <img src="couple-dance.jpg" 
-             onerror="this.onerror=null; this.src='couple-dance.jpeg'; if (!this.src) this.src='couple-dance.JPG';" 
-             alt="Dance" />
-        <div class="slide-caption">Business on paper, Bollywood in spirit 💃🕺</div>
+    </section>
+
+    <!-- REEL SCREEN 5: SANGEET -->
+    <section class="reel-card-section">
+      <img src="event-sangeet.jpg" 
+           onerror="this.onerror=null; this.src='event-sangeet.jpeg'; if (!this.src) this.src='event-sangeet.JPG';" 
+           class="reel-bg-art" alt="Sangeet Night" />
+      <div class="reel-gradient-overlay"></div>
+      <span class="reel-top-pill">20th Nov 2026</span>
+
+      <div class="reel-content-layer">
+        <h3 class="event-title-overlay">Sangeet</h3>
+        <div class="event-time-overlay">
+          <i class="fa-regular fa-moon"></i> Evening
+        </div>
+        <p class="event-desc-overlay">
+          Under a canopy of stars and fairy lights — an evening of non-stop Bollywood music, dance, and celebrations.
+        </p>
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: var(--sand-gold); font-size: 0.85rem;"></i>
+        </div>
       </div>
-      <div class="slide">
-        <img src="couple-quirky.jpg" 
-             onerror="this.onerror=null; this.src='couple-quirky.jpeg'; if (!this.src) this.src='couple-quirky.JPG';" 
-             alt="Selfie" />
-        <div class="slide-caption">Never taking life too seriously 🥸</div>
+    </section>
+
+    <!-- REEL SCREEN 6: CHURCH WEDDING -->
+    <section class="reel-card-section">
+      <img src="event-church.jpg" 
+           onerror="this.onerror=null; this.src='event-church.jpeg'; if (!this.src) this.src='event-church.JPG';" 
+           class="reel-bg-art" alt="Church Wedding" />
+      <div class="reel-gradient-overlay"></div>
+      <span class="reel-top-pill" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
+
+      <div class="reel-content-layer">
+        <h3 class="event-title-overlay">Church Wedding</h3>
+        <div class="event-time-overlay" style="color: #fdba74;">
+          <i class="fa-solid fa-church"></i> 12:00 PM
+        </div>
+        <p class="event-desc-overlay">
+          Exchanging sacred vows and rings as our two families and three states unite as one.
+        </p>
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: #fdba74; font-size: 0.85rem;"></i>
+        </div>
       </div>
+    </section>
 
-      <button class="gallery-nav-btn btn-prev" onclick="prevSlide(event)" aria-label="Previous Photo">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-      <button class="gallery-nav-btn btn-next" onclick="nextSlide(event)" aria-label="Next Photo">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
-    </div>
+    <!-- REEL SCREEN 7: BEACHSIDE RECEPTION -->
+    <section class="reel-card-section">
+      <img src="event-reception.jpg" 
+           onerror="this.onerror=null; this.src='event-reception.jpeg'; if (!this.src) this.src='event-reception.JPG';" 
+           class="reel-bg-art" alt="Beachside Reception" />
+      <div class="reel-gradient-overlay"></div>
+      <span class="reel-top-pill" style="background: rgba(234, 88, 12, 0.9); color: #fff;">21st Nov 2026</span>
 
-    <div class="gallery-hint-badge">
-      <i class="fa-solid fa-arrows-left-right"></i> Swipe or tap to view
-    </div>
-
-    <div class="dots-box">
-      <div class="dot active" onclick="jumpSlide(0)"></div>
-      <div class="dot" onclick="jumpSlide(1)"></div>
-      <div class="dot" onclick="jumpSlide(2)"></div>
-      <div class="dot" onclick="jumpSlide(3)"></div>
-      <div class="dot" onclick="jumpSlide(4)"></div>
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <section id="rsvp" class="reveal-item">
-    <div class="rsvp-box">
-      <span class="section-subtitle-pill">Attendance</span>
-      <h2 class="rsvp-main-title">RSVP</h2>
-      <p style="color: #64748b; font-size: 0.9rem;">
-        Tap below to confirm on WhatsApp directly!
-      </p>
-
-      <div class="rsvp-options">
-        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
-           target="_blank" class="rsvp-btn">
-          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px;"></i> Attending Both Days (20th & 21st)</span>
-          <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.85rem;"></i>
-        </a>
-
-        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%E2%9C%A8%20I%20will%20be%20attending%20the%20wedding%20on%20the%2021st%20Nov!" 
-           target="_blank" class="rsvp-btn">
-          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px;"></i> Attending 21st Only (Wedding & Reception)</span>
-          <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.85rem;"></i>
-        </a>
-
-        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20So%20sorry%2C%20I%20won't%20be%20able%20to%20make%20it%2C%20but%20sending%20all%20my%20love!" 
-           target="_blank" class="rsvp-btn cant-attend">
-          <span><i class="fa-regular fa-face-frown" style="color: #ef4444; margin-right: 8px;"></i> Can't Attend (Sending Love!)</span>
-          <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.85rem;"></i>
-        </a>
+      <div class="reel-content-layer">
+        <h3 class="event-title-overlay">Beachside Reception</h3>
+        <div class="event-time-overlay" style="color: #fdba74;">
+          <i class="fa-solid fa-champagne-glasses"></i> 5:00 PM onwards
+        </div>
+        <p class="event-desc-overlay">
+          Sunset toasts and lantern lights along the beach shore of Deja Blu, followed by feasting and celebration!
+        </p>
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: #fdba74; font-size: 0.85rem;"></i>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; margin-bottom: 0.2rem; color: #fef08a;">
-      Anoushka & Ronaldo
-    </p>
-    <p style="opacity: 0.8; font-size: 0.85rem;">Thrissur, Kerala • 20th & 21st November 2026</p>
-  </footer>
+    <!-- REEL SCREEN 8: VENUE -->
+    <section class="reel-card-section venue-card-reel">
+      <div class="reel-content-layer">
+        <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">The Destination</span>
+        <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: #ffffff; margin-bottom: 0.8rem;">
+          Deja Blu, Thrissur
+        </h2>
+
+        <div class="venue-showcase-box" style="margin: 0 auto;">
+          <img src="venue-sunset.jpg" 
+               onerror="this.onerror=null; this.src='venue-sunset.jpeg'; if (!this.src) this.src='venue-sunset.JPG';" 
+               alt="Deja Blu Beach" class="venue-banner-mini" />
+          <div class="venue-body-mini">
+            <h4 style="font-family: 'Playfair Display', serif; color: #ffffff; font-size: 1.25rem;">
+              Deja Blu Beach Resort
+            </h4>
+            <p style="color: #cbd5e1; font-size: 0.82rem;">Thrissur Coastal Road, Kerala</p>
+
+            <div class="qr-wrapper">
+              <img src="qr-code.jpg" 
+                   onerror="this.onerror=null; this.src='qr-code.jpeg'; if (!this.src) this.src='qr-code.JPG';" 
+                   alt="Location QR Code" />
+            </div>
+            <br>
+            <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps">
+              <i class="fa-solid fa-location-dot"></i> Open in Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="slide-down-hint">
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- REEL SCREEN 9: SWIPE GALLERY -->
+    <section class="reel-card-section gallery-card-reel">
+      <div class="reel-content-layer">
+        <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">Moments</span>
+        <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; color: #ffffff; margin-bottom: 0.6rem;">
+          Memories & Laughs
+        </h2>
+
+        <div class="gallery-touch-container" id="touchGallery" style="margin: 0 auto;">
+          <div class="slide active">
+            <img src="couple-pink.jpg" 
+                 onerror="this.onerror=null; this.src='couple-pink.jpeg'; if (!this.src) this.src='couple-pink.JPG';" 
+                 alt="Ethnic outfits" />
+            <div class="slide-caption">Stepping into forever together ❤️</div>
+          </div>
+          <div class="slide">
+            <img src="couple-valentine.jpg" 
+                 onerror="this.onerror=null; this.src='couple-valentine.jpeg'; if (!this.src) this.src='couple-valentine.JPG';" 
+                 alt="Valentine" />
+            <div class="slide-caption">Will you be my Valentine? Always! ✨</div>
+          </div>
+          <div class="slide">
+            <img src="couple-garden.jpg" 
+                 onerror="this.onerror=null; this.src='couple-garden.jpeg'; if (!this.src) this.src='couple-garden.JPG';" 
+                 alt="Dinner" />
+            <div class="slide-caption">Quiet talks and loud laughs 🥂</div>
+          </div>
+          <div class="slide">
+            <img src="couple-dance.jpg" 
+                 onerror="this.onerror=null; this.src='couple-dance.jpeg'; if (!this.src) this.src='couple-dance.JPG';" 
+                 alt="Dance" />
+            <div class="slide-caption">Business on paper, Bollywood in spirit 💃🕺</div>
+          </div>
+          <div class="slide">
+            <img src="couple-quirky.jpg" 
+                 onerror="this.onerror=null; this.src='couple-quirky.jpeg'; if (!this.src) this.src='couple-quirky.JPG';" 
+                 alt="Selfie" />
+            <div class="slide-caption">Never taking life too seriously 🥸</div>
+          </div>
+
+          <button class="gallery-nav-btn btn-prev" onclick="prevSlide(event)" aria-label="Previous Photo">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="gallery-nav-btn btn-next" onclick="nextSlide(event)" aria-label="Next Photo">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="dots-box">
+          <div class="dot active" onclick="jumpSlide(0)"></div>
+          <div class="dot" onclick="jumpSlide(1)"></div>
+          <div class="dot" onclick="jumpSlide(2)"></div>
+          <div class="dot" onclick="jumpSlide(3)"></div>
+          <div class="dot" onclick="jumpSlide(4)"></div>
+        </div>
+
+        <div class="slide-down-hint" style="margin-top: 1rem;">
+          <i class="fa-solid fa-chevron-down" style="color: rgba(255,255,255,0.7); font-size: 0.85rem;"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- REEL SCREEN 10: RSVP -->
+    <section class="reel-card-section rsvp-card-reel">
+      <div class="reel-content-layer">
+        <div class="rsvp-box-inner" style="margin: 0 auto;">
+          <span class="section-subtitle-pill" style="color: var(--sand-gold); background: rgba(254, 240, 138, 0.15);">Attendance</span>
+          <h2 class="rsvp-main-title">RSVP</h2>
+          <p style="color: #cbd5e1; font-size: 0.88rem;">
+            Tap below to confirm on WhatsApp directly!
+          </p>
+
+          <div class="rsvp-options">
+            <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
+               target="_blank" class="rsvp-btn">
+              <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 6px;"></i> Attending Both Days (20th & 21st)</span>
+              <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%E2%9C%A8%20I%20will%20be%20attending%20the%20wedding%20on%20the%2021st%20Nov!" 
+               target="_blank" class="rsvp-btn">
+              <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 6px;"></i> Attending 21st Only</span>
+              <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.8rem;"></i>
+            </a>
+
+            <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20So%20sorry%2C%20I%20won't%20be%20able%20to%20make%20it%2C%20but%20sending%20all%20my%20love!" 
+               target="_blank" class="rsvp-btn cant-attend">
+              <span><i class="fa-regular fa-face-frown" style="color: #ef4444; margin-right: 6px;"></i> Can't Attend (Sending Love!)</span>
+              <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.8rem;"></i>
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <p style="font-family: 'Alex Brush', cursive; font-size: 2.4rem; color: var(--sand-gold); line-height: 1;">
+            Anoushka & Ronaldo
+          </p>
+          <p style="opacity: 0.75; font-size: 0.78rem; color: #cbd5e1; margin-top: 0.3rem;">Thrissur, Kerala • 20th & 21st November 2026</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
   <!-- SCRIPTS -->
   <script>
@@ -1272,6 +1269,7 @@
       }
     });
 
+    // Countdown
     const targetDate = new Date("Nov 20, 2026 15:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
@@ -1315,7 +1313,7 @@
     function initScratch() {
       if (isFullyRevealed) return;
       const rect = wrapper.getBoundingClientRect();
-      const w = rect.width > 0 ? rect.width : 360;
+      const w = rect.width > 0 ? rect.width : 350;
       const h = rect.height > 0 ? rect.height : 210;
       canvas.width = w;
       canvas.height = h;
@@ -1420,19 +1418,6 @@
         prevSlide();
       }
     }
-
-    // Scroll reveal observer
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.12 };
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal-item').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>
