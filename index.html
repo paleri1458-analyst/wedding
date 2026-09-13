@@ -1,4 +1,58 @@
-.monogram-circle {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>3 States | Anoushka & Ronaldo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --deep-teal: #083344;
+      --sea-blue: #0284c7;
+      --coastal-sand: #fef9ee;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --border-tint: rgba(2, 132, 199, 0.22);
+      --text-main: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(180deg, #fef9ee 0%, #e0f2fe 35%, #ecfeff 65%, #fef3c7 100%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* ENVELOPE / GATE SCREEN */
+    #gateScreen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #075985 0%, #082f49 100%);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+    }
+
+    .monogram-circle {
       width: 170px;
       height: 170px;
       border-radius: 50%;
@@ -30,3 +84,924 @@
       line-height: 26px;
       opacity: 0.9;
     }
+
+    @keyframes pulseGlow {
+      from { transform: scale(1); box-shadow: 0 0 20px rgba(254, 240, 138, 0.25); }
+      to { transform: scale(1.06); box-shadow: 0 0 40px rgba(254, 240, 138, 0.6); }
+    }
+
+    .tap-invite-btn {
+      background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+      color: #082f49;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* FALLING BEACH PETALS */
+    .falling-leaves {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -30px;
+      background: radial-gradient(circle, #fde047 30%, #fef08a 80%);
+      border-radius: 80% 0 80% 0;
+      opacity: 0.75;
+      animation: fallDown linear infinite;
+    }
+
+    .petal:nth-child(1) { left: 8%; width: 16px; height: 16px; animation-duration: 9s; animation-delay: 0s; }
+    .petal:nth-child(2) { left: 24%; width: 12px; height: 12px; animation-duration: 12s; animation-delay: 2s; }
+    .petal:nth-child(3) { left: 45%; width: 18px; height: 18px; animation-duration: 8s; animation-delay: 4s; }
+    .petal:nth-child(4) { left: 68%; width: 14px; height: 14px; animation-duration: 11s; animation-delay: 1s; }
+    .petal:nth-child(5) { left: 88%; width: 15px; height: 15px; animation-duration: 10s; animation-delay: 3s; }
+
+    @keyframes fallDown {
+      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(105vh) rotate(540deg) translateX(30px); opacity: 0; }
+    }
+
+    /* MUSIC TOGGLE */
+    .music-player-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid var(--sea-blue);
+      color: var(--deep-teal);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      backdrop-filter: blur(8px);
+    }
+
+    .music-player-btn.rotating {
+      animation: spinCd 4s infinite linear;
+    }
+
+    @keyframes spinCd {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 94svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1.25rem 4rem;
+      background: linear-gradient(rgba(8, 51, 68, 0.65), rgba(2, 132, 199, 0.5)), url('venue-sunset.jpg') center/cover no-repeat;
+      color: #fff;
+    }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 5px 18px;
+      border-radius: 50px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      margin-bottom: 1.2rem;
+    }
+
+    .couple-name-box {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .name-bride, .name-groom {
+      font-size: clamp(2.5rem, 8.5vw, 3.8rem);
+      font-weight: 700;
+      display: block;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .ampersand-sign {
+      font-family: 'Alex Brush', cursive;
+      font-size: clamp(2.2rem, 7vw, 3.2rem);
+      color: #fef08a;
+      display: block;
+      margin: 0.1rem 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .statement-box {
+      background: rgba(8, 51, 68, 0.72);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(254, 240, 138, 0.4);
+      border-radius: 18px;
+      padding: 1.1rem 1.4rem;
+      max-width: 520px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .title-three-states {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fef08a;
+      display: block;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .tagline-bold {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: #ffffff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* SCRATCH CARD */
+    .scratch-section {
+      text-align: center;
+      padding: 3rem 1.25rem 1.5rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .scratch-card-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      height: 200px;
+      margin: 1.2rem auto 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(2, 132, 199, 0.15);
+      border: 2px solid #e0f2fe;
+      background: #ffffff;
+    }
+
+    .scratch-hidden-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+      padding: 1rem;
+    }
+
+    .scratch-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    /* COUNTDOWN */
+    .countdown-container {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.6rem;
+    }
+
+    .countdown-box {
+      background: #ffffff;
+      border: 1px solid rgba(2, 132, 199, 0.25);
+      border-radius: 10px;
+      padding: 0.4rem 0.65rem;
+      min-width: 55px;
+      text-align: center;
+    }
+
+    .countdown-num {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--sea-blue);
+      display: block;
+    }
+
+    .countdown-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 3.5rem 1.25rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-subtitle {
+      color: var(--sea-blue);
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5.5vw, 2.2rem);
+      color: var(--deep-teal);
+    }
+
+    /* PHOTO CARD */
+    .single-photo-card {
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+      border: 2px solid rgba(255,255,255,0.8);
+      background: #ffffff;
+    }
+
+    .single-photo-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* CHILDHOOD CARDS */
+    .childhood-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .baby-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 0.85rem;
+      border-radius: 18px;
+      border: 1px solid var(--border-tint);
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+
+    .baby-img-box {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #e2e8f0;
+      margin-bottom: 0.6rem;
+    }
+
+    .baby-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .baby-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--deep-teal);
+    }
+
+    /* SCHEDULE */
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .timeline-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border-tint);
+      border-left: 5px solid var(--sea-blue);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timeline-time {
+      color: var(--sea-blue);
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .timeline-name {
+      font-size: 1.25rem;
+      color: var(--deep-teal);
+      margin-top: 0.1rem;
+    }
+
+    .timeline-date-tag {
+      background: rgba(2, 132, 199, 0.12);
+      color: var(--deep-teal);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* VENUE */
+    .venue-showcase {
+      background: var(--card-bg);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border-tint);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .venue-img-banner {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .venue-body {
+      padding: 1.8rem 1.4rem;
+    }
+
+    .qr-wrapper {
+      background: #ffffff;
+      padding: 0.8rem;
+      border-radius: 16px;
+      border: 2px dashed rgba(2, 132, 199, 0.35);
+      display: inline-block;
+      margin: 1.1rem 0;
+    }
+
+    .qr-wrapper img {
+      width: 170px;
+      height: 170px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.92rem;
+      background: var(--sea-blue);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.3);
+    }
+
+    /* SLIDESHOW */
+    .slideshow-outer {
+      position: relative;
+      max-width: 520px;
+      aspect-ratio: 4 / 5;
+      margin: 0 auto;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+      background: #000;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.85s ease-in-out;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1rem 0.8rem;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+      color: #fff;
+      text-align: center;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+
+    .dots-box {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 1rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #94a3b8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--sea-blue);
+      width: 20px;
+      border-radius: 10px;
+    }
+
+    /* RSVP */
+    .rsvp-box {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 2rem 1.4rem;
+      max-width: 550px;
+      margin: 0 auto;
+      border: 1px solid var(--border-tint);
+      text-align: center;
+    }
+
+    .rsvp-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .rsvp-btn {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      padding: 0.95rem 1.1rem;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-main);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .rsvp-btn:hover {
+      border-color: #22c55e;
+      background: #f0fdf4;
+      color: #15803d;
+    }
+
+    .rsvp-btn.cant-attend:hover {
+      border-color: #ef4444;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.2rem;
+      background: var(--deep-teal);
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .timeline-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- OPENING ENVELOPE / GATE SCREEN -->
+  <div id="gateScreen">
+    <div class="monogram-circle">
+      <span class="mono-char">A</span>
+      <span class="mono-amp">&</span>
+      <span class="mono-char">R</span>
+    </div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">
+      You're Invited!
+    </h2>
+    <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 2rem;">
+      Tap to open our wedding invitation
+    </p>
+    <button class="tap-invite-btn" onclick="openInvitation()">
+      <i class="fa-solid fa-envelope-open"></i> Open Invite
+    </button>
+  </div>
+
+  <!-- FALLING BEACH PETALS -->
+  <div class="falling-leaves">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+  </div>
+
+  <!-- Ambient Audio -->
+  <audio id="beachAudio" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=beach-chill-112190.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Floating Disc -->
+  <button class="music-player-btn" id="musicBtn" aria-label="Toggle Music">
+    <i class="fa-solid fa-compact-disc"></i>
+  </button>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <span class="hero-badge">Wedding Invitation</span>
+
+    <div class="couple-name-box">
+      <span class="name-bride">Anoushka</span>
+      <span class="ampersand-sign">&</span>
+      <span class="name-groom">Ronaldo</span>
+    </div>
+
+    <div class="statement-box">
+      <span class="title-three-states">3 States</span>
+      <p class="tagline-bold">
+        A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!
+      </p>
+    </div>
+  </header>
+
+  <!-- SCRATCH TO REVEAL DATE & COUNTDOWN -->
+  <div class="scratch-section">
+    <span class="section-subtitle">Save The Date</span>
+    <h3 style="font-family: 'Playfair Display', serif; color: var(--deep-teal); font-size: 1.35rem;">
+      Scratch with your finger to reveal! ✨
+    </h3>
+
+    <div class="scratch-card-wrapper">
+      <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+      <div class="scratch-hidden-content">
+        <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Save The Date</span>
+        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--deep-teal); margin: 0.2rem 0;">
+          20th & 21st November 2026
+        </h4>
+        <div class="countdown-container">
+          <div class="countdown-box">
+            <span class="countdown-num" id="days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="minutes">00</span>
+            <span class="countdown-label">Mins</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-num" id="seconds">00</span>
+            <span class="countdown-label">Secs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLEAN STORY PHOTO -->
+  <section>
+    <div class="single-photo-card">
+      <img src="couple-traditional.JPG" onerror="this.onerror=null; this.src='couple-traditional.jpg';" alt="Anoushka and Ronaldo" />
+    </div>
+
+    <!-- CHILDHOOD CARDS (BRIDE FIRST) -->
+    <div class="childhood-grid">
+      <div class="baby-card">
+        <div class="baby-img-box">
+          <img src="childhood-bride.jpg" alt="Young Anoushka" />
+        </div>
+        <h4 class="baby-title">Anoushka</h4>
+      </div>
+
+      <div class="baby-card">
+        <div class="baby-img-box">
+          <img src="childhood-groom.jpg" alt="Young Ronaldo" />
+        </div>
+        <h4 class="baby-title">Ronaldo</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITINERARY (SANGEET ONLY) -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">Events</span>
+      <h2 class="section-title">The Schedule</h2>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-card">
+        <div>
+          <span class="timeline-time"><i class="fa-regular fa-clock"></i> 3:00 PM</span>
+          <h3 class="timeline-name">Haldi Ceremony</h3>
+        </div>
+        <span class="timeline-date-tag">20th November 2026</span>
+      </div>
+
+      <div class="timeline-card">
+        <div>
+          <span class="timeline-time"><i class="fa-regular fa-moon"></i> Evening</span>
+          <h3 class="timeline-name">Sangeet</h3>
+        </div>
+        <span class="timeline-date-tag">20th November 2026</span>
+      </div>
+
+      <div class="timeline-card" style="border-left-color: #f97316;">
+        <div>
+          <span class="timeline-time" style="color: #ea580c;"><i class="fa-solid fa-church"></i> 12:00 PM</span>
+          <h3 class="timeline-name">Church Wedding</h3>
+        </div>
+        <span class="timeline-date-tag" style="background: #ffedd5; color: #9a3412;">21st November 2026</span>
+      </div>
+
+      <div class="timeline-card" style="border-left-color: #f97316;">
+        <div>
+          <span class="timeline-time" style="color: #ea580c;"><i class="fa-solid fa-champagne-glasses"></i> 5:00 PM</span>
+          <h3 class="timeline-name">Beachside Reception</h3>
+        </div>
+        <span class="timeline-date-tag" style="background: #ffedd5; color: #9a3412;">21st November 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">The Destination</span>
+      <h2 class="section-title">Deja Blu, Thrissur</h2>
+    </div>
+
+    <div class="venue-showcase">
+      <img src="venue-sunset.jpg" alt="Deja Blu Beach" class="venue-img-banner" />
+      <div class="venue-body">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--deep-teal); font-size: 1.5rem; margin-bottom: 0.2rem;">
+          Deja Blu Beach Resort
+        </h3>
+        <p style="color: #64748b; font-size: 0.9rem;">Thrissur Coastal Road, Kerala</p>
+
+        <div class="qr-wrapper">
+          <img src="qr-code.jpg" onerror="this.onerror=null; this.src='qr-code.png';" alt="Location QR Code" />
+        </div>
+        <br>
+        <a href="https://maps.google.com/?q=Deja+Blu+Thrissur" target="_blank" class="btn-maps">
+          <i class="fa-solid fa-location-dot"></i> Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORIES SLIDESHOW -->
+  <section>
+    <div class="section-header">
+      <span class="section-subtitle">Moments</span>
+      <h2 class="section-title">Memories & Laughs</h2>
+    </div>
+
+    <div class="slideshow-outer">
+      <div class="slide active">
+        <img src="couple-pink.jpg" alt="Ethnic outfits" />
+        <div class="slide-caption">Stepping into forever together ❤️</div>
+      </div>
+      <div class="slide">
+        <img src="couple-valentine.jpg" alt="Valentine" />
+        <div class="slide-caption">Will you be my Valentine? Always! ✨</div>
+      </div>
+      <div class="slide">
+        <img src="couple-garden.jpg" alt="Dinner" />
+        <div class="slide-caption">Quiet talks and loud laughs 🥂</div>
+      </div>
+      <div class="slide">
+        <img src="couple-dance.jpg" alt="Dance" />
+        <div class="slide-caption">Business on paper, Bollywood in spirit 💃🕺</div>
+      </div>
+      <div class="slide">
+        <img src="couple-quirky.jpg" alt="Selfie" />
+        <div class="slide-caption">Never taking life too seriously 🥸</div>
+      </div>
+    </div>
+
+    <div class="dots-box">
+      <div class="dot active" onclick="jumpSlide(0)"></div>
+      <div class="dot" onclick="jumpSlide(1)"></div>
+      <div class="dot" onclick="jumpSlide(2)"></div>
+      <div class="dot" onclick="jumpSlide(3)"></div>
+      <div class="dot" onclick="jumpSlide(4)"></div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="rsvp-box">
+      <span class="section-subtitle">Will You Be There?</span>
+      <h2 class="section-title" style="margin-bottom: 0.3rem;">RSVP</h2>
+      <p style="color: #64748b; font-size: 0.9rem;">
+        Tap below to confirm on WhatsApp directly!
+      </p>
+
+      <div class="rsvp-options">
+        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
+           target="_blank" class="rsvp-btn">
+          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px;"></i> Attending Both Days (20th & 21st)</span>
+          <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.85rem;"></i>
+        </a>
+
+        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%E2%9C%A8%20I%20will%20be%20attending%20the%20wedding%20on%20the%2021st%20Nov!" 
+           target="_blank" class="rsvp-btn">
+          <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px;"></i> Attending 21st Only (Wedding & Reception)</span>
+          <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.85rem;"></i>
+        </a>
+
+        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20So%20sorry%2C%20I%20won't%20be%20able%20to%20make%20it%2C%20but%20sending%20all%20my%20love!" 
+           target="_blank" class="rsvp-btn cant-attend">
+          <span><i class="fa-regular fa-face-frown" style="color: #ef4444; margin-right: 8px;"></i> Can't Attend (Sending Love!)</span>
+          <i class="fa-solid fa-arrow-right" style="color: #94a3b8; font-size: 0.85rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p style="font-family: 'Alex Brush', cursive; font-size: 2.5rem; margin-bottom: 0.2rem; color: #fef08a;">
+      Anoushka & Ronaldo
+    </p>
+    <p style="opacity: 0.8; font-size: 0.85rem;">Thrissur, Kerala • 20th & 21st November 2026</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    const audio = document.getElementById('beachAudio');
+    const musicBtn = document.getElementById('musicBtn');
+    let isMusicPlaying = false;
+
+    // Open Invitation Screen & Start Music
+    function openInvitation() {
+      const gate = document.getElementById('gateScreen');
+      gate.style.transform = 'translateY(-100%)';
+      gate.style.opacity = '0';
+      setTimeout(() => gate.style.display = 'none', 900);
+
+      // Play audio on first user tap
+      audio.play().then(() => {
+        isMusicPlaying = true;
+        musicBtn.classList.add('rotating');
+      }).catch(() => {});
+    }
+
+    // Toggle Music Floating Disc
+    musicBtn.addEventListener('click', () => {
+      if (isMusicPlaying) {
+        audio.pause();
+        musicBtn.classList.remove('rotating');
+        musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      } else {
+        audio.play().then(() => {
+          musicBtn.classList.add('rotating');
+          musicBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
+        });
+      }
+      isMusicPlaying = !isMusicPlaying;
+    });
+
+    // Countdown Timer
+    const targetDate = new Date("Nov 20, 2026 15:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById("seconds").innerText = Math.floor((diff % 1000) / 1000);
+      }
+    }, 1000);
+
+    // Scratch Card Reveal Implementation
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+
+    function initScratch() {
+      canvas.width = canvas.parentElement.offsetWidth;
+      canvas.height = canvas.parentElement.offsetHeight;
+
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, '#cbd5e1');
+      grad.addColorStop(0.5, '#f1f5f9');
+      grad.addColorStop(1, '#94a3b8');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("✨ Scratch with finger to reveal ✨", canvas.width / 2, canvas.height / 2);
+    }
+
+    function scratch(e) {
+      if (!isDrawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+      const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 22, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mousemove', scratch);
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+    canvas.addEventListener('touchend', () => isDrawing = false);
+    canvas.addEventListener('touchmove', scratch);
+    window.addEventListener('load', initScratch);
+    window.addEventListener('resize', initScratch);
+
+    // Memories Slideshow
+    let curIdx = 0;
+    const allSlides = document.querySelectorAll('.slide');
+    const allDots = document.querySelectorAll('.dot');
+    function showNext(i) {
+      allSlides.forEach(s => s.classList.remove('active'));
+      allDots.forEach(d => d.classList.remove('active'));
+      curIdx = (i + allSlides.length) % allSlides.length;
+      allSlides[curIdx].classList.add('active');
+      allDots[curIdx].classList.add('active');
+    }
+    function jumpSlide(i) { showNext(i); }
+    setInterval(() => showNext(curIdx + 1), 3200);
+  </script>
+</body>
+</html>
