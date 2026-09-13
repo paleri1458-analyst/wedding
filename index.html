@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -36,74 +36,133 @@
       line-height: 1.5;
     }
 
-    /* ENVELOPE / GATE SCREEN */
+    /* =========================================================
+       EDITORIAL LANDING GATE (MINIMALIST B&W HANDS AESTHETIC)
+       ========================================================= */
     #gateScreen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #075985 0%, #082f49 100%);
       z-index: 99999;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: #fff;
       text-align: center;
-      padding: 2rem;
-      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+      padding: 2rem 1.5rem;
+      transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+      background-color: #121212;
+      overflow: hidden;
     }
 
-    .monogram-circle {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      border: 2px solid #fef08a;
+    /* Background Hands Photo with cinematic monochrome treatment */
+    .gate-bg-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+      filter: grayscale(100%) brightness(0.78) contrast(1.15);
+      transform: scale(1.05);
+      transition: transform 7s ease-out;
+      z-index: 1;
+    }
+
+    #gateScreen:hover .gate-bg-image {
+      transform: scale(1.1);
+    }
+
+    /* Soft vignette overlay for depth and contrast */
+    .gate-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.65) 100%);
+      z-index: 2;
+    }
+
+    .gate-content-wrap {
+      position: relative;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
+      color: #ffffff;
+    }
+
+    /* Intertwined Luxury AR Monogram */
+    .ar-monogram-lockup {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      font-family: 'Alex Brush', cursive;
-      color: #fef08a;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 35px rgba(254, 240, 138, 0.35);
-      animation: pulseGlow 2.5s infinite alternate;
+    }
+
+    .monogram-a {
+      position: absolute;
+      left: 12px;
+      top: -6px;
+      font-family: 'Cinzel', serif;
+      font-size: 5.8rem;
+      font-weight: 300;
+      color: #ffffff;
       line-height: 1;
-      padding: 10px 0;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
     }
 
-    .mono-char {
-      font-size: 3rem;
-      display: block;
-      height: 42px;
-      line-height: 42px;
+    .monogram-r {
+      position: absolute;
+      right: 10px;
+      bottom: -6px;
+      font-family: 'Cinzel', serif;
+      font-size: 5.8rem;
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
     }
 
-    .mono-amp {
-      font-size: 1.8rem;
-      display: block;
-      height: 26px;
-      line-height: 26px;
-      opacity: 0.9;
-    }
-
-    @keyframes pulseGlow {
-      from { transform: scale(1); box-shadow: 0 0 20px rgba(254, 240, 138, 0.25); }
-      to { transform: scale(1.06); box-shadow: 0 0 40px rgba(254, 240, 138, 0.6); }
+    .gate-names-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 2.2rem;
+      opacity: 0.95;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
     }
 
     .tap-invite-btn {
-      background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
-      color: #082f49;
-      border: none;
-      padding: 0.9rem 2.2rem;
-      font-size: 1.05rem;
-      font-weight: 700;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 0.8rem 2.2rem;
+      font-size: 0.85rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .tap-invite-btn:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-2px);
     }
 
     /* FALLING BEACH PETALS */
@@ -251,7 +310,7 @@
     /* CURSIVE SECTION HEADERS */
     .section-header {
       text-align: center;
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.8rem;
     }
 
     .section-title-cursive {
@@ -279,7 +338,7 @@
     /* SCRATCH CARD CONTAINER */
     .scratch-section {
       text-align: center;
-      padding: 3.5rem 1.25rem 1.5rem;
+      padding: 2.8rem 1.25rem 1rem;
       max-width: 520px;
       margin: 0 auto;
     }
@@ -355,7 +414,7 @@
 
     /* SECTIONS */
     section {
-      padding: 3.5rem 1.25rem;
+      padding: 2.2rem 1.25rem;
       max-width: 1000px;
       margin: 0 auto;
       position: relative;
@@ -365,7 +424,7 @@
     /* PHOTO CARD */
     .single-photo-card {
       max-width: 580px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 2.2rem;
       border-radius: 22px;
       overflow: hidden;
       box-shadow: 0 14px 35px rgba(0,0,0,0.08);
@@ -697,22 +756,31 @@
 </head>
 <body>
 
-  <!-- OPENING ENVELOPE / GATE SCREEN -->
+  <!-- =========================================================
+       EDITORIAL LANDING GATE (B&W HANDS AESTHETIC FROM PHOTO)
+       ========================================================= -->
   <div id="gateScreen">
-    <div class="monogram-circle">
-      <span class="mono-char">A</span>
-      <span class="mono-amp">&</span>
-      <span class="mono-char">R</span>
+    <img class="gate-bg-image" 
+         src="hero-hands.jpg" 
+         onerror="this.onerror=null; this.src='hero-hands.png'; if(!this.src) this.src='hero-hands.jpeg';" 
+         alt="Hands intertwined" />
+    <div class="gate-vignette"></div>
+
+    <div class="gate-content-wrap">
+      <!-- Luxury Monogram -->
+      <div class="ar-monogram-lockup">
+        <span class="monogram-a">A</span>
+        <span class="monogram-r">R</span>
+      </div>
+
+      <!-- Spaced Title Line (Bride First) -->
+      <p class="gate-names-text">ANOUSHKA & RONALDO</p>
+
+      <!-- Glass Open Button -->
+      <button class="tap-invite-btn" onclick="openInvitation()">
+        Open Invite <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; margin-left: 4px;"></i>
+      </button>
     </div>
-    <h2 style="font-family: 'Alex Brush', cursive; font-size: 2.8rem; margin-bottom: 0.2rem; color: #fef08a;">
-      You're Invited
-    </h2>
-    <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 2rem;">
-      Tap to open our wedding invitation
-    </p>
-    <button class="tap-invite-btn" onclick="openInvitation()">
-      <i class="fa-solid fa-envelope-open"></i> Open Invite
-    </button>
   </div>
 
   <!-- FALLING BEACH PETALS -->
@@ -788,8 +856,8 @@
     </div>
   </div>
 
-  <!-- STORY PHOTO -->
-  <section>
+  <!-- STORY PHOTO & CHILDHOOD -->
+  <section style="padding-bottom: 0.8rem;">
     <div class="single-photo-card">
       <img src="couple-traditional.jpg" 
            onerror="this.onerror=null; this.src='couple-traditional.JPG'; if (!this.src) this.src='couple-traditional.jpeg';" 
@@ -819,9 +887,9 @@
   </section>
 
   <!-- =========================================================================
-       EVENTS: POSTER CARDS USING JPEG IMAGES
+       EVENTS: POSTER CARDS USING JPEG IMAGES (GAP REDUCED)
        ========================================================================= -->
-  <section>
+  <section style="padding-top: 0.8rem;">
     <div class="section-header">
       <span class="section-subtitle-pill">Celebrations</span>
       <h2 class="section-title-cursive">Events Schedule</h2>
