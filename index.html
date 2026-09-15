@@ -386,7 +386,7 @@
     }
 
     /* =========================================================
-       SCRATCH CARD (DUPLICATE REMOVED)
+       SCRATCH CARD
        ========================================================= */
     .scratch-section-layout {
       text-align: center;
@@ -749,7 +749,7 @@
     }
 
     /* =========================================================
-       TOUCH-SWIPE GALLERY (CUSTOM REORDERED SEQUENCE)
+       TOUCH-SWIPE GALLERY
        ========================================================= */
     .gallery-touch-container {
       position: relative;
@@ -870,7 +870,7 @@
     }
 
     /* =========================================================
-       RSVP & ANIMATED WHATSAPP BUTTONS
+       RSVP & ANIMATED WHATSAPP BUTTONS (DYNAMIC SIDE ROUTING)
        ========================================================= */
     .rsvp-box {
       background: var(--card-bg);
@@ -987,7 +987,7 @@
 <body class="gate-active">
 
   <!-- =========================================================
-       LANDING GATE: BRIGHT PHOTO & VIVID GOLD MONOGRAM
+       LANDING GATE
        ========================================================= -->
   <div id="gateScreen" onclick="handleGateTap()">
     <img class="gate-photo-ambient" 
@@ -1056,7 +1056,7 @@
   </header>
 
   <!-- =========================================================
-       SCRATCH TO REVEAL DATE (DUPLICATE HEADER REMOVED)
+       SCRATCH TO REVEAL DATE (DUPLICATE REMOVED)
        ========================================================= -->
   <div class="scratch-section-layout">
     <div class="scratch-card-wrapper" id="scratchWrapper">
@@ -1418,20 +1418,17 @@
       </p>
 
       <div class="rsvp-options">
-        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%F0%9F%8E%89%20I%20am%20excited%20to%20confirm%20that%20I'll%20be%20attending%20BOTH%20DAYS%20(20th%20%26%2021st%20Nov)!" 
-           target="_blank" class="rsvp-btn-animated" rel="noopener">
+        <a id="rsvpLink1" href="#" target="_blank" class="rsvp-btn-animated" rel="noopener">
           <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Attending Both Days (20th & 21st)</span>
           <i class="fa-solid fa-arrow-right arrow-indicator"></i>
         </a>
 
-        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20%E2%9C%A8%20I%20will%20be%20attending%20the%20wedding%20on%20the%2021st%20Nov!" 
-           target="_blank" class="rsvp-btn-animated" rel="noopener">
+        <a id="rsvpLink2" href="#" target="_blank" class="rsvp-btn-animated" rel="noopener">
           <span><i class="fa-brands fa-whatsapp" style="color: #22c55e; margin-right: 8px; font-size: 1.05rem;"></i> Attending 21st Only (Wedding & Reception)</span>
           <i class="fa-solid fa-arrow-right arrow-indicator"></i>
         </a>
 
-        <a href="https://wa.me/917303342963?text=Hey%20Anoushka%20%26%20Ronaldo!%20So%20sorry%2C%20I%20won't%20be%20able%20to%20make%20it%2C%20but%20sending%20all%20my%20love!" 
-           target="_blank" class="rsvp-btn-animated cant-attend" rel="noopener">
+        <a id="rsvpLink3" href="#" target="_blank" class="rsvp-btn-animated cant-attend" rel="noopener">
           <span><i class="fa-regular fa-face-frown" style="color: #ef4444; margin-right: 8px; font-size: 1.05rem;"></i> Can't Attend (Sending Love!)</span>
           <i class="fa-solid fa-arrow-right arrow-indicator"></i>
         </a>
@@ -1507,6 +1504,22 @@
       } else {
         startMusicSafely();
       }
+    });
+
+    // DYNAMIC FAMILY RSVP ROUTING (Ronaldo's updated number: 9747932842)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const side = urlParams.get('side');
+      
+      const phone = (side === 'groom') ? "919747932842" : "917303342963";
+
+      const text1 = encodeURIComponent("Hey Anoushka & Ronaldo! 🎉 I am excited to confirm that I'll be attending BOTH DAYS (20th & 21st Nov)!");
+      const text2 = encodeURIComponent("Hey Anoushka & Ronaldo! ✨ I will be attending the wedding on the 21st Nov!");
+      const text3 = encodeURIComponent("Hey Anoushka & Ronaldo! So sorry, I won't be able to make it, but sending all my love!");
+
+      document.getElementById('rsvpLink1').href = `https://wa.me/${phone}?text=${text1}`;
+      document.getElementById('rsvpLink2').href = `https://wa.me/${phone}?text=${text2}`;
+      document.getElementById('rsvpLink3').href = `https://wa.me/${phone}?text=${text3}`;
     });
 
     // Countdown
