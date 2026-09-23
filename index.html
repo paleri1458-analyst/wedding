@@ -231,18 +231,18 @@
     }
 
     /* =========================================================
-       HERO COVER
+       HERO COVER & SCROLL CUE ANIMATION
        ========================================================= */
     .hero {
       position: relative;
-      min-height: 94svh;
+      min-height: 100svh;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       text-align: center;
-      padding: clamp(3rem, 7vh, 5rem) 1rem clamp(2.5rem, 5vh, 4rem);
+      padding: clamp(3rem, 7vh, 5rem) 1rem clamp(3.5rem, 6vh, 4.5rem);
       background: 
         radial-gradient(ellipse at 50% 20%, rgba(250, 204, 21, 0.12) 0%, transparent 60%),
         linear-gradient(180deg, rgba(8, 51, 68, 0.65) 0%, rgba(2, 132, 199, 0.35) 50%, rgba(8, 51, 68, 0.92) 100%),
@@ -275,14 +275,14 @@
 
     .hero-names-centerpiece {
       position: relative;
-      margin: 1.5rem auto;
+      margin: 1rem auto;
       max-width: 100%;
       width: 100%;
     }
 
     .name-bride-chic, .name-groom-chic {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 11vw, 5.4rem);
+      font-size: clamp(3rem, 10vw, 5rem);
       font-weight: 600;
       letter-spacing: 1.5px;
       text-transform: capitalize;
@@ -297,10 +297,10 @@
 
     .ampersand-luxury {
       font-family: 'Alex Brush', cursive;
-      font-size: clamp(2.8rem, 9vw, 4rem);
+      font-size: clamp(2.6rem, 8.5vw, 3.8rem);
       color: var(--sand-gold);
       display: block;
-      margin: 0.85rem 0 0.75rem;
+      margin: 0.6rem 0;
       line-height: 1;
       filter: drop-shadow(0 2px 14px rgba(250, 204, 21, 0.45));
     }
@@ -313,6 +313,7 @@
       flex-direction: column;
       align-items: center;
       position: relative;
+      gap: 0.8rem;
     }
 
     .states-capsule-badge {
@@ -326,7 +327,6 @@
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(254, 240, 138, 0.35);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      margin-bottom: 0.85rem;
     }
 
     .states-capsule-text {
@@ -340,15 +340,57 @@
 
     .tagline-editorial-prose {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.15rem, 4vw, 1.45rem);
+      font-size: clamp(1.1rem, 3.8vw, 1.4rem);
       font-weight: 500;
       font-style: italic;
-      line-height: 1.5;
+      line-height: 1.45;
       color: #ffffff;
       text-shadow: 0 2px 14px rgba(8, 51, 68, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8);
       max-width: 440px;
-      margin-bottom: 1.2rem;
       padding: 0 0.5rem;
+    }
+
+    /* Professional Animated Scroll Indicator */
+    .scroll-down-cue {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.5rem;
+      background: rgba(8, 51, 68, 0.55);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(254, 240, 138, 0.25);
+      padding: 6px 16px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      animation: bounceScroll 2s infinite ease-in-out;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .scroll-cue-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sand-gold);
+      font-weight: 600;
+    }
+
+    .scroll-cue-arrows {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ffffff;
+      font-size: 0.75rem;
+      line-height: 0.5;
+      opacity: 0.9;
+    }
+
+    @keyframes bounceScroll {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+      60% { transform: translateY(-3px); }
     }
 
     /* =========================================================
@@ -1043,6 +1085,15 @@
       <p class="tagline-editorial-prose" id="taglineText">
         "A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!"
       </p>
+
+      <!-- Animated Scroll Down Cue -->
+      <a href="#scratchWrapper" class="scroll-down-cue">
+        <span class="scroll-cue-text">Scroll to Explore</span>
+        <div class="scroll-cue-arrows">
+          <i class="fa-solid fa-chevron-down"></i>
+          <i class="fa-solid fa-chevron-down" style="opacity: 0.5;"></i>
+        </div>
+      </a>
     </div>
   </header>
 
