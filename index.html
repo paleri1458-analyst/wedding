@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>2 States | Anoushka & Ronaldo</title>
+  <title id="pageTitle">3 States | Anoushka & Ronaldo</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -1037,11 +1037,11 @@
     <div class="hero-editorial-footer">
       <div class="states-capsule-badge">
         <i class="fa-solid fa-compass" style="color: var(--sand-gold); font-size: 0.75rem;"></i>
-        <span class="states-capsule-text">2 States</span>
+        <span class="states-capsule-text" id="badgeText">3 States</span>
       </div>
 
-      <p class="tagline-editorial-prose">
-        "A Malayali girl is marrying a Tamilian boy by the beach"
+      <p class="tagline-editorial-prose" id="taglineText">
+        "A Rajasthani-Malayali girl is marrying a Tamilian boy by the beach, and you're all invited!"
       </p>
     </div>
   </header>
@@ -1497,18 +1497,22 @@
       }
     });
 
-    // DYNAMIC FAMILY RSVP ROUTING
-    // ?side=groom -> Ronaldo (9444765937)
-    // ?side=bride -> Anoushka (9406978911)
+    // DYNAMIC FAMILY & CONTENT ROUTING BASED ON URL PARAMETERS
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const side = urlParams.get('side');
       
-      let phone = "919406978911"; // default to Anoushka
+      let phone = "917303342963"; // Default -> Anoushka
+      
       if (side === 'groom') {
-        phone = "919444765937";
+        phone = "919444765937"; // Ronaldo
       } else if (side === 'bride') {
-        phone = "919406978911";
+        phone = "919406978911"; // Anoushka's Mother
+        
+        // Update content for mother's side (2 States view)
+        document.getElementById('pageTitle').innerText = "2 States | Anoushka & Ronaldo";
+        document.getElementById('badgeText').innerText = "2 States";
+        document.getElementById('taglineText').innerText = '"A Malayali girl is marrying a Tamilian boy by the beach"';
       }
 
       const text1 = encodeURIComponent("Hey Anoushka & Ronaldo! 🎉 I am excited to confirm that I'll be attending BOTH DAYS (20th & 21st Nov)!");
